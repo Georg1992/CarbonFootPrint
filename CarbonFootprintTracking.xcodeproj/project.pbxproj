@@ -1,0 +1,609 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6A998EC026272F7700B7376C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A998EBF26272F7700B7376C /* AppDelegate.swift */; };
+		6A998EC226272F7700B7376C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A998EC126272F7700B7376C /* SceneDelegate.swift */; };
+		6A998EC426272F7700B7376C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A998EC326272F7700B7376C /* ViewController.swift */; };
+		6A998EC726272F7700B7376C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A998EC526272F7700B7376C /* Main.storyboard */; };
+		6A998ECA26272F7700B7376C /* CarbonFootprintTracking.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A998EC826272F7700B7376C /* CarbonFootprintTracking.xcdatamodeld */; };
+		6A998ECC26272F7900B7376C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A998ECB26272F7900B7376C /* Assets.xcassets */; };
+		6A998ECF26272F7900B7376C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A998ECD26272F7900B7376C /* LaunchScreen.storyboard */; };
+		6A998EDA26272F7900B7376C /* CarbonFootprintTrackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A998ED926272F7900B7376C /* CarbonFootprintTrackingTests.swift */; };
+		6A998EE526272F7900B7376C /* CarbonFootprintTrackingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A998EE426272F7900B7376C /* CarbonFootprintTrackingUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6A998ED626272F7900B7376C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6A998EB426272F7700B7376C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6A998EBB26272F7700B7376C;
+			remoteInfo = CarbonFootprintTracking;
+		};
+		6A998EE126272F7900B7376C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6A998EB426272F7700B7376C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6A998EBB26272F7700B7376C;
+			remoteInfo = CarbonFootprintTracking;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6A998EBC26272F7700B7376C /* CarbonFootprintTracking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarbonFootprintTracking.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A998EBF26272F7700B7376C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6A998EC126272F7700B7376C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		6A998EC326272F7700B7376C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6A998EC626272F7700B7376C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6A998EC926272F7700B7376C /* CarbonFootprintTracking.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CarbonFootprintTracking.xcdatamodel; sourceTree = "<group>"; };
+		6A998ECB26272F7900B7376C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6A998ECE26272F7900B7376C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6A998ED026272F7900B7376C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A998ED526272F7900B7376C /* CarbonFootprintTrackingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarbonFootprintTrackingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A998ED926272F7900B7376C /* CarbonFootprintTrackingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonFootprintTrackingTests.swift; sourceTree = "<group>"; };
+		6A998EDB26272F7900B7376C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A998EE026272F7900B7376C /* CarbonFootprintTrackingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarbonFootprintTrackingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A998EE426272F7900B7376C /* CarbonFootprintTrackingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonFootprintTrackingUITests.swift; sourceTree = "<group>"; };
+		6A998EE626272F7900B7376C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6A998EB926272F7700B7376C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A998ED226272F7900B7376C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A998EDD26272F7900B7376C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6A998EB326272F7700B7376C = {
+			isa = PBXGroup;
+			children = (
+				6A998EBE26272F7700B7376C /* CarbonFootprintTracking */,
+				6A998ED826272F7900B7376C /* CarbonFootprintTrackingTests */,
+				6A998EE326272F7900B7376C /* CarbonFootprintTrackingUITests */,
+				6A998EBD26272F7700B7376C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6A998EBD26272F7700B7376C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6A998EBC26272F7700B7376C /* CarbonFootprintTracking.app */,
+				6A998ED526272F7900B7376C /* CarbonFootprintTrackingTests.xctest */,
+				6A998EE026272F7900B7376C /* CarbonFootprintTrackingUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6A998EBE26272F7700B7376C /* CarbonFootprintTracking */ = {
+			isa = PBXGroup;
+			children = (
+				6A998EBF26272F7700B7376C /* AppDelegate.swift */,
+				6A998EC126272F7700B7376C /* SceneDelegate.swift */,
+				6A998EC326272F7700B7376C /* ViewController.swift */,
+				6A998EC526272F7700B7376C /* Main.storyboard */,
+				6A998ECB26272F7900B7376C /* Assets.xcassets */,
+				6A998ECD26272F7900B7376C /* LaunchScreen.storyboard */,
+				6A998ED026272F7900B7376C /* Info.plist */,
+				6A998EC826272F7700B7376C /* CarbonFootprintTracking.xcdatamodeld */,
+			);
+			path = CarbonFootprintTracking;
+			sourceTree = "<group>";
+		};
+		6A998ED826272F7900B7376C /* CarbonFootprintTrackingTests */ = {
+			isa = PBXGroup;
+			children = (
+				6A998ED926272F7900B7376C /* CarbonFootprintTrackingTests.swift */,
+				6A998EDB26272F7900B7376C /* Info.plist */,
+			);
+			path = CarbonFootprintTrackingTests;
+			sourceTree = "<group>";
+		};
+		6A998EE326272F7900B7376C /* CarbonFootprintTrackingUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6A998EE426272F7900B7376C /* CarbonFootprintTrackingUITests.swift */,
+				6A998EE626272F7900B7376C /* Info.plist */,
+			);
+			path = CarbonFootprintTrackingUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6A998EBB26272F7700B7376C /* CarbonFootprintTracking */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A998EE926272F7900B7376C /* Build configuration list for PBXNativeTarget "CarbonFootprintTracking" */;
+			buildPhases = (
+				6A998EB826272F7700B7376C /* Sources */,
+				6A998EB926272F7700B7376C /* Frameworks */,
+				6A998EBA26272F7700B7376C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CarbonFootprintTracking;
+			productName = CarbonFootprintTracking;
+			productReference = 6A998EBC26272F7700B7376C /* CarbonFootprintTracking.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6A998ED426272F7900B7376C /* CarbonFootprintTrackingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A998EEC26272F7900B7376C /* Build configuration list for PBXNativeTarget "CarbonFootprintTrackingTests" */;
+			buildPhases = (
+				6A998ED126272F7900B7376C /* Sources */,
+				6A998ED226272F7900B7376C /* Frameworks */,
+				6A998ED326272F7900B7376C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6A998ED726272F7900B7376C /* PBXTargetDependency */,
+			);
+			name = CarbonFootprintTrackingTests;
+			productName = CarbonFootprintTrackingTests;
+			productReference = 6A998ED526272F7900B7376C /* CarbonFootprintTrackingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6A998EDF26272F7900B7376C /* CarbonFootprintTrackingUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A998EEF26272F7900B7376C /* Build configuration list for PBXNativeTarget "CarbonFootprintTrackingUITests" */;
+			buildPhases = (
+				6A998EDC26272F7900B7376C /* Sources */,
+				6A998EDD26272F7900B7376C /* Frameworks */,
+				6A998EDE26272F7900B7376C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6A998EE226272F7900B7376C /* PBXTargetDependency */,
+			);
+			name = CarbonFootprintTrackingUITests;
+			productName = CarbonFootprintTrackingUITests;
+			productReference = 6A998EE026272F7900B7376C /* CarbonFootprintTrackingUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6A998EB426272F7700B7376C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					6A998EBB26272F7700B7376C = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					6A998ED426272F7900B7376C = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 6A998EBB26272F7700B7376C;
+					};
+					6A998EDF26272F7900B7376C = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 6A998EBB26272F7700B7376C;
+					};
+				};
+			};
+			buildConfigurationList = 6A998EB726272F7700B7376C /* Build configuration list for PBXProject "CarbonFootprintTracking" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6A998EB326272F7700B7376C;
+			productRefGroup = 6A998EBD26272F7700B7376C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6A998EBB26272F7700B7376C /* CarbonFootprintTracking */,
+				6A998ED426272F7900B7376C /* CarbonFootprintTrackingTests */,
+				6A998EDF26272F7900B7376C /* CarbonFootprintTrackingUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6A998EBA26272F7700B7376C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A998ECF26272F7900B7376C /* LaunchScreen.storyboard in Resources */,
+				6A998ECC26272F7900B7376C /* Assets.xcassets in Resources */,
+				6A998EC726272F7700B7376C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A998ED326272F7900B7376C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A998EDE26272F7900B7376C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6A998EB826272F7700B7376C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A998EC426272F7700B7376C /* ViewController.swift in Sources */,
+				6A998ECA26272F7700B7376C /* CarbonFootprintTracking.xcdatamodeld in Sources */,
+				6A998EC026272F7700B7376C /* AppDelegate.swift in Sources */,
+				6A998EC226272F7700B7376C /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A998ED126272F7900B7376C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A998EDA26272F7900B7376C /* CarbonFootprintTrackingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A998EDC26272F7900B7376C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A998EE526272F7900B7376C /* CarbonFootprintTrackingUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6A998ED726272F7900B7376C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6A998EBB26272F7700B7376C /* CarbonFootprintTracking */;
+			targetProxy = 6A998ED626272F7900B7376C /* PBXContainerItemProxy */;
+		};
+		6A998EE226272F7900B7376C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6A998EBB26272F7700B7376C /* CarbonFootprintTracking */;
+			targetProxy = 6A998EE126272F7900B7376C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6A998EC526272F7700B7376C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A998EC626272F7700B7376C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6A998ECD26272F7900B7376C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A998ECE26272F7900B7376C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6A998EE726272F7900B7376C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6A998EE826272F7900B7376C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6A998EEA26272F7900B7376C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = CarbonFootprintTracking/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = fi.metropolia.patrikpo.CarbonFootprintTracking;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6A998EEB26272F7900B7376C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = CarbonFootprintTracking/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = fi.metropolia.patrikpo.CarbonFootprintTracking;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6A998EED26272F7900B7376C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = CarbonFootprintTrackingTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = fi.metropolia.patrikpo.CarbonFootprintTrackingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CarbonFootprintTracking.app/CarbonFootprintTracking";
+			};
+			name = Debug;
+		};
+		6A998EEE26272F7900B7376C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = CarbonFootprintTrackingTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = fi.metropolia.patrikpo.CarbonFootprintTrackingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CarbonFootprintTracking.app/CarbonFootprintTracking";
+			};
+			name = Release;
+		};
+		6A998EF026272F7900B7376C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = CarbonFootprintTrackingUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = fi.metropolia.patrikpo.CarbonFootprintTrackingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CarbonFootprintTracking;
+			};
+			name = Debug;
+		};
+		6A998EF126272F7900B7376C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = CarbonFootprintTrackingUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = fi.metropolia.patrikpo.CarbonFootprintTrackingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CarbonFootprintTracking;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6A998EB726272F7700B7376C /* Build configuration list for PBXProject "CarbonFootprintTracking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A998EE726272F7900B7376C /* Debug */,
+				6A998EE826272F7900B7376C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6A998EE926272F7900B7376C /* Build configuration list for PBXNativeTarget "CarbonFootprintTracking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A998EEA26272F7900B7376C /* Debug */,
+				6A998EEB26272F7900B7376C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6A998EEC26272F7900B7376C /* Build configuration list for PBXNativeTarget "CarbonFootprintTrackingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A998EED26272F7900B7376C /* Debug */,
+				6A998EEE26272F7900B7376C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6A998EEF26272F7900B7376C /* Build configuration list for PBXNativeTarget "CarbonFootprintTrackingUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A998EF026272F7900B7376C /* Debug */,
+				6A998EF126272F7900B7376C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6A998EC826272F7700B7376C /* CarbonFootprintTracking.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6A998EC926272F7700B7376C /* CarbonFootprintTracking.xcdatamodel */,
+			);
+			currentVersion = 6A998EC926272F7700B7376C /* CarbonFootprintTracking.xcdatamodel */;
+			path = CarbonFootprintTracking.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 6A998EB426272F7700B7376C /* Project object */;
+}
