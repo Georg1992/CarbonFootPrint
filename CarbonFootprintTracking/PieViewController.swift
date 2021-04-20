@@ -2,24 +2,22 @@
 //  PieViewController.swift
 //  CarbonFootprintTracking
 //
-//  Created by iosdev on 20.4.2021.
+//  Created by Teemu Rekola on 20.4.2021.
 //
 
-//import Charts
+import Charts
 import UIKit
 
-class PieViewController: UIViewController {
-    //class PieViewController: UIViewController, ChartViewDelegate{
+class PieViewController: UIViewController, ChartViewDelegate{
     
-    //var pieChart = PieChartView()
+    var pieChart = PieChartView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //pieChart.delegate = self
-        
+        pieChart.delegate = self
     }
     
-    /*override func viewDidLayoutSubviews() {
+    override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         pieChart.frame = CGRect(x: 0, y: 0,
@@ -32,7 +30,7 @@ class PieViewController: UIViewController {
         
         for x in 0..<10 {
             entries.append(ChartDataEntry(x: Double(x),
-                                             y: Double(x)))
+                                          y: Double(x)))
         }
         
         let set = PieChartDataSet(entries: entries)
@@ -40,7 +38,5 @@ class PieViewController: UIViewController {
         let data = PieChartData(dataSet: set)
         pieChart.data = data
         
-    }*/
-
-
+    }
 }
