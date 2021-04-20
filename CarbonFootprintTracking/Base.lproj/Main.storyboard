@@ -27,11 +27,11 @@
             </objects>
             <point key="canvasLocation" x="1087" y="375"/>
         </scene>
-        <!--Item-->
+        <!--Line-->
         <scene sceneID="nUb-kT-Y4x">
             <objects>
                 <navigationController id="IIe-7S-9PB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="rIb-Mj-ew0"/>
+                    <tabBarItem key="tabBarItem" title="Line" id="rIb-Mj-ew0"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="73v-yt-VCJ">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -44,11 +44,11 @@
             </objects>
             <point key="canvasLocation" x="280" y="1193"/>
         </scene>
-        <!--Item-->
+        <!--Map-->
         <scene sceneID="7tT-1A-i7s">
             <objects>
                 <navigationController id="0Kr-rC-iSS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Bn5-m0-jUE"/>
+                    <tabBarItem key="tabBarItem" title="Map" id="Bn5-m0-jUE"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Dfh-4k-Kvv">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -61,11 +61,11 @@
             </objects>
             <point key="canvasLocation" x="1870" y="1193"/>
         </scene>
-        <!--Item-->
+        <!--Pie-->
         <scene sceneID="wgN-K2-Fi1">
             <objects>
                 <navigationController id="KJJ-Y8-qI7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="YF9-YE-4AY"/>
+                    <tabBarItem key="tabBarItem" title="Pie" id="YF9-YE-4AY"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="YuX-pk-Wso">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
