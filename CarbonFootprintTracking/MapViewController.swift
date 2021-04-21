@@ -12,20 +12,9 @@ class MapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        TMD.start()
-        TMDCloudApi.fetchMetadata().continueWith { (task) -> Any? in
-            DispatchQueue.main.async {
-                // Execute your UI related code on the main thread
-                
-                if let error = task.error {
-                    NSLog("fetchMetadata Error: %@", error.localizedDescription)
-                }
-                else if let metadata = task.result {
-                    NSLog("fetchMetadata result: %@", metadata)
-                }
-            }
+        
         }
-    }
+    
     
 
     /*
