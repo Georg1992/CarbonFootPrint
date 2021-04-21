@@ -30,30 +30,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
                 else {
                     // Get the app's installation id:
-                    NSLog("Successfully initialized the TMD with id \(task.result)")
+                    NSLog("Successfully initialized the TMD with id \(String(describing: task.result))")
                 }
                 return task;
         }
         return true
     }
-    
-    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        // Run our background operations
-        TMD.backgroundFetch().continueWith (block: { (task) -> Void in
-            let tmdFetchResult:UIBackgroundFetchResult = UIBackgroundFetchResult(rawValue: (task.result!.uintValue))!
-            // Call the completion handler with the UIBackgroundFetchResult returned by TMD.backgroundFetch(), or with your own background fetch result
-            completionHandler(tmdFetchResult)
-        })
-    }
-    
-    func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
-        TMD.application(application, handleEventsForBackgroundURLSession: identifier, completionHandler: completionHandler)
-    }
-    
-    func applicationWillTerminate(_ application: UIApplication) {
-        TMD.applicationWillTerminate()
-    }
-
     
 
     // MARK: UISceneSession Lifecycle
