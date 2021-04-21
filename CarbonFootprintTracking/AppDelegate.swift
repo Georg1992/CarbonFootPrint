@@ -42,6 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         TMD.backgroundFetch().continueWith (block: { (task) -> Void in
             let tmdFetchResult:UIBackgroundFetchResult = UIBackgroundFetchResult(rawValue: (task.result!.uintValue))!
             // Call the completion handler with the UIBackgroundFetchResult returned by TMD.backgroundFetch(), or with your own background fetch result
+            
+            
             completionHandler(tmdFetchResult)
         })
     }

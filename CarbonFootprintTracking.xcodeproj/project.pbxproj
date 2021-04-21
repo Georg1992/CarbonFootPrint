@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D561749B19A21C5C4B8013B /* Pods_CarbonFootprintTracking_CarbonFootprintTrackingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 543BF9E72D5D243E16798F50 /* Pods_CarbonFootprintTracking_CarbonFootprintTrackingUITests.framework */; };
-		48B4087DE5DE9A684CA16C61 /* Pods_CarbonFootprintTracking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEDB5AB050601697B6C3414 /* Pods_CarbonFootprintTracking.framework */; };
 		560A1B9026287009001FF3F4 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 560A1B8F26287009001FF3F4 /* .gitignore */; };
 		56709F81262F0A8000B08AB7 /* MOPRIMTmdSdk.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56709F80262F0A8000B08AB7 /* MOPRIMTmdSdk.xcframework */; };
 		56709F82262F0A8000B08AB7 /* MOPRIMTmdSdk.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 56709F80262F0A8000B08AB7 /* MOPRIMTmdSdk.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -26,6 +24,7 @@
 		56709F94262F0B2600B08AB7 /* AWSMobileClientXCF.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 56709F92262F0B2500B08AB7 /* AWSMobileClientXCF.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		56709F96262F0B4100B08AB7 /* AWSS3.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56709F95262F0B4100B08AB7 /* AWSS3.xcframework */; };
 		56709F97262F0B4100B08AB7 /* AWSS3.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 56709F95262F0B4100B08AB7 /* AWSS3.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		56709F992630436100B08AB7 /* MoprimAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56709F982630436100B08AB7 /* MoprimAPI.swift */; };
 		6A24FD11262EB7D1006655CC /* PieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A24FD10262EB7D1006655CC /* PieViewController.swift */; };
 		6A24FD16262EB7F8006655CC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A24FD15262EB7F8006655CC /* MapViewController.swift */; };
 		6A998EC026272F7700B7376C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A998EBF26272F7700B7376C /* AppDelegate.swift */; };
@@ -37,7 +36,6 @@
 		6A998ECF26272F7900B7376C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A998ECD26272F7900B7376C /* LaunchScreen.storyboard */; };
 		6A998EDA26272F7900B7376C /* CarbonFootprintTrackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A998ED926272F7900B7376C /* CarbonFootprintTrackingTests.swift */; };
 		6A998EE526272F7900B7376C /* CarbonFootprintTrackingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A998EE426272F7900B7376C /* CarbonFootprintTrackingUITests.swift */; };
-		E93F5666C5EF773BD390394D /* Pods_CarbonFootprintTrackingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A70AE37167954A0C087EAB /* Pods_CarbonFootprintTrackingTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,10 +77,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2391CE07C046CAE524B80D54 /* Pods-CarbonFootprintTracking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarbonFootprintTracking.release.xcconfig"; path = "Target Support Files/Pods-CarbonFootprintTracking/Pods-CarbonFootprintTracking.release.xcconfig"; sourceTree = "<group>"; };
-		372BCE38BBF19C0B5D44B3A0 /* Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests.release.xcconfig"; path = "Target Support Files/Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests/Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests.release.xcconfig"; sourceTree = "<group>"; };
-		53FDF82F448CFDC07DE845BE /* Pods-CarbonFootprintTrackingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarbonFootprintTrackingTests.release.xcconfig"; path = "Target Support Files/Pods-CarbonFootprintTrackingTests/Pods-CarbonFootprintTrackingTests.release.xcconfig"; sourceTree = "<group>"; };
-		543BF9E72D5D243E16798F50 /* Pods_CarbonFootprintTracking_CarbonFootprintTrackingUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarbonFootprintTracking_CarbonFootprintTrackingUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		560A1B8F26287009001FF3F4 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		56709F80262F0A8000B08AB7 /* MOPRIMTmdSdk.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MOPRIMTmdSdk.xcframework; path = Frameworks/MOPRIMTmdSdk.xcframework; sourceTree = "<group>"; };
 		56709F83262F0A8E00B08AB7 /* AWSAPIGateway.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AWSAPIGateway.xcframework; path = "Frameworks/aws-ios-sdk-2.22.1/frameworks/AWSAPIGateway.xcframework"; sourceTree = "<group>"; };
@@ -92,8 +86,7 @@
 		56709F8F262F0B1000B08AB7 /* AWSCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AWSCore.xcframework; path = "Frameworks/aws-ios-sdk-2.22.1/frameworks/AWSCore.xcframework"; sourceTree = "<group>"; };
 		56709F92262F0B2500B08AB7 /* AWSMobileClientXCF.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AWSMobileClientXCF.xcframework; path = "Frameworks/aws-ios-sdk-2.22.1/frameworks/AWSMobileClientXCF.xcframework"; sourceTree = "<group>"; };
 		56709F95262F0B4100B08AB7 /* AWSS3.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AWSS3.xcframework; path = "Frameworks/aws-ios-sdk-2.22.1/frameworks/AWSS3.xcframework"; sourceTree = "<group>"; };
-		5AEDB5AB050601697B6C3414 /* Pods_CarbonFootprintTracking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarbonFootprintTracking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		60A70AE37167954A0C087EAB /* Pods_CarbonFootprintTrackingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarbonFootprintTrackingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		56709F982630436100B08AB7 /* MoprimAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoprimAPI.swift; sourceTree = "<group>"; };
 		6A24FD10262EB7D1006655CC /* PieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieViewController.swift; sourceTree = "<group>"; };
 		6A24FD15262EB7F8006655CC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6A998EBC26272F7700B7376C /* CarbonFootprintTracking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarbonFootprintTracking.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,9 +104,6 @@
 		6A998EE026272F7900B7376C /* CarbonFootprintTrackingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarbonFootprintTrackingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A998EE426272F7900B7376C /* CarbonFootprintTrackingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonFootprintTrackingUITests.swift; sourceTree = "<group>"; };
 		6A998EE626272F7900B7376C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8DDEF32ED6A9061C3167F0E6 /* Pods-CarbonFootprintTrackingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarbonFootprintTrackingTests.debug.xcconfig"; path = "Target Support Files/Pods-CarbonFootprintTrackingTests/Pods-CarbonFootprintTrackingTests.debug.xcconfig"; sourceTree = "<group>"; };
-		CD2B49B197C35A57259A6BA8 /* Pods-CarbonFootprintTracking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarbonFootprintTracking.debug.xcconfig"; path = "Target Support Files/Pods-CarbonFootprintTracking/Pods-CarbonFootprintTracking.debug.xcconfig"; sourceTree = "<group>"; };
-		F65C3AF319B8602512DCBDA7 /* Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests.debug.xcconfig"; path = "Target Support Files/Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests/Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,7 +119,6 @@
 				56709F81262F0A8000B08AB7 /* MOPRIMTmdSdk.xcframework in Frameworks */,
 				56709F84262F0A8E00B08AB7 /* AWSAPIGateway.xcframework in Frameworks */,
 				56709F87262F0AD000B08AB7 /* AWSAuthCore.xcframework in Frameworks */,
-				48B4087DE5DE9A684CA16C61 /* Pods_CarbonFootprintTracking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,7 +126,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E93F5666C5EF773BD390394D /* Pods_CarbonFootprintTrackingTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,27 +133,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D561749B19A21C5C4B8013B /* Pods_CarbonFootprintTracking_CarbonFootprintTrackingUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4E3130DFDA92AFA8B2D2538B /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				CD2B49B197C35A57259A6BA8 /* Pods-CarbonFootprintTracking.debug.xcconfig */,
-				2391CE07C046CAE524B80D54 /* Pods-CarbonFootprintTracking.release.xcconfig */,
-				F65C3AF319B8602512DCBDA7 /* Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests.debug.xcconfig */,
-				372BCE38BBF19C0B5D44B3A0 /* Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests.release.xcconfig */,
-				8DDEF32ED6A9061C3167F0E6 /* Pods-CarbonFootprintTrackingTests.debug.xcconfig */,
-				53FDF82F448CFDC07DE845BE /* Pods-CarbonFootprintTrackingTests.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		56709F61262EF4C800B08AB7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,9 +150,6 @@
 				56709F86262F0AD000B08AB7 /* AWSAuthCore.xcframework */,
 				56709F83262F0A8E00B08AB7 /* AWSAPIGateway.xcframework */,
 				56709F80262F0A8000B08AB7 /* MOPRIMTmdSdk.xcframework */,
-				5AEDB5AB050601697B6C3414 /* Pods_CarbonFootprintTracking.framework */,
-				543BF9E72D5D243E16798F50 /* Pods_CarbonFootprintTracking_CarbonFootprintTrackingUITests.framework */,
-				60A70AE37167954A0C087EAB /* Pods_CarbonFootprintTrackingTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -193,7 +163,6 @@
 				6A998EE326272F7900B7376C /* CarbonFootprintTrackingUITests */,
 				6A998EBD26272F7700B7376C /* Products */,
 				56709F61262EF4C800B08AB7 /* Frameworks */,
-				4E3130DFDA92AFA8B2D2538B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -220,6 +189,7 @@
 				6A998EC826272F7700B7376C /* CarbonFootprintTracking.xcdatamodeld */,
 				6A24FD10262EB7D1006655CC /* PieViewController.swift */,
 				6A24FD15262EB7F8006655CC /* MapViewController.swift */,
+				56709F982630436100B08AB7 /* MoprimAPI.swift */,
 			);
 			path = CarbonFootprintTracking;
 			sourceTree = "<group>";
@@ -249,12 +219,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6A998EE926272F7900B7376C /* Build configuration list for PBXNativeTarget "CarbonFootprintTracking" */;
 			buildPhases = (
-				CE6DE350701D9054A2554876 /* [CP] Check Pods Manifest.lock */,
 				6A998EB826272F7700B7376C /* Sources */,
 				6A998EB926272F7700B7376C /* Frameworks */,
 				6A998EBA26272F7700B7376C /* Resources */,
 				56709F68262EF5A100B08AB7 /* Embed Frameworks */,
-				7763FD6BBEA9666FF8966296 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -269,7 +237,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6A998EEC26272F7900B7376C /* Build configuration list for PBXNativeTarget "CarbonFootprintTrackingTests" */;
 			buildPhases = (
-				0B359CBE486D19AFEDCBADED /* [CP] Check Pods Manifest.lock */,
 				6A998ED126272F7900B7376C /* Sources */,
 				6A998ED226272F7900B7376C /* Frameworks */,
 				6A998ED326272F7900B7376C /* Resources */,
@@ -288,11 +255,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6A998EEF26272F7900B7376C /* Build configuration list for PBXNativeTarget "CarbonFootprintTrackingUITests" */;
 			buildPhases = (
-				54034FB6AAA6E62CAEABA3C5 /* [CP] Check Pods Manifest.lock */,
 				6A998EDC26272F7900B7376C /* Sources */,
 				6A998EDD26272F7900B7376C /* Frameworks */,
 				6A998EDE26272F7900B7376C /* Resources */,
-				759B449817280EFC3250D2AD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -374,109 +339,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		0B359CBE486D19AFEDCBADED /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CarbonFootprintTrackingTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		54034FB6AAA6E62CAEABA3C5 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		759B449817280EFC3250D2AD /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests/Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests/Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests/Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7763FD6BBEA9666FF8966296 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CarbonFootprintTracking/Pods-CarbonFootprintTracking-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CarbonFootprintTracking/Pods-CarbonFootprintTracking-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CarbonFootprintTracking/Pods-CarbonFootprintTracking-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CE6DE350701D9054A2554876 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CarbonFootprintTracking-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		6A998EB826272F7700B7376C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -488,6 +350,7 @@
 				6A998EC026272F7700B7376C /* AppDelegate.swift in Sources */,
 				6A24FD11262EB7D1006655CC /* PieViewController.swift in Sources */,
 				6A998EC226272F7700B7376C /* SceneDelegate.swift in Sources */,
+				56709F992630436100B08AB7 /* MoprimAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,7 +523,6 @@
 		};
 		6A998EEA26272F7900B7376C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CD2B49B197C35A57259A6BA8 /* Pods-CarbonFootprintTracking.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -680,7 +542,6 @@
 		};
 		6A998EEB26272F7900B7376C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2391CE07C046CAE524B80D54 /* Pods-CarbonFootprintTracking.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -700,7 +561,6 @@
 		};
 		6A998EED26272F7900B7376C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8DDEF32ED6A9061C3167F0E6 /* Pods-CarbonFootprintTrackingTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -722,7 +582,6 @@
 		};
 		6A998EEE26272F7900B7376C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 53FDF82F448CFDC07DE845BE /* Pods-CarbonFootprintTrackingTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -744,7 +603,6 @@
 		};
 		6A998EF026272F7900B7376C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F65C3AF319B8602512DCBDA7 /* Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -764,7 +622,6 @@
 		};
 		6A998EF126272F7900B7376C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 372BCE38BBF19C0B5D44B3A0 /* Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
