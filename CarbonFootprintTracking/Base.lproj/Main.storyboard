@@ -114,13 +114,16 @@
         <scene sceneID="QUV-up-WS9">
             <objects>
                 <viewController id="fFl-5g-j4I" customClass="PieViewController" customModule="CarbonFootprintTracking" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="0T1-ZD-66r">
+                    <view key="view" contentMode="scaleToFill" id="0T1-ZD-66r" customClass="PieChartView" customModule="Charts">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="d25-nI-bv2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Pie" id="8LT-nL-hLb"/>
+                    <connections>
+                        <outlet property="pieChartView" destination="0T1-ZD-66r" id="HsE-7T-e7b"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a8D-0H-xyb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

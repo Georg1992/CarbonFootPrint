@@ -10,11 +10,14 @@ import UIKit
 
 class PieViewController: UIViewController, ChartViewDelegate{
     
+    @IBOutlet var pieChartView: PieChartView!
+    
     var pieChart = PieChartView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         pieChart.delegate = self
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -26,17 +29,23 @@ class PieViewController: UIViewController, ChartViewDelegate{
         pieChart.center = view.center
         view.addSubview(pieChart)
         
-        var entries = [ChartDataEntry]()
         
-        for x in 0..<10 {
-            entries.append(ChartDataEntry(x: Double(x),
-                                          y: Double(x)))
-        }
+        //data
+        let set = PieChartDataSet(entries: [
+            
+            PieChartDataEntry(value: 1,
+                              data: 1),
+            
+            PieChartDataEntry(value: 5,
+                              data: 5),
+            
+            PieChartDataEntry(value: 9,
+                              data: 8),
+            
+        ])
         
-        let set = PieChartDataSet(entries: entries)
         set.colors = ChartColorTemplates.pastel()
         let data = PieChartData(dataSet: set)
         pieChart.data = data
-        
     }
 }
