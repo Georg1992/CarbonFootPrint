@@ -6,12 +6,25 @@
 //
 
 import UIKit
+import CoreLocation
+import CoreMotion
 
-class ViewController: UIViewController {
+
+class ViewController: UIViewController, CLLocationManagerDelegate, MoprimAPIDelegate {
+    
+    @IBOutlet weak var TEST: UILabel!
+    
+    var moprimAPI = MoprimAPI()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        moprimAPI.fetchData()
+        moprimAPI.delegate = self
+    }
+    
+    func fetchMoprimData(data:NSArray) {
+        TEST.text = data.description
     }
 
 
