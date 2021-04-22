@@ -19,14 +19,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MoprimAPIDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-        
+        moprimAPI.fetchData()
+        moprimAPI.delegate = self
     }
     
-    func fetchMoprimData(data: moprimData) {
-        
+    func fetchMoprimData(data:NSArray) {
+        TEST.text = data.description
     }
 
 
