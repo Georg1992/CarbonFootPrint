@@ -30,7 +30,7 @@ class PieViewController: UIViewController{
             dataEntries.append(dataEntry)
         }
         
-        // Set ChartDataSet
+        // Set  ChartDataSet
         let set = PieChartDataSet(entries: dataEntries)
         set.colors = colorsOfCharts(numbersOfColor: dataPoints.count)
         //set.colors = ChartColorTemplates.pastel()
