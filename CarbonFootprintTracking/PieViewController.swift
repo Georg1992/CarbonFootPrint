@@ -23,14 +23,14 @@ class PieViewController: UIViewController{
     
     func setChart(dataPoints: [String], values: [Double]) {
         
-        // 1. Set ChartDataEntry
+        // Set ChartDataEntry
         var dataEntries: [ChartDataEntry] = []
         for i in 0..<dataPoints.count {
             let dataEntry = PieChartDataEntry(value: values[i], label: dataPoints[i], data: dataPoints[i] as AnyObject)
             dataEntries.append(dataEntry)
         }
         
-        // 2. Set ChartDataSet
+        // Set ChartDataSet
         let set = PieChartDataSet(entries: dataEntries)
         set.colors = colorsOfCharts(numbersOfColor: dataPoints.count)
         //set.colors = ChartColorTemplates.pastel()
@@ -39,14 +39,14 @@ class PieViewController: UIViewController{
                                     height: self.view.frame.size.width)
         //pieChartView.center = view.center
         
-        // 3. Set ChartData
+        // Set ChartData
         let data = PieChartData(dataSet: set)
         let format = NumberFormatter()
         format.numberStyle = .none
         let formatter = DefaultValueFormatter(formatter: format)
         data.setValueFormatter(formatter)
         
-        // 4. Assign it to the chart’s data
+        // Assign it to the chart’s data
         pieChartView.data = data
     }
     
