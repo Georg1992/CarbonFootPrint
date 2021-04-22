@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreLocation
+import CoreMotion
 import MOPRIMTmdSdk
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
@@ -30,6 +31,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 // No need to ask for precise location before iOS 14
             }
         }
+    
+    let motionActivityManager = CMMotionActivityManager()
+    func askMotionPermissions() {
+        if CMMotionActivityManager.isActivityAvailable() {
+            self.motionActivityManager.startActivityUpdates(to: OperationQueue.main) { (motion) in
+                print("received motion activity")
+                self.motionActivityManager.stopActivityUpdates()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
