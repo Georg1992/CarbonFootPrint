@@ -127,21 +127,36 @@
             </objects>
             <point key="canvasLocation" x="1870" y="1931"/>
         </scene>
-        <!--Pie-->
+        <!--Todays travel-->
         <scene sceneID="QUV-up-WS9">
             <objects>
                 <viewController id="fFl-5g-j4I" customClass="PieViewController" customModule="CarbonFootprintTracking" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0T1-ZD-66r">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ctE-2w-ZDj" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="20" y="150" width="374" height="413"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="d25-nI-bv2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="d25-nI-bv2" firstAttribute="bottom" secondItem="ctE-2w-ZDj" secondAttribute="bottom" constant="250" id="6t0-1x-LBO"/>
+                            <constraint firstItem="d25-nI-bv2" firstAttribute="trailing" secondItem="ctE-2w-ZDj" secondAttribute="trailing" constant="20" id="bDh-93-4gc"/>
+                            <constraint firstItem="ctE-2w-ZDj" firstAttribute="top" secondItem="d25-nI-bv2" secondAttribute="top" constant="10" id="d6y-y7-NY8"/>
+                            <constraint firstItem="ctE-2w-ZDj" firstAttribute="leading" secondItem="d25-nI-bv2" secondAttribute="leading" constant="20" id="kxT-sg-6Ld"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Pie" id="8LT-nL-hLb"/>
+                    <navigationItem key="navigationItem" title="Todays travel" id="8LT-nL-hLb"/>
+                    <connections>
+                        <outlet property="pieChartView" destination="ctE-2w-ZDj" id="cd7-Qc-3vW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a8D-0H-xyb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1087" y="1931"/>
+            <point key="canvasLocation" x="1086.9565217391305" y="1930.5803571428571"/>
         </scene>
     </scenes>
     <resources>
