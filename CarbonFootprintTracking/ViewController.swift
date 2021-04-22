@@ -25,7 +25,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MoprimAPIDele
         
     }
     
-    func fetchMoprimData(data: moprimData) {
+    func fetchMoprimData(data: NSArray) {
         
     }
 
