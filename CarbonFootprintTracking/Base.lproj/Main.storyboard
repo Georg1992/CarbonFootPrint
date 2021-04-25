@@ -81,7 +81,7 @@
         <!--Line-->
         <scene sceneID="KEC-eM-8JC">
             <objects>
-                <viewController id="YN5-Vb-jYI" customClass="ViewController" customModule="CarbonFootprintTracking" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="YN5-Vb-jYI" customClass="StatisticsViewController" customModule="CarbonFootprintTracking" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f6v-tp-fhI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -103,9 +103,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Line" id="2F3-Tz-1Vb"/>
-                    <connections>
-                        <outlet property="TEST" destination="OJn-fr-U7V" id="svO-J2-cGb"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S2z-Am-Ksm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
