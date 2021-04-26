@@ -22,7 +22,7 @@ class PieViewController: UIViewController{
         
         setChart(dataPoints: transport, values: carbon.map{ Double($0) })
         
-        budgetBar(0.3)
+        budgetBar(0.8)
     }
     
     func setChart(dataPoints: [String], values: [Double]) {
@@ -68,6 +68,8 @@ class PieViewController: UIViewController{
     }
     
     func budgetBar(_ addedValues: Double) {
+        //full is 1.2 tonnes per year -> 0.1 ton or 100kg in month
+        
         let StartValue: Double = 0
         let fullProgress = StartValue+addedValues
         // Start value
