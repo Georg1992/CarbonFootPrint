@@ -81,31 +81,14 @@
         <!--Line-->
         <scene sceneID="KEC-eM-8JC">
             <objects>
-                <viewController id="YN5-Vb-jYI" customClass="ViewController" customModule="CarbonFootprintTracking" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="YN5-Vb-jYI" customClass="StatisticsViewController" customModule="CarbonFootprintTracking" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f6v-tp-fhI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MOPRIM_TEST_DATA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJn-fr-U7V">
-                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="S8j-3k-qZs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="S8j-3k-qZs" firstAttribute="trailing" secondItem="OJn-fr-U7V" secondAttribute="trailing" id="RAn-Ts-iwz"/>
-                            <constraint firstItem="OJn-fr-U7V" firstAttribute="leading" secondItem="S8j-3k-qZs" secondAttribute="leading" id="Z0e-fi-i4E"/>
-                            <constraint firstItem="S8j-3k-qZs" firstAttribute="bottom" secondItem="OJn-fr-U7V" secondAttribute="bottom" id="auS-2X-XxY"/>
-                            <constraint firstItem="OJn-fr-U7V" firstAttribute="top" secondItem="S8j-3k-qZs" secondAttribute="top" id="khP-0C-pMD"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Line" id="2F3-Tz-1Vb"/>
-                    <connections>
-                        <outlet property="TEST" destination="OJn-fr-U7V" id="svO-J2-cGb"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S2z-Am-Ksm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
