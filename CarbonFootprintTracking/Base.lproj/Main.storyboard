@@ -119,22 +119,48 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ctE-2w-ZDj" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="20" y="150" width="374" height="413"/>
+                                <rect key="frame" x="20" y="150" width="374" height="537.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="z7G-Oa-50s">
+                                <rect key="frame" x="57" y="724" width="300" height="4"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eN8-gF-oZO">
+                                <rect key="frame" x="57" y="748" width="300" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Monthly budget" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yI-9Q-xI7">
+                                <rect key="frame" x="75" y="665" width="264" height="43"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="d25-nI-bv2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="d25-nI-bv2" firstAttribute="bottom" secondItem="ctE-2w-ZDj" secondAttribute="bottom" constant="250" id="6t0-1x-LBO"/>
+                            <constraint firstItem="d25-nI-bv2" firstAttribute="trailing" secondItem="3yI-9Q-xI7" secondAttribute="trailing" constant="20" id="3eF-ed-z74"/>
+                            <constraint firstItem="eN8-gF-oZO" firstAttribute="leading" secondItem="d25-nI-bv2" secondAttribute="leading" constant="20" id="FKd-yV-Ruq"/>
+                            <constraint firstItem="d25-nI-bv2" firstAttribute="trailing" secondItem="eN8-gF-oZO" secondAttribute="trailing" constant="20" id="SrS-CP-RxP"/>
+                            <constraint firstItem="z7G-Oa-50s" firstAttribute="top" secondItem="3yI-9Q-xI7" secondAttribute="bottom" constant="20" id="Wx1-Ws-hU8"/>
                             <constraint firstItem="d25-nI-bv2" firstAttribute="trailing" secondItem="ctE-2w-ZDj" secondAttribute="trailing" constant="20" id="bDh-93-4gc"/>
+                            <constraint firstItem="z7G-Oa-50s" firstAttribute="leading" secondItem="d25-nI-bv2" secondAttribute="leading" constant="20" id="bz2-XP-jgj"/>
+                            <constraint firstItem="eN8-gF-oZO" firstAttribute="top" secondItem="z7G-Oa-50s" secondAttribute="bottom" constant="22" id="cFd-Ed-4R1"/>
                             <constraint firstItem="ctE-2w-ZDj" firstAttribute="top" secondItem="d25-nI-bv2" secondAttribute="top" constant="10" id="d6y-y7-NY8"/>
+                            <constraint firstItem="d25-nI-bv2" firstAttribute="trailing" secondItem="z7G-Oa-50s" secondAttribute="trailing" constant="20" id="gRE-xL-0Qe"/>
                             <constraint firstItem="ctE-2w-ZDj" firstAttribute="leading" secondItem="d25-nI-bv2" secondAttribute="leading" constant="20" id="kxT-sg-6Ld"/>
+                            <constraint firstItem="d25-nI-bv2" firstAttribute="bottom" secondItem="eN8-gF-oZO" secondAttribute="bottom" constant="30" id="ok8-pN-az7"/>
+                            <constraint firstItem="3yI-9Q-xI7" firstAttribute="firstBaseline" secondItem="ctE-2w-ZDj" secondAttribute="baseline" constant="24.5" symbolType="layoutAnchor" id="rbr-Af-fEA"/>
+                            <constraint firstItem="3yI-9Q-xI7" firstAttribute="leading" secondItem="d25-nI-bv2" secondAttribute="leading" constant="20" id="wAZ-aA-29y"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Todays travel" id="8LT-nL-hLb"/>
                     <connections>
                         <outlet property="pieChartView" destination="ctE-2w-ZDj" id="cd7-Qc-3vW"/>
+                        <outlet property="progressView" destination="z7G-Oa-50s" id="tKJ-Ku-A6y"/>
+                        <outlet property="textLabel" destination="eN8-gF-oZO" id="9PK-wa-mb1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a8D-0H-xyb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
