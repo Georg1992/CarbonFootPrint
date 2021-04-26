@@ -6,27 +6,45 @@
 //
 
 import UIKit
-import Charts //must have pod installed
+import Charts
 import TinyConstraints //must have pod installed
 
 class StatisticsViewController: UIViewController, ChartViewDelegate {
     
     lazy var lineChartView: LineChartView = {
         let chartView = LineChartView()
-        chartView.backgroundColor = .systemBlue
+        chartView.backgroundColor = .white
+        
+        chartView.rightAxis.enabled = false
+        
+        let yAxis = chartView.leftAxis
+        yAxis.labelFont = .boldSystemFont(ofSize: 20)
+        yAxis.setLabelCount(6, force: false)
+        yAxis.labelTextColor = .gray
+        yAxis.axisLineColor = .gray
+        yAxis.labelPosition = .outsideChart
+        
+        
+        let xAxis = chartView.xAxis
+        xAxis.labelPosition = .bottom
+        xAxis.labelTextColor = .gray
+        xAxis.axisLineColor = .gray
+        xAxis.labelFont = .boldSystemFont(ofSize: 20)
+        xAxis.setLabelCount(7, force: false)
+        
+        chartView.animate(xAxisDuration: 1.0)
+        chartView.legend.font = .boldSystemFont(ofSize: 20)
+        
         return chartView
     }()
     
     //set of vehicle types
     var vehicleTypes: Set = ["Car", "Plane", "Train"]
     
-    var moprim = MoprimAPI()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-        moprim.fetchData()
         // adding the linechartview to our view
         view.addSubview(lineChartView)
         lineChartView.centerInSuperview()
@@ -35,13 +53,14 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         lineChartView.width(to: view)
         lineChartView.heightToWidth(of: view)
         
-        let carTripData = DataSetStatistics(timeStamp: "12345", carbonFootprint: 10, vehicleType: "Car")
+        let carTripData = DataSetStatistics(timeStamp: "12345", carbonFootprint: 10.0, vehicleType: "Car")
         
         var myDummyCar = Vehicle("Car")
         var myDummyPlane = Vehicle("Plane")
         var myDummyTrain = Vehicle("Train")
         
         myDummyCar.pushData(carTripData)
+        print(" dayArray data: \(myDummyCar.dayArray[0])")
         
         setData()
     }
@@ -53,7 +72,21 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
     //sets data for the linechartview
     func setData() {
         let set1 = LineChartDataSet(entries: yValues, label: "CO2 footprint")
+        set1.mode = .cubicBezier
+        set1.drawCirclesEnabled = false
+        set1.lineWidth = 3
+        set1.setColor(.red)
+        set1.fill = Fill(color: .red)
+        set1.fillAlpha = 0.65
+        set1.drawFilledEnabled = true
+        
+        
+        //set1.drawHorizontalHighlightIndicatorEnabled = false
+        set1.highlightColor = .black
+        set1.highlightLineWidth = 1.5
+        
         let data = LineChartData(dataSet: set1)
+        data.setDrawValues(false)
         
         lineChartView.data = data
     }
