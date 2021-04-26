@@ -56,7 +56,14 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate{
         }
     
     func fetchData(){
-        let date = Date()
+        
+        let isoDate = "2021-04-25T10:44:00+0000"
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        let date = dateFormatter.date(from:isoDate)!
+        
         TMDCloudApi.fetchData(date, minutesOffset: 0).continueWith { (task) -> Any? in
             DispatchQueue.main.async {
                 // Execute your UI related code on the main thread

@@ -19,11 +19,14 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
     
     //set of vehicle types
     var vehicleTypes: Set = ["Car", "Plane", "Train"]
+    
+    var moprim = MoprimAPI()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        moprim.fetchData()
         // adding the linechartview to our view
         view.addSubview(lineChartView)
         lineChartView.centerInSuperview()

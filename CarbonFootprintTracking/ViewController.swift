@@ -21,10 +21,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MoprimAPIDele
         super.viewDidLoad()
         moprimAPI.fetchData()
         moprimAPI.delegate = self
+        print(moprimAPI)
     }
     
     func fetchMoprimData(data:NSArray) {
         // TEST.text = data.description
+        print(data.description)
     }
 
 
