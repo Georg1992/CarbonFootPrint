@@ -118,8 +118,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ctE-2w-ZDj" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="20" y="150" width="374" height="537.5"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ctE-2w-ZDj" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="20" y="150" width="374" height="457"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="z7G-Oa-50s">

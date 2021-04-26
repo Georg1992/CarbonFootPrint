@@ -22,7 +22,7 @@ class PieViewController: UIViewController{
         
         setChart(dataPoints: transport, values: carbon.map{ Double($0) })
         
-        budgetBar()
+        budgetBar(0.3)
     }
     
     func setChart(dataPoints: [String], values: [Double]) {
@@ -67,9 +67,11 @@ class PieViewController: UIViewController{
         return colors
     }
     
-    func budgetBar() {
+    func budgetBar(_ addedValues: Double) {
+        let StartValue: Double = 0
+        let fullProgress = StartValue+addedValues
         // Start value
-        progressView.progress = Float(budgetProgress())
+        progressView.progress = Float(fullProgress)
         
         // Style
         progressView.progressTintColor = UIColor.green
@@ -81,15 +83,7 @@ class PieViewController: UIViewController{
         progressView.transform = progressView.transform.scaledBy(x: 1, y: 8)
         updateProgressView()
     }
-    
-    func budgetProgress() -> Double {
-        let prog: Double = 0
-        //test value
-        let addTestCar: Double = 0.3
-        let allProg = prog+addTestCar
-        return allProg
-    }
-    
+
     @objc func updateProgressView(){
         progressView.progress += 0.1
         progressView.setProgress(progressView.progress, animated: true)
