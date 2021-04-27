@@ -10,6 +10,8 @@ import UIKit
 
 class PieViewController: UIViewController{
     
+    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var pieChartView: PieChartView!
     
     override func viewDidLoad() {
@@ -19,18 +21,20 @@ class PieViewController: UIViewController{
         let carbon = [6, 8, 26, 30, 8, 10]
         
         setChart(dataPoints: transport, values: carbon.map{ Double($0) })
+        
+        budgetBar(0.8)
     }
     
     func setChart(dataPoints: [String], values: [Double]) {
         
-        // 1. Set ChartDataEntry
+        // Set ChartDataEntry
         var dataEntries: [ChartDataEntry] = []
         for i in 0..<dataPoints.count {
             let dataEntry = PieChartDataEntry(value: values[i], label: dataPoints[i], data: dataPoints[i] as AnyObject)
             dataEntries.append(dataEntry)
         }
         
-        // 2. Set ChartDataSet
+        // Set  ChartDataSet
         let set = PieChartDataSet(entries: dataEntries)
         set.colors = colorsOfCharts(numbersOfColor: dataPoints.count)
         //set.colors = ChartColorTemplates.pastel()
@@ -39,14 +43,14 @@ class PieViewController: UIViewController{
                                     height: self.view.frame.size.width)
         //pieChartView.center = view.center
         
-        // 3. Set ChartData
+        // Set ChartData
         let data = PieChartData(dataSet: set)
         let format = NumberFormatter()
         format.numberStyle = .none
         let formatter = DefaultValueFormatter(formatter: format)
         data.setValueFormatter(formatter)
         
-        // 4. Assign it to the chart’s data
+        // Assign it to the chart’s data
         pieChartView.data = data
     }
     
@@ -61,5 +65,75 @@ class PieViewController: UIViewController{
             pieChartView.backgroundColor = UIColor.white
         }
         return colors
+    }
+    
+    func budgetBar(_ addedValues: Double) {
+        //full is 1.2 tonnes per year -> 0.1 ton or 100kg in month
+        
+        let StartValue: Double = 0
+        let fullProgress = StartValue+addedValues
+        // Start value
+        progressView.progress = Float(fullProgress)
+        
+        // Style
+        progressView.progressTintColor = UIColor.green
+        //progressView.backgroundColor = UIColor.systemBackground
+        progressView.layer.cornerRadius = 5
+        progressView.clipsToBounds = true
+        progressView.layer.sublayers![1].cornerRadius = 5
+        progressView.subviews[1].clipsToBounds = true
+        progressView.transform = progressView.transform.scaledBy(x: 1, y: 8)
+        updateProgressView()
+    }
+
+    @objc func updateProgressView(){
+        progressView.progress += 0.1
+        progressView.setProgress(progressView.progress, animated: true)
+        
+        if(progressView.progress >= 0.0) {
+            textLabel.text = "used 0%"
+            progressView.progressTintColor = UIColor.green
+        }
+        if(progressView.progress >= 0.1) {
+            textLabel.text = "used 10%"
+            progressView.progressTintColor = UIColor.green
+        }
+        if(progressView.progress >= 0.2) {
+            textLabel.text = "used 20%"
+            progressView.progressTintColor = UIColor.green
+        }
+        if(progressView.progress >= 0.3) {
+            textLabel.text = "used 30%"
+            progressView.progressTintColor = UIColor.green
+        }
+        if(progressView.progress >= 0.4) {
+            textLabel.text = "used 40%"
+            progressView.progressTintColor = UIColor.green
+        }
+        if(progressView.progress >= 0.5) {
+            textLabel.text = "used 50%"
+            progressView.progressTintColor = UIColor.green
+        }
+        if(progressView.progress >= 0.6) {
+            textLabel.text = "used 60%"
+            progressView.progressTintColor = UIColor.green
+        }
+        if(progressView.progress >= 0.7) {
+            textLabel.text = "used 70%"
+            progressView.progressTintColor = UIColor.orange
+        }
+        if(progressView.progress >= 0.8) {
+            textLabel.text = "used 80%"
+            progressView.progressTintColor = UIColor.orange
+        }
+        if(progressView.progress >= 0.9) {
+            textLabel.text = "used 90%"
+            progressView.progressTintColor = UIColor.orange
+        }
+        if (progressView.progress == 1.0) {
+            textLabel.text = "used 100%"
+            print("full")
+            progressView.progressTintColor = UIColor.red
+        }
     }
 }
