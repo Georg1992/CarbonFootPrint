@@ -72,7 +72,7 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate{
             }
         }
     }
-    //test
+    
     
     
     
