@@ -9,6 +9,7 @@ target 'CarbonFootprintTracking' do
   # Pods for CarbonFootprintTracking
 pod 'Charts'
 pod 'TinyConstraints'
+pod 'DropDown'
   
   target 'CarbonFootprintTrackingTests' do
     inherit! :search_paths

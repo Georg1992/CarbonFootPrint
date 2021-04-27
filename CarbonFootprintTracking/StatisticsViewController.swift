@@ -6,10 +6,30 @@
 //
 
 import UIKit
-import Charts
-import TinyConstraints //must have pod installed
+import DropDown //pod item
+import Charts //pod item
+import TinyConstraints //pod item
 
 class StatisticsViewController: UIViewController, ChartViewDelegate {
+    
+    @IBOutlet weak var dayButtonOutlet: UIButton!
+    
+    @IBOutlet weak var weekButtonOutlet: UIButton!
+    
+    @IBOutlet weak var monthButtonOutlet: UIButton!
+    
+    @IBOutlet weak var yearButtonOutlet: UIButton!
+    
+    @IBOutlet weak var selectVehicleButtonOutlet: UIButton!
+    
+    // creating drop down menu for selecting vehicles
+    let menu: DropDown = {
+        let menu = DropDown()
+        menu.dataSource = ["Car", "Train", "Plane"]
+        //menu.dataSource.append("Train")
+        
+        return menu
+    }()
     
     lazy var lineChartView: LineChartView = {
         let chartView = LineChartView()
@@ -44,6 +64,11 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        //adding DropDown view
+        let vehicleDropDownView = UIView(frame: selectVehicleButtonOutlet.frame ?? .zero)
+        
+        //selectVehicleButtonOutlet = vehicleDropDownView
         
         // adding the linechartview to our view
         view.addSubview(lineChartView)
@@ -107,7 +132,50 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         ChartDataEntry(x: 11.0, y: 3.0),
     ]
     
-
+    let yValues2: [ChartDataEntry] = [
+        ChartDataEntry(x: 0.0, y: 5.0),
+        ChartDataEntry(x: 1.0, y: 35.0),
+        ChartDataEntry(x: 2.0, y: 45.0),
+        ChartDataEntry(x: 3.0, y: 35.0),
+        ChartDataEntry(x: 4.0, y: 20.0),
+        ChartDataEntry(x: 5.0, y: 20.0),
+        ChartDataEntry(x: 6.0, y: 20.0),
+    ]
+    
+    @IBAction func dayButtonPressed(_ sender: UIButton) {
+        print("dayButtonPressed")
+        setData()
+    }
+    
+    @IBAction func weekButtonPressed(_ sender: UIButton) {
+        print("weekButtonPressed")
+        let set2 = LineChartDataSet(entries: yValues2, label: "CO2 footprint")
+        set2.mode = .cubicBezier
+        set2.drawCirclesEnabled = false
+        set2.lineWidth = 3
+        set2.setColor(.red)
+        set2.fill = Fill(color: .red)
+        set2.fillAlpha = 0.65
+        set2.drawFilledEnabled = true
+        
+        
+        //set1.drawHorizontalHighlightIndicatorEnabled = false
+        set2.highlightColor = .black
+        set2.highlightLineWidth = 1.5
+        
+        let data2 = LineChartData(dataSet: set2)
+        data2.setDrawValues(false)
+        
+        lineChartView.data = data2
+    }
+    
+    @IBAction func monthButtonPressed(_ sender: UIButton) {
+        print("monthButtonPressed")
+    }
+    
+    @IBAction func yearButtonPressed(_ sender: UIButton) {
+        print("yearButtonPressed")
+    }
     /*
     // MARK: - Navigation
 

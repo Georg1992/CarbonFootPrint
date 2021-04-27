@@ -85,10 +85,61 @@
                     <view key="view" contentMode="scaleToFill" id="f6v-tp-fhI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0BN-KX-evl">
+                                <rect key="frame" x="28" y="169" width="65" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemFillColor"/>
+                                <state key="normal" title="DAY"/>
+                                <connections>
+                                    <action selector="dayButtonPressed:" destination="YN5-Vb-jYI" eventType="touchUpInside" id="zgZ-Dx-00D"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yK4-l9-NNc">
+                                <rect key="frame" x="101" y="169" width="65" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemFillColor"/>
+                                <state key="normal" title="WEEK"/>
+                                <connections>
+                                    <action selector="weekButtonPressed:" destination="YN5-Vb-jYI" eventType="touchUpInside" id="XKO-GZ-fHG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zXt-gg-YIG">
+                                <rect key="frame" x="175" y="169" width="65" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemFillColor"/>
+                                <state key="normal" title="MONTH"/>
+                                <connections>
+                                    <action selector="monthButtonPressed:" destination="YN5-Vb-jYI" eventType="touchUpInside" id="Hv0-nW-54q"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vec-My-qr0">
+                                <rect key="frame" x="248" y="169" width="65" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemFillColor"/>
+                                <state key="normal" title="YEAR"/>
+                                <connections>
+                                    <action selector="yearButtonPressed:" destination="YN5-Vb-jYI" eventType="touchUpInside" id="Fnc-1I-QTp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dr-f8-9kA">
+                                <rect key="frame" x="22" y="665" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemFillColor"/>
+                                <state key="normal" title="Select Vehicle"/>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="S8j-3k-qZs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Line" id="2F3-Tz-1Vb"/>
+                    <connections>
+                        <outlet property="dayButtonOutlet" destination="0BN-KX-evl" id="Wl1-h3-SBi"/>
+                        <outlet property="monthButtonOutlet" destination="zXt-gg-YIG" id="YE3-Ed-BZE"/>
+                        <outlet property="selectVehicleButtonOutlet" destination="6dr-f8-9kA" id="lWE-PK-DHH"/>
+                        <outlet property="weekButtonOutlet" destination="yK4-l9-NNc" id="HdZ-z1-5be"/>
+                        <outlet property="yearButtonOutlet" destination="vec-My-qr0" id="hxq-Vg-LaB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S2z-Am-Ksm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -145,6 +196,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemFillColor">
+            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
