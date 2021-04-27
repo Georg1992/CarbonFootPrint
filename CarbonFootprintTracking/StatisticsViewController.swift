@@ -20,16 +20,9 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
     
     @IBOutlet weak var yearButtonOutlet: UIButton!
     
-    @IBOutlet weak var selectVehicleButtonOutlet: UIButton!
-    
-    // creating drop down menu for selecting vehicles
-    let menu: DropDown = {
-        let menu = DropDown()
-        menu.dataSource = ["Car", "Train", "Plane"]
-        //menu.dataSource.append("Train")
-        
-        return menu
-    }()
+   @IBOutlet weak var vehicleTextField: UITextField!
+    var selectedVehicle: String?
+    var vehicleTypes = ["Car", "Plane", "Train", "Bike", "Scooter", "Metro"]
     
     lazy var lineChartView: LineChartView = {
         let chartView = LineChartView()
@@ -59,16 +52,16 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
     }()
     
     //set of vehicle types
-    var vehicleTypes: Set = ["Car", "Plane", "Train"]
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        //adding DropDown view
-        let vehicleDropDownView = UIView(frame: selectVehicleButtonOutlet.frame ?? .zero)
+        //setting up pickerView to select vehicle
+        self.createAndSetupPickerView()
+        self.dismissAndClosePickerView()
         
-        //selectVehicleButtonOutlet = vehicleDropDownView
         
         // adding the linechartview to our view
         view.addSubview(lineChartView)
@@ -88,6 +81,27 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         print(" dayArray data: \(myDummyCar.dayArray[0])")
         
         setData()
+    }
+    
+    func createAndSetupPickerView(){
+        let pickerview = UIPickerView()
+        pickerview.delegate = self
+        pickerview.dataSource = self
+        self.vehicleTextField.inputView = pickerview
+    }
+    
+    func dismissAndClosePickerView(){
+        
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let button = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.dismissAction))
+        toolBar.setItems([button], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        self.vehicleTextField.inputAccessoryView = toolBar
+    }
+    
+    @objc func dismissAction(){
+        self.view.endEditing(true)
     }
 
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
@@ -186,4 +200,24 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
     }
     */
 
+}
+
+extension StatisticsViewController: UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.vehicleTypes.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.vehicleTypes[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.selectedVehicle = self.vehicleTypes[row]
+        print(self.selectedVehicle ?? "none")
+        self.vehicleTextField.text = self.selectedVehicle
+    }
 }

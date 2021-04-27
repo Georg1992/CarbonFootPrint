@@ -122,21 +122,26 @@
                                     <action selector="yearButtonPressed:" destination="YN5-Vb-jYI" eventType="touchUpInside" id="Fnc-1I-QTp"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dr-f8-9kA">
-                                <rect key="frame" x="22" y="665" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemFillColor"/>
-                                <state key="normal" title="Select Vehicle"/>
-                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Vehicle" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lwm-8o-Kmn">
+                                <rect key="frame" x="10" y="140" width="394" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="S8j-3k-qZs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Lwm-8o-Kmn" firstAttribute="top" secondItem="S8j-3k-qZs" secondAttribute="top" id="TAl-M7-ixP"/>
+                            <constraint firstItem="Lwm-8o-Kmn" firstAttribute="leading" secondItem="S8j-3k-qZs" secondAttribute="leading" constant="10" id="eii-ez-aRs"/>
+                            <constraint firstItem="S8j-3k-qZs" firstAttribute="trailing" secondItem="Lwm-8o-Kmn" secondAttribute="trailing" constant="10" id="jyL-jl-Z2I"/>
+                            <constraint firstItem="Lwm-8o-Kmn" firstAttribute="top" secondItem="S8j-3k-qZs" secondAttribute="top" id="uEa-l3-wdq"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Line" id="2F3-Tz-1Vb"/>
                     <connections>
                         <outlet property="dayButtonOutlet" destination="0BN-KX-evl" id="Wl1-h3-SBi"/>
                         <outlet property="monthButtonOutlet" destination="zXt-gg-YIG" id="YE3-Ed-BZE"/>
-                        <outlet property="selectVehicleButtonOutlet" destination="6dr-f8-9kA" id="lWE-PK-DHH"/>
+                        <outlet property="vehicleTextField" destination="Lwm-8o-Kmn" id="qqc-Gy-4kD"/>
                         <outlet property="weekButtonOutlet" destination="yK4-l9-NNc" id="HdZ-z1-5be"/>
                         <outlet property="yearButtonOutlet" destination="vec-My-qr0" id="hxq-Vg-LaB"/>
                     </connections>
