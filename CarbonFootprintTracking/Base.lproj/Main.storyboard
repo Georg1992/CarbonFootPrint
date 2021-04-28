@@ -85,10 +85,86 @@
                     <view key="view" contentMode="scaleToFill" id="f6v-tp-fhI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0BN-KX-evl">
+                                <rect key="frame" x="29" y="182" width="65" height="30"/>
+                                <color key="backgroundColor" systemColor="systemFillColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="65" id="9d5-XN-GSE"/>
+                                </constraints>
+                                <state key="normal" title="DAY"/>
+                                <connections>
+                                    <action selector="dayButtonPressed:" destination="YN5-Vb-jYI" eventType="touchUpInside" id="zgZ-Dx-00D"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yK4-l9-NNc">
+                                <rect key="frame" x="102" y="182" width="65" height="30"/>
+                                <color key="backgroundColor" systemColor="systemFillColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="65" id="4lP-ub-YOa"/>
+                                </constraints>
+                                <state key="normal" title="WEEK"/>
+                                <connections>
+                                    <action selector="weekButtonPressed:" destination="YN5-Vb-jYI" eventType="touchUpInside" id="XKO-GZ-fHG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zXt-gg-YIG">
+                                <rect key="frame" x="175" y="182" width="65" height="30"/>
+                                <color key="backgroundColor" systemColor="systemFillColor"/>
+                                <state key="normal" title="MONTH"/>
+                                <connections>
+                                    <action selector="monthButtonPressed:" destination="YN5-Vb-jYI" eventType="touchUpInside" id="Hv0-nW-54q"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vec-My-qr0">
+                                <rect key="frame" x="248" y="182" width="65" height="30"/>
+                                <color key="backgroundColor" systemColor="systemFillColor"/>
+                                <state key="normal" title="YEAR"/>
+                                <connections>
+                                    <action selector="yearButtonPressed:" destination="YN5-Vb-jYI" eventType="touchUpInside" id="Fnc-1I-QTp"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Vehicle" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lwm-8o-Kmn">
+                                <rect key="frame" x="10" y="140" width="394" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ci7-F7-oKI">
+                                <rect key="frame" x="0.0" y="241" width="414" height="414"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="S8j-3k-qZs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Lwm-8o-Kmn" firstAttribute="leading" secondItem="S8j-3k-qZs" secondAttribute="leading" constant="10" id="8DA-b9-9Xf"/>
+                            <constraint firstItem="0BN-KX-evl" firstAttribute="leading" secondItem="S8j-3k-qZs" secondAttribute="leading" constant="29" id="9IN-DF-LEq"/>
+                            <constraint firstItem="Lwm-8o-Kmn" firstAttribute="centerX" secondItem="f6v-tp-fhI" secondAttribute="centerX" id="9Ud-hQ-jWX"/>
+                            <constraint firstItem="vec-My-qr0" firstAttribute="leading" secondItem="zXt-gg-YIG" secondAttribute="trailing" constant="8" symbolic="YES" id="A4T-my-p5r"/>
+                            <constraint firstItem="zXt-gg-YIG" firstAttribute="leading" secondItem="yK4-l9-NNc" secondAttribute="trailing" constant="8" symbolic="YES" id="MVE-4Z-oC5"/>
+                            <constraint firstItem="zXt-gg-YIG" firstAttribute="baseline" secondItem="vec-My-qr0" secondAttribute="baseline" id="MuB-4f-3Hf"/>
+                            <constraint firstItem="Ci7-F7-oKI" firstAttribute="top" secondItem="0BN-KX-evl" secondAttribute="bottom" constant="29" id="PRG-Us-QyC"/>
+                            <constraint firstItem="Lwm-8o-Kmn" firstAttribute="centerX" secondItem="zXt-gg-YIG" secondAttribute="centerX" id="RDc-hA-qwj"/>
+                            <constraint firstItem="yK4-l9-NNc" firstAttribute="leading" secondItem="0BN-KX-evl" secondAttribute="trailing" constant="8" symbolic="YES" id="aQQ-to-I4T"/>
+                            <constraint firstItem="yK4-l9-NNc" firstAttribute="baseline" secondItem="zXt-gg-YIG" secondAttribute="baseline" id="ceZ-XH-ayo"/>
+                            <constraint firstItem="Ci7-F7-oKI" firstAttribute="centerX" secondItem="zXt-gg-YIG" secondAttribute="centerX" id="fWI-uj-POH"/>
+                            <constraint firstItem="0BN-KX-evl" firstAttribute="top" secondItem="Lwm-8o-Kmn" secondAttribute="bottom" constant="8" symbolic="YES" id="gJZ-Ja-TUX"/>
+                            <constraint firstItem="0BN-KX-evl" firstAttribute="baseline" secondItem="yK4-l9-NNc" secondAttribute="baseline" id="gah-pL-RqL"/>
+                            <constraint firstItem="S8j-3k-qZs" firstAttribute="trailing" secondItem="vec-My-qr0" secondAttribute="trailing" constant="101" id="gn3-lO-gfg"/>
+                            <constraint firstItem="Ci7-F7-oKI" firstAttribute="leading" secondItem="f6v-tp-fhI" secondAttribute="leading" id="otB-NT-nhG"/>
+                            <constraint firstItem="Lwm-8o-Kmn" firstAttribute="top" secondItem="S8j-3k-qZs" secondAttribute="top" id="r1A-jC-bV7"/>
+                            <constraint firstItem="Ci7-F7-oKI" firstAttribute="centerY" secondItem="f6v-tp-fhI" secondAttribute="centerY" id="ux1-IO-nh7"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Line" id="2F3-Tz-1Vb"/>
+                    <connections>
+                        <outlet property="containerChart" destination="Ci7-F7-oKI" id="P5Y-3e-kcG"/>
+                        <outlet property="dayButtonOutlet" destination="0BN-KX-evl" id="Wl1-h3-SBi"/>
+                        <outlet property="monthButtonOutlet" destination="zXt-gg-YIG" id="YE3-Ed-BZE"/>
+                        <outlet property="vehicleTextField" destination="Lwm-8o-Kmn" id="qqc-Gy-4kD"/>
+                        <outlet property="weekButtonOutlet" destination="yK4-l9-NNc" id="HdZ-z1-5be"/>
+                        <outlet property="yearButtonOutlet" destination="vec-My-qr0" id="hxq-Vg-LaB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S2z-Am-Ksm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -171,6 +247,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemFillColor">
+            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
