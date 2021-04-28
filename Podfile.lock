@@ -1,0 +1,28 @@
+PODS:
+  - Charts (3.6.0):
+    - Charts/Core (= 3.6.0)
+  - Charts/Core (3.6.0)
+  - TinyConstraints (4.0.1)
+
+DEPENDENCIES:
+  - Charts
+  - TinyConstraints
+
+SPEC REPOS:
+  trunk:
+    - Charts
+    - TinyConstraints
+
+SPEC CHECKSUMS:
+  Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
+  TinyConstraints: 8dd91295e56797648c7bc335dd20e1d91ec4c192
+
+
+PODFILE CHECKSUM: ad2e4a6677d9ba431e39ba589d9b207b09e127a9
+
+COCOAPODS: 1.10.1
+=======
+PODFILE CHECKSUM: 58c8232e8a3b420316b712c03b075db067659bbb
+
+COCOAPODS: 1.10.0
+8c280e9bf668bcbdc8112efda9b4f15b1ec7c6fb

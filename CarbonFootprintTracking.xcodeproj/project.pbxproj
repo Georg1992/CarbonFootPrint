@@ -25,6 +25,8 @@
 		56709F94262F0B2600B08AB7 /* AWSMobileClientXCF.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 56709F92262F0B2500B08AB7 /* AWSMobileClientXCF.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		56709F96262F0B4100B08AB7 /* AWSS3.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56709F95262F0B4100B08AB7 /* AWSS3.xcframework */; };
 		56709F97262F0B4100B08AB7 /* AWSS3.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 56709F95262F0B4100B08AB7 /* AWSS3.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		56732A6B2639C07C00FC5798 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 56732A692639C07B00FC5798 /* Podfile */; };
+		56732A6C2639C07C00FC5798 /* Podfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = 56732A6A2639C07C00FC5798 /* Podfile.lock */; };
 		6A24FD11262EB7D1006655CC /* PieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A24FD10262EB7D1006655CC /* PieViewController.swift */; };
 		6A24FD16262EB7F8006655CC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A24FD15262EB7F8006655CC /* MapViewController.swift */; };
 		6A48044C2631595E00E47A28 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A48044B2631595E00E47A28 /* StatisticsViewController.swift */; };
@@ -93,6 +95,8 @@
 		56709F8F262F0B1000B08AB7 /* AWSCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AWSCore.xcframework; path = "Frameworks/aws-ios-sdk-2.22.1/frameworks/AWSCore.xcframework"; sourceTree = "<group>"; };
 		56709F92262F0B2500B08AB7 /* AWSMobileClientXCF.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AWSMobileClientXCF.xcframework; path = "Frameworks/aws-ios-sdk-2.22.1/frameworks/AWSMobileClientXCF.xcframework"; sourceTree = "<group>"; };
 		56709F95262F0B4100B08AB7 /* AWSS3.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AWSS3.xcframework; path = "Frameworks/aws-ios-sdk-2.22.1/frameworks/AWSS3.xcframework"; sourceTree = "<group>"; };
+		56732A692639C07B00FC5798 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
+		56732A6A2639C07C00FC5798 /* Podfile.lock */ = {isa = PBXFileReference; lastKnownFileType = file; path = Podfile.lock; sourceTree = SOURCE_ROOT; };
 		6A24FD10262EB7D1006655CC /* PieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieViewController.swift; sourceTree = "<group>"; };
 		6A24FD15262EB7F8006655CC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6A48044B2631595E00E47A28 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
@@ -202,6 +206,8 @@
 		6A998EBE26272F7700B7376C /* CarbonFootprintTracking */ = {
 			isa = PBXGroup;
 			children = (
+				56732A692639C07B00FC5798 /* Podfile */,
+				56732A6A2639C07C00FC5798 /* Podfile.lock */,
 				6A998EBF26272F7700B7376C /* AppDelegate.swift */,
 				6A998EC126272F7700B7376C /* SceneDelegate.swift */,
 				6A998EC526272F7700B7376C /* Main.storyboard */,
@@ -359,6 +365,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56732A6C2639C07C00FC5798 /* Podfile.lock in Resources */,
+				56732A6B2639C07C00FC5798 /* Podfile in Resources */,
 				560A1B9026287009001FF3F4 /* .gitignore in Resources */,
 				6A998ECF26272F7900B7376C /* LaunchScreen.storyboard in Resources */,
 				6A998ECC26272F7900B7376C /* Assets.xcassets in Resources */,
