@@ -11,6 +11,8 @@ import TinyConstraints //must have pod installed
 
 class StatisticsViewController: UIViewController, ChartViewDelegate {
     
+    
+    
     lazy var lineChartView: LineChartView = {
         let chartView = LineChartView()
         chartView.backgroundColor = .white
@@ -44,7 +46,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+    
         // adding the linechartview to our view
         view.addSubview(lineChartView)
         lineChartView.centerInSuperview()

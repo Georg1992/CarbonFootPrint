@@ -20,10 +20,9 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate{
     }
     
     var delegate:MoprimAPIDelegate?
-    
     let locationManager = CLLocationManager()
-    
     let motionActivityManager = CMMotionActivityManager()
+    let apiKey = "V8G_ZWvdUkAcrIeo8sJGwnSX3p9A5EY9R4pKJF3KfeA"
     
     
     
@@ -39,9 +38,7 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate{
     func askLocationPermissions() {
             self.locationManager.delegate = self
             self.locationManager.requestAlwaysAuthorization()
-        
-        
-        }
+    }
         
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         if #available(iOS 14.0, *) {
@@ -61,17 +58,39 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate{
         TMDCloudApi.fetchData(date, minutesOffset: 0).continueWith { (task) -> Any? in
             DispatchQueue.main.async {
                 // Execute your UI related code on the main thread
-                
+            
                 if let error = task.error {
                     NSLog("fetchData Error: %@", error.localizedDescription)
                 }
                 else if let data = task.result {
-                    self.delegate?.fetchMoprimData(data: data)
                     NSLog("fetchData result: %@", data)
                 }
                 return
             }
         }
+        TMDCloudApi.fetchMetadata().continueWith{(task) -> Any? in
+            DispatchQueue.main.async {
+                if let error = task.error{
+                    NSLog(error.localizedDescription)
+                }else if let metadata = task.result{
+                    self.delegate?.fetchMoprimData(data: metadata)
+                    NSLog("metadata %@", metadata)
+                }
+                return
+            }
+        }
+    }
+    
+    func test(){
+        guard let origin = locationManager.location else{return}
+        let destination = CLLocation(latitude: 60.18784, longitude: 24.96250)
+        
+        TMDCloudApi.generateSyntheticData(withOriginLocation: origin, destination: destination, requestType: TMDSyntheticRequestType.bicycle, hereApiKey: apiKey)
+        
+    }
+    
+    func stop(){
+        TMD.stop()
     }
     
 
@@ -85,6 +104,6 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate{
 //struct moprimData {}
 
 protocol MoprimAPIDelegate{
-    func fetchMoprimData(data:NSArray)
+    func fetchMoprimData(data:TMDCloudMetadata)
     
 }
