@@ -13,9 +13,10 @@ import CoreLocation
 class MoprimAPI : NSObject, CLLocationManagerDelegate{
     override init() {
         super.init()
+        TMD.start()
         self.askLocationPermissions()
         self.askMotionPermissions()
-        TMD.start()
+        
     }
     
     var delegate:MoprimAPIDelegate?
