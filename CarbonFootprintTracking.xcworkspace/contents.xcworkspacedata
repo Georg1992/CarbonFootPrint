@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Activity+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:Activity+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:CarbonFootprintTracking.xcodeproj">
    </FileRef>
    <FileRef
