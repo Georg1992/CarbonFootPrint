@@ -40,6 +40,7 @@
 		6A998ECF26272F7900B7376C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A998ECD26272F7900B7376C /* LaunchScreen.storyboard */; };
 		6A998EDA26272F7900B7376C /* CarbonFootprintTrackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A998ED926272F7900B7376C /* CarbonFootprintTrackingTests.swift */; };
 		6A998EE526272F7900B7376C /* CarbonFootprintTrackingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A998EE426272F7900B7376C /* CarbonFootprintTrackingUITests.swift */; };
+		6AC99123263AC1B4002DE7EB /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6AC99122263AC1B4002DE7EB /* info.plist */; };
 		950F104DC3911F2DFA30C341 /* Pods_CarbonFootprintTracking_CarbonFootprintTrackingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9029295862FE40123C200B6B /* Pods_CarbonFootprintTracking_CarbonFootprintTrackingUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +114,7 @@
 		6A998EE026272F7900B7376C /* CarbonFootprintTrackingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarbonFootprintTrackingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A998EE426272F7900B7376C /* CarbonFootprintTrackingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonFootprintTrackingUITests.swift; sourceTree = "<group>"; };
 		6A998EE626272F7900B7376C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6AC99122263AC1B4002DE7EB /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
 		9029295862FE40123C200B6B /* Pods_CarbonFootprintTracking_CarbonFootprintTrackingUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarbonFootprintTracking_CarbonFootprintTrackingUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B32902ACDCF550E1C21A64C7 /* Pods_CarbonFootprintTrackingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarbonFootprintTrackingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D05C4DE7A81EBAA1B56D20A6 /* Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests.release.xcconfig"; path = "Target Support Files/Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests/Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				6A998EC826272F7700B7376C /* CarbonFootprintTracking.xcdatamodeld */,
 				6A998ECD26272F7900B7376C /* LaunchScreen.storyboard */,
 				6A998EC526272F7700B7376C /* Main.storyboard */,
+				6AC99122263AC1B4002DE7EB /* info.plist */,
 				6A24FD15262EB7F8006655CC /* MapViewController.swift */,
 				6A24FD10262EB7D1006655CC /* PieViewController.swift */,
 				6A998EC126272F7700B7376C /* SceneDelegate.swift */,
@@ -357,6 +360,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AC99123263AC1B4002DE7EB /* info.plist in Resources */,
 				560A1B9026287009001FF3F4 /* .gitignore in Resources */,
 				6A998ECF26272F7900B7376C /* LaunchScreen.storyboard in Resources */,
 				6A998ECC26272F7900B7376C /* Assets.xcassets in Resources */,
