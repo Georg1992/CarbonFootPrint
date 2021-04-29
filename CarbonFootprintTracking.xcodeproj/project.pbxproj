@@ -107,7 +107,6 @@
 		6A998EC926272F7700B7376C /* CarbonFootprintTracking.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CarbonFootprintTracking.xcdatamodel; sourceTree = "<group>"; };
 		6A998ECB26272F7900B7376C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6A998ECE26272F7900B7376C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		6A998ED026272F7900B7376C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A998ED526272F7900B7376C /* CarbonFootprintTrackingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarbonFootprintTrackingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A998ED926272F7900B7376C /* CarbonFootprintTrackingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonFootprintTrackingTests.swift; sourceTree = "<group>"; };
 		6A998EDB26272F7900B7376C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -205,8 +204,6 @@
 				6A998EBF26272F7700B7376C /* AppDelegate.swift */,
 				6A998ECB26272F7900B7376C /* Assets.xcassets */,
 				6A998EC826272F7700B7376C /* CarbonFootprintTracking.xcdatamodeld */,
-				6A4804562631612800E47A28 /* DataSetStatistics.swift */,
-				6A998ED026272F7900B7376C /* Info.plist */,
 				6A998ECD26272F7900B7376C /* LaunchScreen.storyboard */,
 				6A998EC526272F7700B7376C /* Main.storyboard */,
 				6A24FD15262EB7F8006655CC /* MapViewController.swift */,
