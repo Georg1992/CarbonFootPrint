@@ -22,7 +22,7 @@ class PieViewController: UIViewController{
         
         setChart(dataPoints: transport, values: carbon.map{ Double($0) })
         
-        budgetBar(0.8)
+        budgetBar(0.5)
     }
     
     func setChart(dataPoints: [String], values: [Double]) {
