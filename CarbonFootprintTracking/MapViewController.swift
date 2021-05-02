@@ -37,6 +37,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     func getAddress() {
         let geoCoder = CLGeocoder()
+        
         geoCoder.geocodeAddressString(textFieldForAddress.text ?? "Helsinki") { (placemarks, error)
             in
             guard let placemarks = placemarks, let location = placemarks.first?.location
@@ -47,8 +48,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             print(location)
             self.mapThis(destinationCord: location.coordinate)
         }
+        
     }
     
+    /*
     func getStart() {
         print("this is \(textFieldForStart.text)")
         let geoCoder = CLGeocoder()
@@ -64,7 +67,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             coordinates = location.coordinate
         }
         print("this is \(coordinates?.latitude)")
-    }
+    } */
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("locations \(locations)")
