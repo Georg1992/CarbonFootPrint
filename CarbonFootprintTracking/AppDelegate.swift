@@ -10,19 +10,20 @@ import CoreData
 import MOPRIMTmdSdk
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+class AppDelegate: UIResponder, UIApplicationDelegate{
+    
+    
+    // Declare your API Key and Endpoint:
+    let myKey = "eu-central-1:cb996483-fd29-4a79-912e-9d9eff9af4f2"
+    let myEndpoint = "https://1t0mp83yg7.execute-api.eu-central-1.amazonaws.com/metro2021/v1"
+    let moprimApi = MoprimAPI()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        // Configure the app to trigger Background Fetch events as regularly as possible.
+        // Fetch data as soon as possible
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         
-        // Declare your API Key and Endpoint:
-        let myKey = "eu-central-1:cb996483-fd29-4a79-912e-9d9eff9af4f2"
-        let myEndpoint = "https://1t0mp83yg7.execute-api.eu-central-1.amazonaws.com/metro2021/v1"
-                
+    
         // Initialize the TMD:
         TMD.initWithKey(myKey, withEndpoint: myEndpoint, withLaunchOptions: launchOptions).continueWith { (task) -> Any? in
                 if let error = task.error {
@@ -41,9 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Run our background operations
         TMD.backgroundFetch().continueWith (block: { (task) -> Void in
             let tmdFetchResult:UIBackgroundFetchResult = UIBackgroundFetchResult(rawValue: (task.result!.uintValue))!
+            
             // Call the completion handler with the UIBackgroundFetchResult returned by TMD.backgroundFetch(), or with your own background fetch result
-            
-            
             completionHandler(tmdFetchResult)
         })
     }
@@ -71,6 +71,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+    
+    
 
     // MARK: - Core Data stack
 

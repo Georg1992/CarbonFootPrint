@@ -8,13 +8,21 @@
 import UIKit
 import MOPRIMTmdSdk
 
-class MoprimViewController: UIViewController, MoprimAPIDelegate {
+class MoprimViewController: UIViewController, MoprimAPIDelegate{
     
+    func fetchMoprimData(data: [TMDActivity]) {
+        var str = ""
+        for activity in data{
+            let timestamp = Date(timeIntervalSince1970: TimeInterval(activity.timestampEnd))
+            str.append("\nActivity:\(activity.activity()), Co2:\(activity.co2), Ended at:\(timestamp)")
+        }
     
-    
-    func fetchMoprimData(data: TMDCloudMetadata) {
-        moprimData.text = data.description
+        moprimData.text = "there are \(data.count) activities. Last: \(data.last!.activity())"
     }
+    
+    
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
 
     @IBOutlet weak var moprimData: UILabel!
@@ -22,34 +30,33 @@ class MoprimViewController: UIViewController, MoprimAPIDelegate {
     @IBOutlet weak var SendData: UIButton!
     @IBOutlet weak var GetData: UIButton!
     @IBOutlet weak var StopApi: UIButton!
+    @IBOutlet weak var SendRealData: UIButton!
     
-    let moprimApi = MoprimAPI()
+    private var exampleLocation: CLLocation = CLLocation(coordinate: CLLocationCoordinate2D(latitude: 60.187784, longitude: 24.96044), altitude: 500, horizontalAccuracy: kCLLocationAccuracyBestForNavigation, verticalAccuracy: kCLLocationAccuracyBestForNavigation, course: 90, courseAccuracy: kCLLocationAccuracyKilometer, speed: 15, speedAccuracy: kCLLocationAccuracyBestForNavigation, timestamp: Date())
+    
+    private var exampleTransport: [TMDSyntheticRequestType] = [TMDSyntheticRequestType.car, TMDSyntheticRequestType.bicycle]
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        moprimApi.delegate = self
-        
-        // Do any additional setup after loading the view.
+        appDelegate.moprimApi.delegate = self
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     @IBAction func send(_ sender: Any) {
-        moprimApi.test()
+       // appDelegate.moprimApi.uploadData(controller: self)
+        appDelegate.moprimApi.uploadSyntheticData(transport: TMDSyntheticRequestType.bicycle, destination: exampleLocation, controller: self)
+        
     }
     @IBAction func get(_ sender: Any) {
-        moprimApi.fetchData()
+        appDelegate.moprimApi.updateViewForCurrentDate()
+        
+    
     }
     @IBAction func stop(_ sender: Any) {
-        moprimApi.stop()
+        appDelegate.moprimApi.uploadSyntheticData(transport: TMDSyntheticRequestType.car, destination: exampleLocation, controller: self)
+    }
+    @IBAction func sendRealData(_ sender: Any) {
+        appDelegate.moprimApi.uploadData(controller: self)
     }
 }
