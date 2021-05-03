@@ -18,7 +18,7 @@ public class Activity: NSManagedObject {
         //request.predicate = NSPredicate(format: "co2 = %d", oneActivity.features(Properties.init(co2: Int(co2), activity: activity!)))
         
         // for testing
-        let array = ["car", "train", "plane", "walk", "bike"]
+        let array = ["car", "train", "plane", "walk", "bike", "bus", "metro", "run"]
         
         // Creates Date
         let date = Date()
@@ -35,14 +35,14 @@ public class Activity: NSManagedObject {
             
             // these create dummy data for charts
             
-            if (matchingActivity.count == 0) {
+            //if (matchingActivity.count == 0) {
             let newActivity = Activity(context: context)
             newActivity.co2 = Double(Int.random(in: 1..<10000000))
             //newActivity.co2 = Double(oneActivity.co2)
             newActivity.activity = array.randomElement()!
             newActivity.date = today
             //print("create object: \(newActivity)")
-            }
+            //}
         }
     }
 }

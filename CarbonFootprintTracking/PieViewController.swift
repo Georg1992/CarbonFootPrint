@@ -48,6 +48,9 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
         var bikeCarbon: Double = 0
         var planeCarbon: Double = 0
         var walkCarbon: Double = 0
+        var busCarbon: Double = 0
+        var metroCarbon: Double = 0
+        var runCarbon: Double = 0
         
         let request:NSFetchRequest<Activity> = Activity.fetchRequest()
         
@@ -73,43 +76,66 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
                 }
                 if oneActivity.activity == "plane" && oneActivity.date == today {
                     walkCarbon = walkCarbon + Double(oneActivity.co2)
-                    print("walk carbon: \(walkCarbon)")
+                    //print("walk carbon: \(walkCarbon)")
                 }
-            
+                if oneActivity.activity == "bus" && oneActivity.date == today {
+                    busCarbon = busCarbon + Double(oneActivity.co2)
+                    //print("bus carbon: \(busCarbon)")
+                }
+                if oneActivity.activity == "metro" && oneActivity.date == today {
+                    metroCarbon = metroCarbon + Double(oneActivity.co2)
+                    //print("metro carbon: \(metroCarbon)")
+                }
+                if oneActivity.activity == "run" && oneActivity.date == today {
+                    runCarbon = runCarbon + Double(oneActivity.co2)
+                    //print("run carbon: \(runCarbon)")
+                }
+                
                 // checks if month is still same
                 if oneActivity.date?.contains(monthToday) == true {
                     budgetValue = budgetValue + Double(oneActivity.co2)/100000000
                 }
                 
-                //print("pie coredata co2:  \(oneActivity.co2)")
-                //print("pie coredata transport:  \(oneActivity.activity ?? "nothing")")
-                //print("pie coredata date:  \(oneActivity.date ?? "no date")")
+                print("pie coredata co2:  \(oneActivity.co2)")
+                print("pie coredata transport:  \(oneActivity.activity ?? "nothing")")
+                print("pie coredata date:  \(oneActivity.date ?? "no date")")
             }
         }
         catch let error as NSError {
             print("no!: \(error.localizedDescription)")
         }
-            if carCarbon >= 0 {
-                carbon.append(carCarbon)
-                transport.append("car")
-            }
-            if walkCarbon >= 0 {
-                carbon.append(walkCarbon)
-                transport.append("walk")
-            }
-            if planeCarbon >= 0 {
-                carbon.append(planeCarbon)
-                transport.append("plane")
-            }
-            if trainCarbon >= 0 {
-                carbon.append(trainCarbon)
-                transport.append("train")
-            }
-            if bikeCarbon >= 0 {
-                carbon.append(bikeCarbon)
-                transport.append("bike")
-            }
-        
+        if carCarbon >= 1 {
+            carbon.append(carCarbon)
+            transport.append("car")
+        }
+        if walkCarbon >= 1 {
+            carbon.append(walkCarbon)
+            transport.append("walk")
+        }
+        if planeCarbon >= 1 {
+            carbon.append(planeCarbon)
+            transport.append("plane")
+        }
+        if trainCarbon >= 1 {
+            carbon.append(trainCarbon)
+            transport.append("train")
+        }
+        if bikeCarbon >= 1 {
+            carbon.append(bikeCarbon)
+            transport.append("bike")
+        }
+        if busCarbon >= 1 {
+            carbon.append(busCarbon)
+            transport.append("bus")
+        }
+        if metroCarbon >= 1 {
+            carbon.append(metroCarbon)
+            transport.append("metro")
+        }
+        if runCarbon >= 1 {
+            carbon.append(runCarbon)
+            transport.append("run")
+        }
         
         //let transport = ["train", "metro", "car", "plane", "boat", "bike"]
         //let carbon = [88, 8, 26, 30, 8, 10]
@@ -118,7 +144,7 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
         
         budgetBar(budgetValue)
         
-
+        
     }
     
     func setChart(dataPoints: [String], values: [Double]) {
