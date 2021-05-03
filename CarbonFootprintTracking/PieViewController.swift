@@ -74,7 +74,7 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
                 if oneActivity.activity == "plane" && oneActivity.date == today {
                     planeCarbon = planeCarbon + Double(oneActivity.co2)
                 }
-                if oneActivity.activity == "plane" && oneActivity.date == today {
+                if oneActivity.activity == "walk" && oneActivity.date == today {
                     walkCarbon = walkCarbon + Double(oneActivity.co2)
                     //print("walk carbon: \(walkCarbon)")
                 }
