@@ -23,6 +23,14 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Creates Date
+        let date = Date()
+        // Creates Date Formatter
+        let dateFormatter = DateFormatter()
+        // Set Date Format
+        dateFormatter.dateFormat = "YY/MM/dd"
+        let today = dateFormatter.string(from: date)
+        
         var transport = [String]()
         var carbon = [Double]()
         var budgetValue: Double = 0
@@ -42,19 +50,19 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
             print("pie coredata:  \(activities?.count ?? 0)")
             
             for oneActivity in activities ?? [] {
-                if oneActivity.activity == "car" {
+                if oneActivity.activity == "car" && oneActivity.date == today {
                     carCarbon = carCarbon + Double(oneActivity.co2)
                 }
-                if oneActivity.activity == "train" {
+                if oneActivity.activity == "train" && oneActivity.date == today {
                     trainCarbon = trainCarbon + Double(oneActivity.co2)
                 }
-                if oneActivity.activity == "bike" {
+                if oneActivity.activity == "bike" && oneActivity.date == today {
                     bikeCarbon = bikeCarbon + Double(oneActivity.co2)
                 }
-                if oneActivity.activity == "plane" {
+                if oneActivity.activity == "plane" && oneActivity.date == today {
                     planeCarbon = planeCarbon + Double(oneActivity.co2)
                 }
-                if oneActivity.activity == "plane" {
+                if oneActivity.activity == "plane" && oneActivity.date == today {
                     walkCarbon = walkCarbon + Double(oneActivity.co2)
                     print("walk carbon: \(walkCarbon)")
                 }
