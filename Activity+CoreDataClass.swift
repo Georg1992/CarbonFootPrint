@@ -22,10 +22,8 @@ public class Activity: NSManagedObject {
         
         // Creates Date
         let date = Date()
-        
         // Creates Date Formatter
         let dateFormatter = DateFormatter()
-        
         // Set Date Format
         dateFormatter.dateFormat = "YY/MM/dd"
         

@@ -31,8 +31,16 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
         dateFormatter.dateFormat = "YY/MM/dd"
         let today = dateFormatter.string(from: date)
         
+        // only month
+        dateFormatter.dateFormat = "YY/MM"
+        let monthToday = dateFormatter.string(from: date)
+        print("month today: \(monthToday)")
+        
+        // values for pie chart
         var transport = [String]()
         var carbon = [Double]()
+        
+        // value to budget bar
         var budgetValue: Double = 0
         
         var carCarbon: Double = 0
@@ -47,8 +55,9 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
         
         do {
             let activities =  try? context.fetch(request)
-            print("pie coredata:  \(activities?.count ?? 0)")
+            //print("pie coredata:  \(activities?.count ?? 0)")
             
+            // checks if date is same as today. If it is, then value is added
             for oneActivity in activities ?? [] {
                 if oneActivity.activity == "car" && oneActivity.date == today {
                     carCarbon = carCarbon + Double(oneActivity.co2)
@@ -66,19 +75,19 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
                     walkCarbon = walkCarbon + Double(oneActivity.co2)
                     print("walk carbon: \(walkCarbon)")
                 }
+            
+                if oneActivity.date?.contains(monthToday) == true {
+                    budgetValue = budgetValue + Double(oneActivity.co2)/100000000
+                }
                 
-                budgetValue = budgetValue + Double(oneActivity.co2)/100000000
-                
-                print("pie coredata co2:  \(oneActivity.co2)")
-                print("pie coredata transport:  \(oneActivity.activity ?? "nothing")")
-                print("pie coredata date:  \(oneActivity.date ?? "no date")")
+                //print("pie coredata co2:  \(oneActivity.co2)")
+                //print("pie coredata transport:  \(oneActivity.activity ?? "nothing")")
+                //print("pie coredata date:  \(oneActivity.date ?? "no date")")
             }
         }
         catch let error as NSError {
             print("no!: \(error.localizedDescription)")
         }
-        
-
             if carCarbon >= 0 {
                 carbon.append(carCarbon)
                 transport.append("car")
