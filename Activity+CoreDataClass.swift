@@ -33,17 +33,16 @@ public class Activity: NSManagedObject {
         
         if let matchingActivity = try? context.fetch(request) {
             
-            
             // these create dummy data for charts
             
-            //if (matchingActivity.count == 0) {
+            if (matchingActivity.count == 0) {
             let newActivity = Activity(context: context)
             newActivity.co2 = Double(Int.random(in: 1..<10000000))
-            //newActivity.co2 = Double(oneActivity.features(Properties.co2))
+            //newActivity.co2 = Double(oneActivity.co2)
             newActivity.activity = array.randomElement()!
             newActivity.date = today
             //print("create object: \(newActivity)")
-            //}
+            }
         }
     }
 }

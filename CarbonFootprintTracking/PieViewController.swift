@@ -34,7 +34,7 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
         // only month
         dateFormatter.dateFormat = "YY/MM"
         let monthToday = dateFormatter.string(from: date)
-        print("month today: \(monthToday)")
+        //print("month today: \(monthToday)")
         
         // values for pie chart
         var transport = [String]()
@@ -76,6 +76,7 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
                     print("walk carbon: \(walkCarbon)")
                 }
             
+                // checks if month is still same
                 if oneActivity.date?.contains(monthToday) == true {
                     budgetValue = budgetValue + Double(oneActivity.co2)/100000000
                 }
