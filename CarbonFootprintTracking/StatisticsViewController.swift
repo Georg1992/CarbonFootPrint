@@ -36,6 +36,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
     var vehicleTypes = ["all", "nonmotorized", "car", "bus", "tram", "train", "metro", "plane"]
     var currentVehicle: Vehicle?
     
+    //Setting up lineChartView with some UI elements
     lazy var lineChartView: LineChartView = {
         let chartView = LineChartView()
         chartView.backgroundColor = .white
@@ -78,12 +79,12 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         //making lineChartView a subView of containerChart for easy constraints
         containerChart.addSubview(lineChartView)
         
-        
-        //setting width and height of linechartview according to the width of the superview
+        //setting width and height of lineChartView according to the width of the superview
         lineChartView.width(to: containerChart)
         lineChartView.heightToWidth(of: containerChart)
         lineChartView.topToSuperview()
         
+        //currently just dummy data for testing
         let carTripData = DataSetStatistics(timeStamp: "12345", carbonFootprint: 10.0, vehicleType: "Car")
         
         var myDummyCar = Vehicle("Car")
@@ -96,6 +97,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         setDataDay()
     }
     
+    //creating and setting up pickerView for vehicle selection
     func createAndSetupPickerView(){
         let pickerview = UIPickerView()
         pickerview.delegate = self
@@ -114,6 +116,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         self.vehicleTextField.inputAccessoryView = toolBar
     }
     
+    //dismisses pickerView when "Done" button is clicked
     @objc func dismissAction(){
         self.view.endEditing(true)
     }
@@ -123,7 +126,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         print(entry)
     }
     
-    //sets data for the linechartview
+    //sets day data for lineChartView
     func setDataDay() {
         //sets values for the data set and some front end stuff for the red line in the chart
         let set1 = LineChartDataSet(entries: dayValues, label: "CO2 footprint")
@@ -135,14 +138,19 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         set1.fillAlpha = 0.65
         set1.drawFilledEnabled = true
         
-        
+        //highlight can be seen when any point of chart is clicked.
         set1.highlightColor = .black
         set1.highlightLineWidth = 1.5
         
         let data = LineChartData(dataSet: set1)
+        
+        //prevents the chart from displaying the data in numbers on top of the peak of a line
         data.setDrawValues(false)
         
+        //changes the amount of x-values in the line chart to match days. There are 12 data marks instead of 24 to save space in the x-axis.
         lineChartView.xAxis.setLabelCount(12, force: false)
+        
+        //sets the data for lineChartView
         lineChartView.data = data
     }
     
@@ -212,7 +220,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         lineChartView.data = data
     }
     
-    //Dummy data for chart
+    //values for each day (intervals every hour)
     let dayValues: [ChartDataEntry] = [
         ChartDataEntry(x: 0.0, y: 22.0),
         ChartDataEntry(x: 1.0, y: 15.0),
@@ -240,6 +248,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         ChartDataEntry(x: 23.0, y: 3.0),
     ]
     
+    //data for week (shows the sum of CO2 of each day mon - sun)
     let weekValues: [ChartDataEntry] = [
         ChartDataEntry(x: 0.0, y: 5.0),
         ChartDataEntry(x: 1.0, y: 35.0),
@@ -250,6 +259,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         ChartDataEntry(x: 6.0, y: 20.0),
     ]
     
+    //data for month (sum of CO2 for every day of the month)
     let monthValues: [ChartDataEntry] = [
         ChartDataEntry(x: 0.0, y: 10.0),
         ChartDataEntry(x: 1.0, y: 15.0),
@@ -285,6 +295,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         ChartDataEntry(x: 31.0, y: 3.0),
     ]
     
+    //data for every month of the year (sum of CO2 for every month of the year)
     let yearValues: [ChartDataEntry] = [
         ChartDataEntry(x: 0.0, y: 5.0),
         ChartDataEntry(x: 1.0, y: 35.0),
@@ -300,21 +311,25 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         ChartDataEntry(x: 11.0, y: 20.0),
     ]
     
+    //sets data for day when day button is pressed
     @IBAction func dayButtonPressed(_ sender: UIButton) {
         print("dayButtonPressed")
         setDataDay()
     }
     
+    //sets data for week when week button is pressed
     @IBAction func weekButtonPressed(_ sender: UIButton) {
         print("weekButtonPressed")
         setDataWeek()
     }
     
+    //sets data for month when month button is pressed
     @IBAction func monthButtonPressed(_ sender: UIButton) {
         print("monthButtonPressed")
         setDataMonth()
     }
     
+    //sets data for year when year button is pressed
     @IBAction func yearButtonPressed(_ sender: UIButton) {
         print("yearButtonPressed")
         setDataYear()
