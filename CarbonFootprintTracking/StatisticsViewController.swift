@@ -59,6 +59,10 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        // dummy data
+        let newDummy = DummyData()
+        newDummy.fetchDummyData()
+        
         //setting up pickerView to select vehicle
         self.createAndSetupPickerView()
         self.dismissAndClosePickerView()
@@ -79,7 +83,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         var myDummyTrain = Vehicle("Train")
         
         myDummyCar.pushData(carTripData)
-        print(" dayArray data: \(myDummyCar.dayArray[0])")
+        //print(" dayArray data: \(myDummyCar.dayArray[0])")
         
         setData()
     }

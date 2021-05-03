@@ -12,8 +12,8 @@ import MOPRIMTmdSdk
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
+    static let viewContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Configure the app to trigger Background Fetch events as regularly as possible.

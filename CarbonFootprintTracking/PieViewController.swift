@@ -7,22 +7,100 @@
 
 import Charts
 import UIKit
+import CoreData
+import Foundation
 
-class PieViewController: UIViewController{
+class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
+    
+    private var fetchedResultsController:NSFetchedResultsController<Activity>?
     
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var pieChartView: PieChartView!
     
+    var activityInfo:Activity?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let transport = ["train", "metro", "car", "plane", "boat", "bike"]
-        let carbon = [6, 8, 26, 30, 8, 10]
+        var transport = [String]()
+        var carbon = [Double]()
+        var budgetValue: Double = 0
+        
+        var carCarbon: Double = 0
+        var trainCarbon: Double = 0
+        var bikeCarbon: Double = 0
+        var planeCarbon: Double = 0
+        var walkCarbon: Double = 0
+        
+        let request:NSFetchRequest<Activity> = Activity.fetchRequest()
+        
+        let context = AppDelegate.viewContext
+        
+        do {
+            let activities =  try? context.fetch(request)
+            print("pie coredata:  \(activities?.count ?? 0)")
+            
+            for oneActivity in activities ?? [] {
+                if oneActivity.activity == "car" {
+                    carCarbon = carCarbon + Double(oneActivity.co2)
+                }
+                if oneActivity.activity == "train" {
+                    trainCarbon = trainCarbon + Double(oneActivity.co2)
+                }
+                if oneActivity.activity == "bike" {
+                    bikeCarbon = bikeCarbon + Double(oneActivity.co2)
+                }
+                if oneActivity.activity == "plane" {
+                    planeCarbon = planeCarbon + Double(oneActivity.co2)
+                }
+                if oneActivity.activity == "plane" {
+                    walkCarbon = walkCarbon + Double(oneActivity.co2)
+                    print("walk carbon: \(walkCarbon)")
+                }
+                
+                budgetValue = budgetValue + Double(oneActivity.co2)/100000000
+                
+                print("pie coredata co2:  \(oneActivity.co2)")
+                print("pie coredata transport:  \(oneActivity.activity ?? "nothing")")
+                print("pie coredata date:  \(oneActivity.date ?? "no date")")
+            }
+        }
+        catch let error as NSError {
+            print("no!: \(error.localizedDescription)")
+        }
+        
+
+            if carCarbon >= 0 {
+                carbon.append(carCarbon)
+                transport.append("car")
+            }
+            if walkCarbon >= 0 {
+                carbon.append(walkCarbon)
+                transport.append("walk")
+            }
+            if planeCarbon >= 0 {
+                carbon.append(planeCarbon)
+                transport.append("plane")
+            }
+            if trainCarbon >= 0 {
+                carbon.append(trainCarbon)
+                transport.append("train")
+            }
+            if bikeCarbon >= 0 {
+                carbon.append(bikeCarbon)
+                transport.append("bike")
+            }
+        
+        
+        //let transport = ["train", "metro", "car", "plane", "boat", "bike"]
+        //let carbon = [88, 8, 26, 30, 8, 10]
         
         setChart(dataPoints: transport, values: carbon.map{ Double($0) })
         
-        budgetBar(0.5)
+        budgetBar(budgetValue)
+        
+
     }
     
     func setChart(dataPoints: [String], values: [Double]) {
@@ -85,7 +163,7 @@ class PieViewController: UIViewController{
         progressView.transform = progressView.transform.scaledBy(x: 1, y: 8)
         updateProgressView()
     }
-
+    
     @objc func updateProgressView(){
         progressView.progress += 0.1
         progressView.setProgress(progressView.progress, animated: true)
