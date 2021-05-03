@@ -22,11 +22,23 @@ struct Vehicle {
         self.vehicleType = vehicleType
     }
     
-    mutating func pushData(_ data: DataSetStatistics) {
+    mutating func pushDataDay(_ data: DataSetStatistics) {
         dayArray.append(data)
-        weekArray.append(data)
-        monthArray.append(data)
-        yearArray.append(data)
+        //weekArray.append(data)
+        //monthArray.append(data)
+        //yearArray.append(data)
+    }
+    
+    mutating func pushDataWeek(_ data: DataSetStatistics) {
+        
+    }
+    
+    mutating func pushDataMonth(_ data: DataSetStatistics) {
+        
+    }
+    
+    mutating func pushDataYear(_ data: DataSetStatistics) {
+        
     }
     
     

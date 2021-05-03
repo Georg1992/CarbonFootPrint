@@ -24,9 +24,17 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
     
    @IBOutlet weak var vehicleTextField: UITextField!
     
+    var myNonMotorized = Vehicle("nonmotorized")
+    var myCar = Vehicle("car")
+    var myBus = Vehicle("bus")
+    var myTram = Vehicle("tram")
+    var myTrain = Vehicle("train")
+    var myMetro = Vehicle("metro")
+    var myPlane = Vehicle("plane")
+    
     var selectedVehicle: String?
-    var vehicleTypes = ["All", "Car", "Plane", "Train", "Bike", "Scooter", "Metro"]
-    var currentVehicle = "All"
+    var vehicleTypes = ["all", "nonmotorized", "car", "bus", "tram", "train", "metro", "plane"]
+    var currentVehicle: Vehicle?
     
     lazy var lineChartView: LineChartView = {
         let chartView = LineChartView()
@@ -82,10 +90,10 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         var myDummyPlane = Vehicle("Plane")
         var myDummyTrain = Vehicle("Train")
         
-        myDummyCar.pushData(carTripData)
+        myDummyCar.pushDataDay(carTripData)
         //print(" dayArray data: \(myDummyCar.dayArray[0])")
         
-        setData()
+        setDataDay()
     }
     
     func createAndSetupPickerView(){
@@ -116,7 +124,8 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
     }
     
     //sets data for the linechartview
-    func setData() {
+    func setDataDay() {
+        //sets values for the data set and some front end stuff for the red line in the chart
         let set1 = LineChartDataSet(entries: dayValues, label: "CO2 footprint")
         set1.mode = .cubicBezier
         set1.drawCirclesEnabled = false
@@ -133,12 +142,79 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         let data = LineChartData(dataSet: set1)
         data.setDrawValues(false)
         
+        lineChartView.xAxis.setLabelCount(12, force: false)
+        lineChartView.data = data
+    }
+    
+    func setDataWeek() {
+        //sets values for the data set and some front end stuff for the red line in the chart
+        let set1 = LineChartDataSet(entries: weekValues, label: "CO2 footprint")
+        set1.mode = .cubicBezier
+        set1.drawCirclesEnabled = false
+        set1.lineWidth = 3
+        set1.setColor(.red)
+        set1.fill = Fill(color: .red)
+        set1.fillAlpha = 0.65
+        set1.drawFilledEnabled = true
+        
+        
+        set1.highlightColor = .black
+        set1.highlightLineWidth = 1.5
+        
+        let data = LineChartData(dataSet: set1)
+        data.setDrawValues(false)
+        
+        lineChartView.xAxis.setLabelCount(7, force: true)
+        lineChartView.data = data
+    }
+    
+    func setDataMonth() {
+        //sets values for the data set and some front end stuff for the red line in the chart
+        let set1 = LineChartDataSet(entries: monthValues, label: "CO2 footprint")
+        set1.mode = .cubicBezier
+        set1.drawCirclesEnabled = false
+        set1.lineWidth = 3
+        set1.setColor(.red)
+        set1.fill = Fill(color: .red)
+        set1.fillAlpha = 0.65
+        set1.drawFilledEnabled = true
+        
+        
+        set1.highlightColor = .black
+        set1.highlightLineWidth = 1.5
+        
+        let data = LineChartData(dataSet: set1)
+        data.setDrawValues(false)
+        
+        lineChartView.xAxis.setLabelCount(10, force: false)
+        lineChartView.data = data
+    }
+    
+    func setDataYear() {
+        //sets values for the data set and some front end stuff for the red line in the chart
+        let set1 = LineChartDataSet(entries: yearValues, label: "CO2 footprint")
+        set1.mode = .cubicBezier
+        set1.drawCirclesEnabled = false
+        set1.lineWidth = 3
+        set1.setColor(.red)
+        set1.fill = Fill(color: .red)
+        set1.fillAlpha = 0.65
+        set1.drawFilledEnabled = true
+        
+        
+        set1.highlightColor = .black
+        set1.highlightLineWidth = 1.5
+        
+        let data = LineChartData(dataSet: set1)
+        data.setDrawValues(false)
+        
+        lineChartView.xAxis.setLabelCount(12, force: true)
         lineChartView.data = data
     }
     
     //Dummy data for chart
     let dayValues: [ChartDataEntry] = [
-        ChartDataEntry(x: 0.0, y: 10.0),
+        ChartDataEntry(x: 0.0, y: 22.0),
         ChartDataEntry(x: 1.0, y: 15.0),
         ChartDataEntry(x: 2.0, y: 17.0),
         ChartDataEntry(x: 3.0, y: 6.0),
@@ -226,38 +302,22 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
     
     @IBAction func dayButtonPressed(_ sender: UIButton) {
         print("dayButtonPressed")
-        setData()
+        setDataDay()
     }
     
     @IBAction func weekButtonPressed(_ sender: UIButton) {
         print("weekButtonPressed")
-        
-        //sets values for the data set and some front end stuff for the red line in the chart
-        let set2 = LineChartDataSet(entries: weekValues, label: "CO2 footprint")
-        set2.mode = .cubicBezier
-        set2.drawCirclesEnabled = false
-        set2.lineWidth = 3
-        set2.setColor(.red)
-        set2.fill = Fill(color: .red)
-        set2.fillAlpha = 0.65
-        set2.drawFilledEnabled = true
-        
-        //sets values for the highlight lines when clicking on the chart
-        set2.highlightColor = .black
-        set2.highlightLineWidth = 1.5
-        
-        let data2 = LineChartData(dataSet: set2)
-        data2.setDrawValues(false)
-        
-        lineChartView.data = data2
+        setDataWeek()
     }
     
     @IBAction func monthButtonPressed(_ sender: UIButton) {
         print("monthButtonPressed")
+        setDataMonth()
     }
     
     @IBAction func yearButtonPressed(_ sender: UIButton) {
         print("yearButtonPressed")
+        setDataYear()
     }
     /*
     // MARK: - Navigation
@@ -291,6 +351,13 @@ extension StatisticsViewController: UIPickerViewDelegate, UIPickerViewDataSource
         self.vehicleTextField.text = self.selectedVehicle
         
         //sets the current vehicle used
-        self.currentVehicle = self.selectedVehicle ?? "All"
+        if(self.selectedVehicle?.lowercased() == "nonmotorized") {self.currentVehicle = myNonMotorized}
+        if(self.selectedVehicle?.lowercased() == "car") {self.currentVehicle = myCar}
+        if(self.selectedVehicle?.lowercased() == "bus") {self.currentVehicle = myBus}
+        if(self.selectedVehicle?.lowercased() == "tram") {self.currentVehicle = myTram}
+        if(self.selectedVehicle?.lowercased() == "metro") {self.currentVehicle = myMetro}
+        if(self.selectedVehicle?.lowercased() == "plane") {self.currentVehicle = myPlane}
+        print("my current vehicle: \(currentVehicle?.vehicleType)")
+        
     }
 }
