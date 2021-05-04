@@ -2,7 +2,7 @@
 //  Activity+CoreDataClass.swift
 //  CarbonFootprintTracking
 //
-//  Created by iosdev on 30.4.2021.
+//  Created by Teemu Rekola on 30.4.2021.
 //
 //
 
@@ -57,7 +57,6 @@ public class Activity: NSManagedObject {
                 shortTransportation = "bicycle"
             case "motorized/rail/tram":
                 shortTransportation = "tram"
-                
             default:
                 shortTransportation = "no transport"
             }
@@ -67,10 +66,8 @@ public class Activity: NSManagedObject {
             newActivity.date = today
             
             // these create dummy data for charts
-            
             //newActivity.co2 = Double(Int.random(in: 1..<10000000))
             //newActivity.activity = array.randomElement()!
-
             //print("create object: \(newActivity)")
             //}
         }

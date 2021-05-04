@@ -57,58 +57,58 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
         
         let context = AppDelegate.viewContext
         
-        do {
-            let activities =  try? context.fetch(request)
-            //print("pie coredata:  \(activities?.count ?? 0)")
+        //do {
+        let activities =  try? context.fetch(request)
+        //print("pie coredata:  \(activities?.count ?? 0)")
+        
+        // checks if date is same as today. If it is, then value is added
+        for oneActivity in activities ?? [] {
             
-            // checks if date is same as today. If it is, then value is added
-            for oneActivity in activities ?? [] {
-                
-                if oneActivity.activity == "car" && oneActivity.date == today {
-                    carCarbon = carCarbon + Double(oneActivity.co2)
-                }
-                if oneActivity.activity == "train" && oneActivity.date == today {
-                    trainCarbon = trainCarbon + Double(oneActivity.co2)
-                }
-                if oneActivity.activity == "bicycle" && oneActivity.date == today {
-                    bicycleCarbon = bicycleCarbon + Double(oneActivity.co2)
-                }
-                if oneActivity.activity == "plane" && oneActivity.date == today {
-                    planeCarbon = planeCarbon + Double(oneActivity.co2)
-                }
-                if oneActivity.activity == "walk" && oneActivity.date == today {
-                    walkCarbon = walkCarbon + Double(oneActivity.co2)
-                    //print("walk carbon: \(walkCarbon)")
-                }
-                if oneActivity.activity == "bus" && oneActivity.date == today {
-                    busCarbon = busCarbon + Double(oneActivity.co2)
-                    //print("bus carbon: \(busCarbon)")
-                }
-                if oneActivity.activity == "metro" && oneActivity.date == today {
-                    metroCarbon = metroCarbon + Double(oneActivity.co2)
-                    //print("metro carbon: \(metroCarbon)")
-                }
-                if oneActivity.activity == "run" && oneActivity.date == today {
-                    runCarbon = runCarbon + Double(oneActivity.co2)
-                    //print("run carbon: \(runCarbon)")
-                }
-                if oneActivity.activity == "tram" && oneActivity.date == today {
-                    tramCarbon = tramCarbon + Double(oneActivity.co2)
-                }
-                
-                // checks if month is still same
-                if oneActivity.date?.contains(monthToday) == true {
-                    budgetValue = budgetValue + Double(oneActivity.co2)/100000000
-                }
-                
-                print("pie coredata co2:  \(oneActivity.co2)")
-                print("pie coredata transport:  \(oneActivity.activity ?? "nothing")")
-                print("pie coredata date:  \(oneActivity.date ?? "no date")")
+            if oneActivity.activity == "car" && oneActivity.date == today {
+                carCarbon = carCarbon + Double(oneActivity.co2)
             }
+            if oneActivity.activity == "train" && oneActivity.date == today {
+                trainCarbon = trainCarbon + Double(oneActivity.co2)
+            }
+            if oneActivity.activity == "bicycle" && oneActivity.date == today {
+                bicycleCarbon = bicycleCarbon + Double(oneActivity.co2)
+            }
+            if oneActivity.activity == "plane" && oneActivity.date == today {
+                planeCarbon = planeCarbon + Double(oneActivity.co2)
+            }
+            if oneActivity.activity == "walk" && oneActivity.date == today {
+                walkCarbon = walkCarbon + Double(oneActivity.co2)
+                //print("walk carbon: \(walkCarbon)")
+            }
+            if oneActivity.activity == "bus" && oneActivity.date == today {
+                busCarbon = busCarbon + Double(oneActivity.co2)
+                //print("bus carbon: \(busCarbon)")
+            }
+            if oneActivity.activity == "metro" && oneActivity.date == today {
+                metroCarbon = metroCarbon + Double(oneActivity.co2)
+                //print("metro carbon: \(metroCarbon)")
+            }
+            if oneActivity.activity == "run" && oneActivity.date == today {
+                runCarbon = runCarbon + Double(oneActivity.co2)
+                //print("run carbon: \(runCarbon)")
+            }
+            if oneActivity.activity == "tram" && oneActivity.date == today {
+                tramCarbon = tramCarbon + Double(oneActivity.co2)
+            }
+            
+            // checks if month is still same
+            if oneActivity.date?.contains(monthToday) == true {
+                budgetValue = budgetValue + Double(oneActivity.co2)/100000000
+            }
+            
+            print("pie coredata co2:  \(oneActivity.co2)")
+            print("pie coredata transport:  \(oneActivity.activity ?? "nothing")")
+            print("pie coredata date:  \(oneActivity.date ?? "no date")")
         }
-        catch let error as NSError {
-            print("no!: \(error.localizedDescription)")
-        }
+        //}
+        //catch let error as NSError {
+        //   print("no!: \(error.localizedDescription)")
+        //}
         if carCarbon >= 1 {
             carbon.append(carCarbon)
             transport.append("car")
@@ -167,8 +167,8 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
         
         // Set  ChartDataSet
         let set = PieChartDataSet(entries: dataEntries)
-        set.colors = colorsOfCharts(numbersOfColor: dataPoints.count)
-        //set.colors = ChartColorTemplates.pastel()
+        //set.colors = colorsOfCharts(numbersOfColor: dataPoints.count)
+        set.colors = ChartColorTemplates.pastel()
         pieChartView.frame = CGRect(x: 0, y: 0,
                                     width: self.view.frame.size.width,
                                     height: self.view.frame.size.width)
