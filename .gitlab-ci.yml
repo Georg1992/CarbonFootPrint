@@ -4,7 +4,7 @@ stages:
 build_project:
   stage: build
   script:
-    - xcodebuild clean -project ProjectName.xcodeproj -scheme SchemeName | xcpretty
-    - xcodebuild test -project ProjectName.xcodeproj -scheme SchemeName -destination 'platform=iOS Simulator,name=iPhone 6s,OS=9.2' | xcpretty -s
+    - xcodebuild clean -project carbon-footprint-tracking.xcodeproj -scheme SchemeName | xcpretty
+    - xcodebuild test -project carbon-footprint-tracking.xcodeproj -scheme SchemeName -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.0' | xcpretty -s
   tags:
     - carbon
