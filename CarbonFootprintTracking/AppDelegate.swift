@@ -10,7 +10,7 @@ import CoreData
 import MOPRIMTmdSdk
 
 @main
-<<<<<<< HEAD
+
 class AppDelegate: UIResponder, UIApplicationDelegate{
     
     
@@ -19,12 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     let myEndpoint = "https://1t0mp83yg7.execute-api.eu-central-1.amazonaws.com/metro2021/v1"
     let moprimApi = MoprimAPI()
 
-=======
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
     static let viewContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
->>>>>>> dd8355f9bda2a2d71ca4356ff6a7599048adc9e0
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Fetch data as soon as possible
