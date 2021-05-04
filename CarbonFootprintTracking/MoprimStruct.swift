@@ -2,7 +2,7 @@
 //  MoprimStruct.swift
 //  CarbonFootprintTracking
 //
-//  Created by iosdev on 29.4.2021.
+//  Created by Teemu Rekola on 29.4.2021.
 //
 
 import Foundation
