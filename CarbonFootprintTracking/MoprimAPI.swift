@@ -48,7 +48,7 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate, TMDDelegate{
     func askMotionPermissions() {
         if CMMotionActivityManager.isActivityAvailable() {
             self.motionActivityManager.startActivityUpdates(to: OperationQueue.main) { (motion) in
-                print("received motion activity")
+                //print("received motion activity")
                 self.motionActivityManager.stopActivityUpdates()
             }
         }
