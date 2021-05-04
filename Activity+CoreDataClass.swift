@@ -53,6 +53,11 @@ public class Activity: NSManagedObject {
                 shortTransportation = "run"
             case "motorized/air/plane":
                 shortTransportation = "plane"
+            case "non-motorized/bicycle":
+                shortTransportation = "bicycle"
+            case "motorized/rail/tram":
+                shortTransportation = "tram"
+                
             default:
                 shortTransportation = "no transport"
             }

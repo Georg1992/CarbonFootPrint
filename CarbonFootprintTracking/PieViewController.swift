@@ -45,12 +45,13 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
         
         var carCarbon: Double = 0
         var trainCarbon: Double = 0
-        var bikeCarbon: Double = 0
+        var bicycleCarbon: Double = 0
         var planeCarbon: Double = 0
         var walkCarbon: Double = 0
         var busCarbon: Double = 0
         var metroCarbon: Double = 0
         var runCarbon: Double = 0
+        var tramCarbon: Double = 0
         
         let request:NSFetchRequest<Activity> = Activity.fetchRequest()
         
@@ -69,8 +70,8 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
                 if oneActivity.activity == "train" && oneActivity.date == today {
                     trainCarbon = trainCarbon + Double(oneActivity.co2)
                 }
-                if oneActivity.activity == "bike" && oneActivity.date == today {
-                    bikeCarbon = bikeCarbon + Double(oneActivity.co2)
+                if oneActivity.activity == "bicycle" && oneActivity.date == today {
+                    bicycleCarbon = bicycleCarbon + Double(oneActivity.co2)
                 }
                 if oneActivity.activity == "plane" && oneActivity.date == today {
                     planeCarbon = planeCarbon + Double(oneActivity.co2)
@@ -90,6 +91,9 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
                 if oneActivity.activity == "run" && oneActivity.date == today {
                     runCarbon = runCarbon + Double(oneActivity.co2)
                     //print("run carbon: \(runCarbon)")
+                }
+                if oneActivity.activity == "tram" && oneActivity.date == today {
+                    tramCarbon = tramCarbon + Double(oneActivity.co2)
                 }
                 
                 // checks if month is still same
@@ -121,9 +125,9 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
             carbon.append(trainCarbon)
             transport.append("train")
         }
-        if bikeCarbon >= 1 {
-            carbon.append(bikeCarbon)
-            transport.append("bike")
+        if bicycleCarbon >= 1 {
+            carbon.append(bicycleCarbon)
+            transport.append("bicycle")
         }
         if busCarbon >= 1 {
             carbon.append(busCarbon)
@@ -136,6 +140,10 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
         if runCarbon >= 1 {
             carbon.append(runCarbon)
             transport.append("run")
+        }
+        if tramCarbon >= 1 {
+            carbon.append(tramCarbon)
+            transport.append("tram")
         }
         
         //let transport = ["train", "metro", "car", "plane", "boat", "bike"]
