@@ -62,6 +62,7 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
             
             // checks if date is same as today. If it is, then value is added
             for oneActivity in activities ?? [] {
+                
                 if oneActivity.activity == "car" && oneActivity.date == today {
                     carCarbon = carCarbon + Double(oneActivity.co2)
                 }
