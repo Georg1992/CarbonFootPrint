@@ -94,7 +94,9 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         myDummyCar.pushDataDay(carTripData)
         //print(" dayArray data: \(myDummyCar.dayArray[0])")
         
-        setDataDay()
+        currentVehicle = myCar
+        
+        setData(timePeriod: dayValues, labelCount: 12, forced: false)
     }
     
     //creating and setting up pickerView for vehicle selection
@@ -126,10 +128,10 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         print(entry)
     }
     
-    //sets day data for lineChartView
-    func setDataDay() {
-        //sets values for the data set and some front end stuff for the red line in the chart
-        let set1 = LineChartDataSet(entries: dayValues, label: "CO2 footprint")
+    //sets data for lineChartView
+    func setData(timePeriod: [ChartDataEntry], labelCount: Int, forced: Bool) {
+        //sets values (entries) for the data set and some front end stuff for the red line in the chart
+        let set1 = LineChartDataSet(entries: timePeriod, label: "CO2 footprint")
         set1.mode = .cubicBezier
         set1.drawCirclesEnabled = false
         set1.lineWidth = 3
@@ -148,75 +150,9 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         data.setDrawValues(false)
         
         //changes the amount of x-values in the line chart to match days. There are 12 data marks instead of 24 to save space in the x-axis.
-        lineChartView.xAxis.setLabelCount(12, force: false)
+        lineChartView.xAxis.setLabelCount(labelCount, force: forced)
         
         //sets the data for lineChartView
-        lineChartView.data = data
-    }
-    
-    func setDataWeek() {
-        //sets values for the data set and some front end stuff for the red line in the chart
-        let set1 = LineChartDataSet(entries: weekValues, label: "CO2 footprint")
-        set1.mode = .cubicBezier
-        set1.drawCirclesEnabled = false
-        set1.lineWidth = 3
-        set1.setColor(.red)
-        set1.fill = Fill(color: .red)
-        set1.fillAlpha = 0.65
-        set1.drawFilledEnabled = true
-        
-        
-        set1.highlightColor = .black
-        set1.highlightLineWidth = 1.5
-        
-        let data = LineChartData(dataSet: set1)
-        data.setDrawValues(false)
-        
-        lineChartView.xAxis.setLabelCount(7, force: true)
-        lineChartView.data = data
-    }
-    
-    func setDataMonth() {
-        //sets values for the data set and some front end stuff for the red line in the chart
-        let set1 = LineChartDataSet(entries: monthValues, label: "CO2 footprint")
-        set1.mode = .cubicBezier
-        set1.drawCirclesEnabled = false
-        set1.lineWidth = 3
-        set1.setColor(.red)
-        set1.fill = Fill(color: .red)
-        set1.fillAlpha = 0.65
-        set1.drawFilledEnabled = true
-        
-        
-        set1.highlightColor = .black
-        set1.highlightLineWidth = 1.5
-        
-        let data = LineChartData(dataSet: set1)
-        data.setDrawValues(false)
-        
-        lineChartView.xAxis.setLabelCount(10, force: false)
-        lineChartView.data = data
-    }
-    
-    func setDataYear() {
-        //sets values for the data set and some front end stuff for the red line in the chart
-        let set1 = LineChartDataSet(entries: yearValues, label: "CO2 footprint")
-        set1.mode = .cubicBezier
-        set1.drawCirclesEnabled = false
-        set1.lineWidth = 3
-        set1.setColor(.red)
-        set1.fill = Fill(color: .red)
-        set1.fillAlpha = 0.65
-        set1.drawFilledEnabled = true
-        
-        
-        set1.highlightColor = .black
-        set1.highlightLineWidth = 1.5
-        
-        let data = LineChartData(dataSet: set1)
-        data.setDrawValues(false)
-        
-        lineChartView.xAxis.setLabelCount(12, force: true)
         lineChartView.data = data
     }
     
@@ -297,7 +233,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
     
     //data for every month of the year (sum of CO2 for every month of the year)
     let yearValues: [ChartDataEntry] = [
-        ChartDataEntry(x: 0.0, y: 5.0),
+        ChartDataEntry(x: 0.0, y: 22.0),
         ChartDataEntry(x: 1.0, y: 35.0),
         ChartDataEntry(x: 2.0, y: 45.0),
         ChartDataEntry(x: 3.0, y: 35.0),
@@ -314,25 +250,25 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
     //sets data for day when day button is pressed
     @IBAction func dayButtonPressed(_ sender: UIButton) {
         print("dayButtonPressed")
-        setDataDay()
+        setData(timePeriod: dayValues, labelCount: 12, forced: false)
     }
     
     //sets data for week when week button is pressed
     @IBAction func weekButtonPressed(_ sender: UIButton) {
         print("weekButtonPressed")
-        setDataWeek()
+        setData(timePeriod: weekValues, labelCount: 7, forced: true)
     }
     
     //sets data for month when month button is pressed
     @IBAction func monthButtonPressed(_ sender: UIButton) {
         print("monthButtonPressed")
-        setDataMonth()
+        setData(timePeriod: monthValues, labelCount: 10, forced: false)
     }
     
     //sets data for year when year button is pressed
     @IBAction func yearButtonPressed(_ sender: UIButton) {
         print("yearButtonPressed")
-        setDataYear()
+        setData(timePeriod: yearValues, labelCount: 12, forced: true)
     }
     /*
     // MARK: - Navigation
@@ -372,7 +308,9 @@ extension StatisticsViewController: UIPickerViewDelegate, UIPickerViewDataSource
         if(self.selectedVehicle?.lowercased() == "tram") {self.currentVehicle = myTram}
         if(self.selectedVehicle?.lowercased() == "metro") {self.currentVehicle = myMetro}
         if(self.selectedVehicle?.lowercased() == "plane") {self.currentVehicle = myPlane}
-        print("my current vehicle: \(currentVehicle?.vehicleType)")
+        print("my current vehicle: \(currentVehicle?.vehicleType ?? "all")")
+        print("currentVehicle: \(currentVehicle?.vehicleType ?? "all") first hour: ")
+        //let isIndexValid = currentVehicle?.dayArray.indices.contains(0)
         
     }
 }
