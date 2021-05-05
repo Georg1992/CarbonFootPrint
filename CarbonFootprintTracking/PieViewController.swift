@@ -211,9 +211,11 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
                 tramCarbon = tramCarbon + Double(oneActivity.co2)
             }
             
+
             print("/npie coredata co2:  \(oneActivity.co2), /transport: \(oneActivity.activity ?? "nothing"), /ndate: \(oneActivity.date ?? "no date")")
             
-        }
+
+        
         //}
         //catch let error as NSError {
         //   print("no!: \(error.localizedDescription)")
