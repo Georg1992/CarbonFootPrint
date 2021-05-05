@@ -13,7 +13,7 @@ import MOPRIMTmdSdk
 
 class AppDelegate: UIResponder, UIApplicationDelegate{
     
-    
+    let didInitializeTMD = NSNotification.Name(rawValue: "TMD.didInitialize")
     // Declare your API Key and Endpoint:
     let myKey = "eu-central-1:cb996483-fd29-4a79-912e-9d9eff9af4f2"
     let myEndpoint = "https://1t0mp83yg7.execute-api.eu-central-1.amazonaws.com/metro2021/v1"
@@ -29,16 +29,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         
     
         // Initialize the TMD:
-        TMD.initWithKey(myKey, withEndpoint: myEndpoint, withLaunchOptions: launchOptions).continueWith { (task) -> Any? in
-                if let error = task.error {
-                    NSLog("Error while initializing the TMD SDK: %@", error.localizedDescription)
-                }
-                else {
-                    // Get the app's installation id:
-                    NSLog("Successfully initialized the TMD with id \(String(describing: task.result))")
-                }
-                return task;
-        }
+        TMD.initWithKey(myKey, withEndpoint: myEndpoint, withLaunchOptions: launchOptions).continueWith (block: { (task) -> Any? in
+            
+            if let error = task.error {
+                NSLog("Error at TMD init:%@", error.localizedDescription)
+            } else if let result = task.result {
+                NSLog("Successfully initialized the TMD with id %@", result as! String)
+                NotificationCenter.default.post(name: self.didInitializeTMD, object: nil)
+            }
+            return task;
+        })
+        
         return true
     }
     

@@ -9,18 +9,16 @@ import Foundation
 import MOPRIMTmdSdk
 import CoreMotion
 import CoreLocation
+import UIKit
 
-class MoprimAPI : NSObject, CLLocationManagerDelegate, TMDDelegate{
+class MoprimAPI : NSObject, CLLocationManagerDelegate{
     override init() {
         super.init()
         self.dateFormater.dateStyle = .short
         self.askLocationPermissions()
         self.askMotionPermissions()
-
-        TMD.setDelegate(self)
         TMD.setAllowUploadOnCellularNetwork(true)
-        TMD.start()
-    }
+        }
     private var activities: [TMDActivity] = []
     private let transportTypes = ["stationary",
                               "non-motorized/pedestrian/walk",
@@ -36,6 +34,7 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate, TMDDelegate{
     let dateFormater = DateFormatter()
     private let currentDate:Date = Date()
     private var timer: Timer = Timer()
+
     
     
     var delegate:MoprimAPIDelegate?
@@ -48,7 +47,6 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate, TMDDelegate{
     func askMotionPermissions() {
         if CMMotionActivityManager.isActivityAvailable() {
             self.motionActivityManager.startActivityUpdates(to: OperationQueue.main) { (motion) in
-                //print("received motion activity")
                 self.motionActivityManager.stopActivityUpdates()
             }
         }
@@ -71,6 +69,7 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate, TMDDelegate{
     
     func updateViewForCurrentDate() {
         if (TMD.isInitialized() == false) {
+            print("NONONO")
             return
         }
         var cachedActivities: [TMDActivity] = [];
@@ -96,13 +95,23 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate, TMDDelegate{
                         }
                         
                         NSLog("We got %d activities for date: \(self.dateFormater.string(from: self.currentDate))", self.activities.count )
-                       self.delegate?.fetchMoprimData(data: self.activities)
+                        
+                        self.feedMoprimStruct()
             
                     }
                     return task;
                 }
         }
         
+    }
+    
+    func feedMoprimStruct(){
+        var moprimData:[MoprimData] = []
+        for activity in self.activities{
+            let data = MoprimData(activity: activity.activity(), co2: activity.co2, date: self.dateFormater.string(from: self.currentDate), timestampStart: activity.timestampStart, duration: activity.duration())
+            moprimData.append(data)
+            }
+       self.delegate?.fetchMoprimData(data: moprimData)
     }
     
     
@@ -163,54 +172,18 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate, TMDDelegate{
     }
     
     
-    @objc func updateTmdStatusLabel(label: UILabel) {
-        if TMD.isOff() {
-            label.text = "TMD is off"
-        }
-        else if TMD.isIdle() {
-            label.text = "TMD is idle"
-        }
-        else if TMD.isRunning() {
-            label.text = String(format: "TMD is running for %@",
-                                         secondsToString(seconds: TMD.getRunningTime()))
-        }
-    }
-    
-    func secondsToString(seconds: Double) -> String {
-        
-        if (seconds.isNaN) {
-            return "Nan"
-        }
-        let isNegative = seconds < 0;
-        
-        let s = Int(seconds.rounded()) % 60;
-        var m = Int(seconds.rounded()) / 60;
-        let h = m / 60;
-        m = m % 60;
-        if (h != 0) {
-            return String.init(format: "%@%dh%02dm%02ds", isNegative ? "-" : "", h, m, s);
-        } else if (m != 0) {
-            return String.init(format: "%@%dm%02ds", isNegative ? "-" : "", m, s);
-        } else {
-            return String.init(format: "%@%ds", isNegative ? "-" : "", s);
-        }
-    }
-    
-    func stopTMD(){
-        TMD.stop()
-    }
-    
-
-
-    
-    
-    
     
 }
 //TODO: MAKE A STRUCT FOR CORE DATA
-//struct moprimData {}
+struct MoprimData {
+    var activity:String
+    var co2:Double
+    var date:String
+    var timestampStart:Int64
+    var duration: Double
+}
 
 protocol MoprimAPIDelegate{
-    func fetchMoprimData(data:[TMDActivity])
+    func fetchMoprimData(data:[MoprimData])
     
 }
