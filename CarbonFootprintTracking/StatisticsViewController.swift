@@ -14,8 +14,6 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
     
     @IBOutlet weak var dayButtonOutlet: UIButton!
     
-    @IBOutlet weak var weekButtonOutlet: UIButton!
-    
     @IBOutlet weak var monthButtonOutlet: UIButton!
     
     @IBOutlet weak var yearButtonOutlet: UIButton!
@@ -100,7 +98,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         dateFormatterMonth.dateFormat = "YY/MM"
         
         let dateFormatterYear = DateFormatter()
-        // Set Date Format for this month
+        // Set Date Format for this year
         dateFormatterYear.dateFormat = "YY"
         
         today = dateFormatter.string(from: date)
@@ -108,34 +106,37 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         thisMonth = dateFormatterMonth.string(from: date)
         thisYear = dateFormatterYear.string(from: date)
         
+        //setting current vehicle as train by default
         currentVehicle = myTrain
         
         print("today: \(today), todayNoHour: \(todayNoHour)")
         
-        setTripData("20/11/18/03", "20/11/18", "20/11", "20", 50, "\(currentVehicle?.vehicleType)")
+        //setting data for the current vehicle
+        setTripData("20/11/18/03", "20/11/18", "20/11", "20", 50, currentVehicle?.vehicleType ?? "none")
         print("tripData 1: \(tripTimeStamp), \(tripTimeStampNoHour), \(tripTimeStampThisMonth), \(tripTimeStampThisYear), \(tripCarbonFootprint), \(tripVehicleType)")
         currentVehicle?.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "all"))
         //print(myCar.dayArray)
         
-        setTripData("21/05/03/07", "21/05/03", "21/05", "21", 25, "\(currentVehicle?.vehicleType)")
+        setTripData("21/05/03/07", "21/05/03", "21/05", "21", 25, currentVehicle?.vehicleType ?? "none")
         print("tripData 2: \(tripTimeStamp), \(tripTimeStampNoHour), \(tripTimeStampThisMonth), \(tripTimeStampThisYear), \(tripCarbonFootprint), \(tripVehicleType)")
         currentVehicle?.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "all"))
         //print(myCar.dayArray)
         
-        setTripData("21/05/04/02", "21/05/04", "21/05", "21", 37, "\(currentVehicle?.vehicleType)")
+        setTripData("21/05/04/02", "21/05/04", "21/05", "21", 37, currentVehicle?.vehicleType ?? "none")
         print("tripData 3: \(tripTimeStamp), \(tripTimeStampNoHour), \(tripTimeStampThisMonth), \(tripTimeStampThisYear), \(tripCarbonFootprint), \(tripVehicleType ?? "all")")
         currentVehicle?.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "all"))
         //print(myCar.dayArray)
         
-        setTripData("21/05/05/01", "21/05/05", "21/05", "21", 180, "\(currentVehicle?.vehicleType)")
+        setTripData("21/05/05/01", "21/05/05", "21/05", "21", 180, currentVehicle?.vehicleType ?? "none")
         print("tripData 4: \(tripTimeStamp), \(tripTimeStampNoHour), \(tripTimeStampThisMonth), \(tripTimeStampThisYear), \(tripCarbonFootprint), \(tripVehicleType)")
         currentVehicle?.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "all"))
         //print(myCar.dayArray)
         
-        setTripData("21/05/05/05", "21/05/05", "21/05", "21", 15, "\(currentVehicle?.vehicleType)")
+        setTripData("21/05/05/05", "21/05/05", "21/05", "21", 15, currentVehicle?.vehicleType ?? "none")
         print("tripData 5: \(tripTimeStamp), \(tripTimeStampNoHour), \(tripTimeStampThisMonth), \(tripTimeStampThisYear), \(tripCarbonFootprint), \(tripVehicleType)")
         currentVehicle?.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "all"))
-        //print(myCar.dayArray)
+        print("first dayArray: \(currentVehicle?.vehicleType ?? "none")")
+        print("first myTrain dayArray: \(myTrain.dayArray)")
         
         print("gatherHourData: \(gatherHourData())")
         print("gatherDayData: \(gatherDayData())")
@@ -157,11 +158,13 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         setData(timePeriod: getDayValues(), labelCount: 12, forced: false)
     }
     
+    //sets the trip data set
     func setDataSet(_ timeStamp: String, _ timeStampNoHour: String, _ timeStampThisMonth: String, _ timeStampThisYear: String, _ carbonFootPrint: Double, _ vehicleType: String) -> DataSetStatistics {
         let newData = DataSetStatistics(timeStamp: timeStamp, timeStampNoHour: timeStampNoHour, timeStampThisMonth: timeStampThisMonth, timeStampThisYear: timeStampThisYear, carbonFootprint: carbonFootPrint, vehicleType: vehicleType)
         return newData
     }
     
+    //sets trip data
     func setTripData(_ tS: String, _ tSNH: String, _ tSTM: String, _ tSTY: String, _ cFP: Double, _ vT: String) {
         tripTimeStamp = tS
         tripTimeStampNoHour = tSNH
@@ -169,8 +172,33 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         tripTimeStampThisYear = tSTY
         tripCarbonFootprint = cFP
         tripVehicleType = vT
+        
+        
+        print("setTripData vt: \(vT) and other vt: \(tripVehicleType ?? "none") typeof vT : \(type(of: vT))")
+        
+        //because currentVehicle does not save data to the actual vehicle of which type it is, the data must be set here to be saved
+        switch vT {
+        case "nonmotorized":
+            myNonMotorized.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "all"))
+        case "car":
+            myCar.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "all"))
+        case "bus":
+            myBus.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "all"))
+        case "tram":
+            myTram.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "all"))
+        case "train":
+            print("setTripData Train called")
+            myTrain.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "all"))
+        case "metro":
+            myMetro.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "all"))
+        case "plane":
+            myPlane.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "all"))
+        default:
+            print("no types switch case")
+        }
     }
     
+    //gets data for every hour of a day
     func gatherHourData() -> (Double, [DataSetStatistics]){
         var hourCarbonFootprint = 0.0
         var noHourArray = [DataSetStatistics]()
@@ -185,6 +213,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         return (hourCarbonFootprint, noHourArray)
     }
     
+    //gets data for every day of a month
     func gatherDayData() -> (Double, [DataSetStatistics]){
         var dayCarbonFootprint = 0.0
         var noDayArray = [DataSetStatistics]()
@@ -197,6 +226,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         return (dayCarbonFootprint, noDayArray)
     }
     
+    //gets data for every month of a year
     func gatherMonthData() -> (Double, [DataSetStatistics]){
         var monthCarbonFootprint: Double = 0.0
         var noMonthArray = [DataSetStatistics]()
@@ -371,7 +401,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
             }
         }
         
-        //print("gatherDayValues carbon1: \()")
+    //these are the values shown in lineChart
     let dayValues: [ChartDataEntry] = [
         ChartDataEntry(x: 0.0, y: carbon0),
         ChartDataEntry(x: 1.0, y: carbon1),
@@ -398,19 +428,6 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         ChartDataEntry(x: 22.0, y: carbon22),
         ChartDataEntry(x: 23.0, y: carbon23),
     ]; return dayValues}
-    
-    //data for week (shows the sum of CO2 of each day mon - sun)
-    func getWeekValues() -> [ChartDataEntry] {
-        let co2 = gatherDayData()
-    let weekValues: [ChartDataEntry] = [
-        ChartDataEntry(x: 0.0, y: 0.0),
-        ChartDataEntry(x: 1.0, y: 35.0),
-        ChartDataEntry(x: 2.0, y: 45.0),
-        ChartDataEntry(x: 3.0, y: 35.0),
-        ChartDataEntry(x: 4.0, y: 20.0),
-        ChartDataEntry(x: 5.0, y: 20.0),
-        ChartDataEntry(x: 6.0, y: 20.0),
-    ]; return weekValues}
     
     func getMonthValues() -> [ChartDataEntry]{
         let allFromDay = gatherDayData()
@@ -449,7 +466,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         var carbon30 = 0.0
         
         
-        //this statement figures out what values to give to the variables above. It is done by going through all elements in allFromHour.1 (which is a list of all items inside dayArray) and comparing dates
+        //this statement figures out what values to give to the variables above. It is done by going through all elements in allFromDay.1 (which is a list of all items inside dayArray) and comparing dates
         for element in allFromDay.1 {
             print("gatherMonthValues timestamp: \(element.timeStamp ?? "0")")
             for n in 0...9 {
@@ -587,7 +604,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         var carbon10 = 0.0
         var carbon11 = 0.0
         
-        //this statement figures out what values to give to the variables above. It is done by going through all elements in allFromHour.1 (which is a list of all items inside dayArray) and comparing dates
+        //this statement figures out what values to give to the variables above. It is done by going through all elements in allFromMonth.1 (which is a list of all items inside dayArray) and comparing dates
         for element in allFromMonth.1 {
             print("gatherYearValues timestamp: \(element.timeStamp ?? "0")")
             for n in 0...9 {
@@ -658,10 +675,6 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
     }
     
     //sets data for week when week button is pressed
-    @IBAction func weekButtonPressed(_ sender: UIButton) {
-        print("weekButtonPressed")
-        setData(timePeriod: getWeekValues(), labelCount: 7, forced: true)
-    }
     
     //sets data for month when month button is pressed
     @IBAction func monthButtonPressed(_ sender: UIButton) {
