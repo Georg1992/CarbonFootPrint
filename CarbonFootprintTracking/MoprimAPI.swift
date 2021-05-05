@@ -67,9 +67,9 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate{
             }
         }
     
-    func updateViewForCurrentDate() {
+    func updateContextForCurrentDate() {
         if (TMD.isInitialized() == false) {
-            print("NONONO")
+            print("TMD NOT INITIALIZED")
             return
         }
         var cachedActivities: [TMDActivity] = [];
@@ -108,7 +108,7 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate{
     func feedMoprimStruct(){
         var moprimData:[MoprimData] = []
         for activity in self.activities{
-            let data = MoprimData(activity: activity.activity(), co2: activity.co2, date: self.dateFormater.string(from: self.currentDate), timestampStart: activity.timestampStart, duration: activity.duration())
+            let data = MoprimData(activity: activity.activity(), co2: activity.co2, date: self.dateFormater.string(from: self.currentDate), duration: activity.duration(), timestampStart: activity.timestampStart)
             moprimData.append(data)
             }
        self.delegate?.fetchMoprimData(data: moprimData)
@@ -150,7 +150,8 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate{
             print("Cant find location")
             return
             }
-        TMDCloudApi.generateSyntheticData(withOriginLocation:currentLoaction , destination: destination, requestType: transport, hereApiKey: apiKey).continueWith { (task) -> Any? in
+        print("Location: \(String(describing: locationManager.location))")
+        TMDCloudApi.generateSyntheticData(withOriginLocation:CLLocation(latitude: 61.187784, longitude: 23.96044) , destination: destination, requestType: transport, hereApiKey: apiKey).continueWith { (task) -> Any? in
             DispatchQueue.main.async {
                 let alert : UIAlertController
                 if let error = task.error {
@@ -159,7 +160,8 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate{
                 }
                 else if let metadata = task.result {
                    alert = UIAlertController.init(title: "Upload success", message: nil, preferredStyle: .alert)
-                        NSLog("Successfully uploading: %@", metadata)
+                        NSLog("Uploading: %@", metadata)
+                    
                 }
                 else {
                     alert = UIAlertController.init(title: "Upload Error", message: "No metadata was returned", preferredStyle: .alert)
@@ -179,8 +181,8 @@ struct MoprimData {
     var activity:String
     var co2:Double
     var date:String
-    var timestampStart:Int64
     var duration: Double
+    var timestampStart:Int64
 }
 
 protocol MoprimAPIDelegate{

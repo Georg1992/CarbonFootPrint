@@ -10,11 +10,10 @@ import CoreData
 import UIKit
 
 // for chart testing.
-class DummyData {
+class DummyData{
     
-    func fetchDummyData() {
-        
+
     
-}
+    
 }
 

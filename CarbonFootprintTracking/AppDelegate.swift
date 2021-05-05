@@ -11,7 +11,7 @@ import MOPRIMTmdSdk
 
 @main
 
-class AppDelegate: UIResponder, UIApplicationDelegate{
+class AppDelegate: UIResponder, UIApplicationDelegate, TMDDelegate, MoprimAPIDelegate{
     
     let didInitializeTMD = NSNotification.Name(rawValue: "TMD.didInitialize")
     // Declare your API Key and Endpoint:
@@ -19,15 +19,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     let myEndpoint = "https://1t0mp83yg7.execute-api.eu-central-1.amazonaws.com/metro2021/v1"
     let moprimApi = MoprimAPI()
 
-    static let viewContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    static var viewContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    func fetchMoprimData(data: [MoprimData]) {
+        
+        //AppDelegate.viewContext.reset()
+        DispatchQueue.main.async{
+            for activity in data{
+                let coreDataActivity = Activity(context: AppDelegate.viewContext)
+                coreDataActivity.activity = activity.activity
+                coreDataActivity.co2 = activity.co2
+                coreDataActivity.date = activity.date
+                coreDataActivity.duration = activity.duration
+                }
+            }
+            saveContext()
+        }
     
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        AppDelegate.viewContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
+        
+        moprimApi.delegate = self
+        moprimApi.updateContextForCurrentDate()
         // Fetch data as soon as possible
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         
-    
+        
         // Initialize the TMD:
         TMD.initWithKey(myKey, withEndpoint: myEndpoint, withLaunchOptions: launchOptions).continueWith (block: { (task) -> Any? in
             
@@ -39,6 +59,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             }
             return task;
         })
+        TMD.setDelegate(self)
+        TMD.start()
         
         return true
     }
@@ -89,7 +111,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
          error conditions that could cause the creation of the store to fail.
         */
         let container = NSPersistentContainer(name: "CarbonFootprintTracking")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: {
+            (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.

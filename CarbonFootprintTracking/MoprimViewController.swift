@@ -9,7 +9,7 @@ import UIKit
 import MOPRIMTmdSdk
 import CoreData
 
-class MoprimViewController: UIViewController, MoprimAPIDelegate, UITableViewDelegate,UITableViewDataSource, TMDDelegate, NSFetchedResultsControllerDelegate{
+class MoprimViewController: UIViewController,  UITableViewDelegate,UITableViewDataSource, TMDDelegate, NSFetchedResultsControllerDelegate{
     
     @IBOutlet weak var TMDswitch: UISwitch!
     @IBOutlet weak var TMDlabel: UILabel!
@@ -30,9 +30,9 @@ class MoprimViewController: UIViewController, MoprimAPIDelegate, UITableViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        appDelegate.moprimApi.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
+        fetchResults()
         TMD.setAllowUploadOnCellularNetwork(true)
         TMD.setDelegate(self)
         NSLog(TMD.isOn() ? "TMD is ON" : "TMD is OFF")
@@ -52,7 +52,7 @@ class MoprimViewController: UIViewController, MoprimAPIDelegate, UITableViewDele
 
 
         if (TMD.isInitialized()){
-            appDelegate.moprimApi.updateViewForCurrentDate()
+            appDelegate.moprimApi.updateContextForCurrentDate()
         }
         else {
             NotificationCenter.default.addObserver(self, selector: #selector(self.didInitTMD(notification:)), name: appDelegate.didInitializeTMD, object: nil)
@@ -61,23 +61,9 @@ class MoprimViewController: UIViewController, MoprimAPIDelegate, UITableViewDele
     
     @objc func didInitTMD(notification: Notification){
         NSLog("didInitTMD")
-        appDelegate.moprimApi.updateViewForCurrentDate()
+        appDelegate.moprimApi.updateContextForCurrentDate()
     }
     
-    func fetchMoprimData(data: [MoprimData]) {
-        DispatchQueue.main.async{
-            for activity in data{
-                let a = Activity(context: self.context)
-                a.activity = activity.activity
-                a.co2 = activity.co2
-                a.date = activity.date
-                a.timestampStart = activity.timestampStart
-                a.duration = activity.duration
-               }
-            self.appDelegate.saveContext()
-            NSLog("CONTEXT: \(self.context.registeredObjects.count)")
-          }
-    }
     
     
     @IBAction func goByCar(_ sender: Any) {
@@ -87,11 +73,12 @@ class MoprimViewController: UIViewController, MoprimAPIDelegate, UITableViewDele
         appDelegate.moprimApi.uploadSyntheticData(transport: TMDSyntheticRequestType.bicycle, destination: exampleLocation, controller: self)
     }
     @IBAction func walk(_ sender: Any) {
-        
+        appDelegate.moprimApi.uploadSyntheticData(transport: TMDSyntheticRequestType.bicycle, destination: exampleLocation, controller: self)
     }
     
     @IBAction func getData(_ sender: Any) {
-        appDelegate.moprimApi.updateViewForCurrentDate()
+        appDelegate.moprimApi.updateContextForCurrentDate()
+        tableView.reloadData()
     }
     
     
@@ -169,6 +156,9 @@ class MoprimViewController: UIViewController, MoprimAPIDelegate, UITableViewDele
     
     
     //TABLEVIEW
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return fetchedResultsController?.sections?.count ?? 1
+     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sections = fetchedResultsController?.sections, sections.count > 0 {
@@ -179,27 +169,10 @@ class MoprimViewController: UIViewController, MoprimAPIDelegate, UITableViewDele
     }
     
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ModalityCell", for: indexPath)
-        
-        let fetchRequest = NSFetchRequest<Activity>(entityName: "Activity")
-        //DELETE REQUEST FOR CLEANING THE CONTEXT
-//        let fetchDeleteRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Activity")
-//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchDeleteRequest)
-//
-        let sort = NSSortDescriptor(key:"date", ascending: true)
-        fetchRequest.sortDescriptors = [sort]
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-        fetchedResultsController?.delegate = self
-        do {
-//            try context.execute(deleteRequest)
-//            tableView.reloadData()
-            try fetchedResultsController?.performFetch()
-            tableView.reloadData()
-        } catch {
-            print("fetchedResultsController not good")
-        }
-        
+        print("fetching for table")
         let activity = self.fetchedResultsController?.object(at: indexPath)
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "HH:mm"
@@ -208,12 +181,33 @@ class MoprimViewController: UIViewController, MoprimAPIDelegate, UITableViewDele
         cell.textLabel?.text = String(format: "%@ (%@) - %@",
                                       date,
                                       secondsToString(seconds: activity?.duration ?? 0),
-                                      String(activity?.activity?.split(separator: "/").last ?? "n.a.").uppercased())
+                                      String(activity?.activity ?? "n.a.").uppercased())
         return cell
     }
     
+    func fetchResults(){
+        let fetchRequest = NSFetchRequest<Activity>(entityName: "Activity")
+        //DELETE REQUEST FOR CLEANING THE CONTEXT
+        let fetchDeleteRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Activity")
+        //let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchDeleteRequest)
+
+        let sort = NSSortDescriptor(key:"date", ascending: true)
+        fetchRequest.sortDescriptors = [sort]
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController?.delegate = self
+        do {
+            //try context.execute(deleteRequest)
+            tableView.reloadData()
+            try fetchedResultsController?.performFetch()
+            tableView.reloadData()
+            print("CORE DATA FETCHED: \(fetchedResultsController?.fetchedObjects)")
+        } catch {
+            print("fetchedResultsController not good")
+        }
+    }
+    
     @objc private func refreshTableData(_ sender: Any) {
-        appDelegate.moprimApi.updateViewForCurrentDate()
+        appDelegate.moprimApi.updateContextForCurrentDate()
         self.refreshControl.endRefreshing()
     }
     

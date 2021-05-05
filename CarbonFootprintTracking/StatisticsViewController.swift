@@ -69,8 +69,8 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         // Do any additional setup after loading the view.
         
         // dummy data
-        let newDummy = DummyData()
-        newDummy.fetchDummyData()
+//        let newDummy = DummyData()
+//        newDummy.fetchDummyData()
         
         //setting up pickerView to select vehicle
         self.createAndSetupPickerView()

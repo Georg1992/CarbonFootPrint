@@ -14,10 +14,7 @@ public class Activity: NSManagedObject {
     class func createOneActivityObject (_ oneActivity: MoprimData) {
             
             let request:NSFetchRequest<Activity> = Activity.fetchRequest()
-            // request.predicate = NSPredicate(format: "co2 = %d", oneActivity.features[0].properties.co2)
-            
-            // for testing
-            //let array = ["car", "train", "plane", "walk", "bike", "bus", "metro", "run"]
+            request.predicate = NSPredicate(format: "co2 = %d", oneActivity.co2)
             
             // Creates Date
             let date = Date()
@@ -32,7 +29,6 @@ public class Activity: NSManagedObject {
             
             if let matchingActivity = try? context.fetch(request) {
                 
-                //if (matchingActivity.count == 0) {
                 let newActivity = Activity(context: context)
                 
                 let shortTransportation: String?
@@ -53,22 +49,19 @@ public class Activity: NSManagedObject {
                 case "motorized/air/plane":
                     shortTransportation = "plane"
                 case "non-motorized/bicycle":
-                    shortTransportation = "bicycle"
+                    shortTransportation = "bike"
                 case "motorized/rail/tram":
                     shortTransportation = "tram"
                 default:
                     shortTransportation = "no transport"
                 }
+                    
                 
                 newActivity.co2 = Double(oneActivity.co2)
                 newActivity.activity = shortTransportation
                 newActivity.date = today
                 
-                // these create dummy data for charts
-                //newActivity.co2 = Double(Int.random(in: 1..<10000000))
-                //newActivity.activity = array.randomElement()!
-                //print("create object: \(newActivity)")
-                //}
+                
             }
         }
 
