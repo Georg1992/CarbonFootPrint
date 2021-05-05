@@ -35,7 +35,6 @@ class MoprimViewController: UIViewController, MoprimAPIDelegate, UITableViewDele
         tableView.dataSource = self
         TMD.setAllowUploadOnCellularNetwork(true)
         TMD.setDelegate(self)
-        TMD.start()
         NSLog(TMD.isOn() ? "TMD is ON" : "TMD is OFF")
         
         self.TMDswitch.setOn(!TMD.isOff(), animated: true)
