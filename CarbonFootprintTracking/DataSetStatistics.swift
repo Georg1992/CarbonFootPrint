@@ -9,11 +9,17 @@ import Foundation
 
 struct DataSetStatistics {
     private(set) var timeStamp: String?
+    private(set) var timeStampNoHour: String?
+    private(set) var timeStampThisMonth: String?
+    private(set) var timeStampThisYear: String?
     private(set) var carbonFootprint: Double?
     private(set) var vehicleType: String?
     
-    init(timeStamp: String, carbonFootprint: Double, vehicleType: String) {
+    init(timeStamp: String, timeStampNoHour: String, timeStampThisMonth: String, timeStampThisYear: String, carbonFootprint: Double, vehicleType: String) {
         self.timeStamp = timeStamp
+        self.timeStampNoHour = timeStampNoHour
+        self.timeStampThisMonth = timeStampThisMonth
+        self.timeStampThisYear = timeStampThisYear
         self.carbonFootprint = carbonFootprint
         self.vehicleType = vehicleType
     }
