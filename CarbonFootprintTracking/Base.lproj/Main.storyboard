@@ -182,29 +182,38 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ctE-2w-ZDj" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="20" y="150" width="374" height="457"/>
+                                <rect key="frame" x="20" y="150" width="374" height="408"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="z7G-Oa-50s">
                                 <rect key="frame" x="57" y="724" width="300" height="4"/>
                             </progressView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eN8-gF-oZO">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eN8-gF-oZO">
                                 <rect key="frame" x="57" y="748" width="300" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Monthly budget" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yI-9Q-xI7">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Monthly budget 1000kg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yI-9Q-xI7">
                                 <rect key="frame" x="75" y="665" width="264" height="43"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jdK-dR-eC5">
+                                <rect key="frame" x="244" y="591" width="150" height="46"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="update"/>
+                                <connections>
+                                    <action selector="updatePressed:" destination="fFl-5g-j4I" eventType="touchUpInside" id="BeB-qu-7GQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="d25-nI-bv2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="d25-nI-bv2" firstAttribute="trailing" secondItem="3yI-9Q-xI7" secondAttribute="trailing" constant="20" id="3eF-ed-z74"/>
+                            <constraint firstItem="jdK-dR-eC5" firstAttribute="leading" secondItem="d25-nI-bv2" secondAttribute="leading" constant="273" id="FFP-Jk-xsO"/>
                             <constraint firstItem="eN8-gF-oZO" firstAttribute="leading" secondItem="d25-nI-bv2" secondAttribute="leading" constant="20" id="FKd-yV-Ruq"/>
                             <constraint firstItem="d25-nI-bv2" firstAttribute="trailing" secondItem="eN8-gF-oZO" secondAttribute="trailing" constant="20" id="SrS-CP-RxP"/>
                             <constraint firstItem="z7G-Oa-50s" firstAttribute="top" secondItem="3yI-9Q-xI7" secondAttribute="bottom" constant="20" id="Wx1-Ws-hU8"/>
@@ -213,9 +222,11 @@
                             <constraint firstItem="eN8-gF-oZO" firstAttribute="top" secondItem="z7G-Oa-50s" secondAttribute="bottom" constant="22" id="cFd-Ed-4R1"/>
                             <constraint firstItem="ctE-2w-ZDj" firstAttribute="top" secondItem="d25-nI-bv2" secondAttribute="top" constant="10" id="d6y-y7-NY8"/>
                             <constraint firstItem="d25-nI-bv2" firstAttribute="trailing" secondItem="z7G-Oa-50s" secondAttribute="trailing" constant="20" id="gRE-xL-0Qe"/>
+                            <constraint firstItem="jdK-dR-eC5" firstAttribute="top" secondItem="ctE-2w-ZDj" secondAttribute="bottom" constant="69" id="jaF-Sx-vXi"/>
                             <constraint firstItem="ctE-2w-ZDj" firstAttribute="leading" secondItem="d25-nI-bv2" secondAttribute="leading" constant="20" id="kxT-sg-6Ld"/>
                             <constraint firstItem="d25-nI-bv2" firstAttribute="bottom" secondItem="eN8-gF-oZO" secondAttribute="bottom" constant="30" id="ok8-pN-az7"/>
-                            <constraint firstItem="3yI-9Q-xI7" firstAttribute="firstBaseline" secondItem="ctE-2w-ZDj" secondAttribute="baseline" constant="24.5" symbolType="layoutAnchor" id="rbr-Af-fEA"/>
+                            <constraint firstItem="d25-nI-bv2" firstAttribute="trailing" secondItem="jdK-dR-eC5" secondAttribute="trailing" constant="75" id="paz-8Z-AGS"/>
+                            <constraint firstItem="3yI-9Q-xI7" firstAttribute="top" secondItem="jdK-dR-eC5" secondAttribute="bottom" constant="8" symbolic="YES" id="vNF-AZ-q9j"/>
                             <constraint firstItem="3yI-9Q-xI7" firstAttribute="leading" secondItem="d25-nI-bv2" secondAttribute="leading" constant="20" id="wAZ-aA-29y"/>
                         </constraints>
                     </view>
@@ -224,6 +235,7 @@
                         <outlet property="pieChartView" destination="ctE-2w-ZDj" id="cd7-Qc-3vW"/>
                         <outlet property="progressView" destination="z7G-Oa-50s" id="tKJ-Ku-A6y"/>
                         <outlet property="textLabel" destination="eN8-gF-oZO" id="9PK-wa-mb1"/>
+                        <outlet property="updateB" destination="jdK-dR-eC5" id="T5S-34-jvU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a8D-0H-xyb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

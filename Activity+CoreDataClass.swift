@@ -33,7 +33,7 @@ public class Activity: NSManagedObject {
         
         if let matchingActivity = try? context.fetch(request) {
             
-            //if (matchingActivity.count == 0) {
+            if (matchingActivity.count == 0) {
             let newActivity = Activity(context: context)
             
             let shortTransportation: String?
@@ -69,7 +69,7 @@ public class Activity: NSManagedObject {
             //newActivity.co2 = Double(Int.random(in: 1..<10000000))
             //newActivity.activity = array.randomElement()!
             //print("create object: \(newActivity)")
-            //}
+            }
         }
     }
 }

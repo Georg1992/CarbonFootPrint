@@ -26,6 +26,10 @@ class DummyData {
                 return
             }
             
+            for result in [data] {
+                print("data print test: \(result)")
+            }
+            
             guard let data = data else {
                 return
             }
