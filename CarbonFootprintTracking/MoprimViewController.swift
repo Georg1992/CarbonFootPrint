@@ -169,13 +169,37 @@ class MoprimViewController: UIViewController, MoprimAPIDelegate, UITableViewDele
     
     
     //TABLEVIEW
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.fetchedResultsController?.sections?.count ?? 1
+        if let sections = fetchedResultsController?.sections, sections.count > 0 {
+            return sections[ section ].numberOfObjects
+        } else {
+            return 0
+        }
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ModalityCell", for: indexPath)
+        
+        let fetchRequest = NSFetchRequest<Activity>(entityName: "Activity")
+        //DELETE REQUEST FOR CLEANING THE CONTEXT
+//        let fetchDeleteRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Activity")
+//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchDeleteRequest)
+//
+        let sort = NSSortDescriptor(key:"date", ascending: true)
+        fetchRequest.sortDescriptors = [sort]
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController?.delegate = self
+        do {
+//            try context.execute(deleteRequest)
+//            tableView.reloadData()
+            try fetchedResultsController?.performFetch()
+            tableView.reloadData()
+        } catch {
+            print("fetchedResultsController not good")
+        }
+        
         let activity = self.fetchedResultsController?.object(at: indexPath)
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "HH:mm"
