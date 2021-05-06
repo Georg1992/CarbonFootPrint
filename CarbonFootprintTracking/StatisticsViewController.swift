@@ -9,8 +9,13 @@ import UIKit
 import DropDown //pod item
 import Charts //pod item
 import TinyConstraints //pod item
+import CoreData
 
-class StatisticsViewController: UIViewController, ChartViewDelegate {
+class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedResultsControllerDelegate {
+    
+    private var fetchedResultsController:NSFetchedResultsController<Activity>?
+    
+    var activityInfo:Activity?
     
     @IBOutlet weak var dayButtonOutlet: UIButton!
     
@@ -105,6 +110,66 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         todayNoHour = dateFormatterNoHour.string(from: date)
         thisMonth = dateFormatterMonth.string(from: date)
         thisYear = dateFormatterYear.string(from: date)
+        
+        var carCarbon: Double = 0
+        var trainCarbon: Double = 0
+        var bicycleCarbon: Double = 0
+        var planeCarbon: Double = 0
+        var walkCarbon: Double = 0
+        var busCarbon: Double = 0
+        var metroCarbon: Double = 0
+        var runCarbon: Double = 0
+        var tramCarbon: Double = 0
+        
+        let request:NSFetchRequest<Activity> = Activity.fetchRequest()
+        
+        let context = AppDelegate.viewContext
+        
+        //do {
+        let activities =  try? context.fetch(request)
+        //print("pie coredata:  \(activities?.count ?? 0)")
+        
+        // checks if date is same as today. If it is, then value is added
+        for oneActivity in activities ?? [] {
+            
+            if oneActivity.activity == "car" && oneActivity.date == today {
+                carCarbon = carCarbon + Double(oneActivity.co2)
+            }
+            if oneActivity.activity == "train" && oneActivity.date == today {
+                trainCarbon = trainCarbon + Double(oneActivity.co2)
+            }
+            if oneActivity.activity == "bicycle" && oneActivity.date == today {
+                bicycleCarbon = bicycleCarbon + Double(oneActivity.co2)
+            }
+            if oneActivity.activity == "plane" && oneActivity.date == today {
+                planeCarbon = planeCarbon + Double(oneActivity.co2)
+            }
+            if oneActivity.activity == "walk" && oneActivity.date == today {
+                walkCarbon = walkCarbon + Double(oneActivity.co2)
+                //print("walk carbon: \(walkCarbon)")
+            }
+            if oneActivity.activity == "bus" && oneActivity.date == today {
+                busCarbon = busCarbon + Double(oneActivity.co2)
+                //print("bus carbon: \(busCarbon)")
+            }
+            if oneActivity.activity == "metro" && oneActivity.date == today {
+                metroCarbon = metroCarbon + Double(oneActivity.co2)
+                //print("metro carbon: \(metroCarbon)")
+            }
+            if oneActivity.activity == "run" && oneActivity.date == today {
+                runCarbon = runCarbon + Double(oneActivity.co2)
+                //print("run carbon: \(runCarbon)")
+            }
+            if oneActivity.activity == "tram" && oneActivity.date == today {
+                tramCarbon = tramCarbon + Double(oneActivity.co2)
+            }
+            
+            print("oneActivity everything: \(oneActivity)")
+            print("Statistics coredata co2:  \(oneActivity.co2)")
+            print("Statistics coredata transport:  \(oneActivity.activity ?? "nothing")")
+            print("Statistics coredata date:  \(oneActivity.date ?? "no date")")
+        }
+        
         
         //setting current vehicle as train by default
         currentVehicle = myTrain

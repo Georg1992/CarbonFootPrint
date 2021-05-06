@@ -97,10 +97,12 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate{
     }
     
     func feedMoprimStruct(){
+        print("feeding moprim struct")
         var moprimData:[MoprimData] = []
         for activity in self.fetchedDayActivities{
             let data = MoprimData(activity: activity.activity(), co2: activity.co2, date: self.dateFormater.string(from: self.currentDate), duration: activity.duration(), timestampStart: activity.timestampStart)
             moprimData.append(data)
+            print("MoprimData array: \(moprimData)")
             }
        self.delegate?.fetchMoprimData(data: moprimData)
     }
