@@ -12,10 +12,10 @@ import CoreData
 @objc(Activity)
 public class Activity: NSManagedObject {
     
-    class func createOneActivityObject (_ oneActivity: MoprimStruct) {
+    class func createOneActivityObject (_ oneActivity: MoprimData) {
         
         let request:NSFetchRequest<Activity> = Activity.fetchRequest()
-        // request.predicate = NSPredicate(format: "co2 = %d", oneActivity.features[0].properties.co2)
+        request.predicate = NSPredicate(format: "co2 = %d", oneActivity.co2)
         
         // for testing
         //let array = ["car", "train", "plane", "walk", "bike", "bus", "metro", "run"]
@@ -38,7 +38,7 @@ public class Activity: NSManagedObject {
             
             let shortTransportation: String?
             
-            switch oneActivity.features[0].properties.activity {
+            switch oneActivity.activity {
             case "motorized/road/car":
                 shortTransportation = "car"
             case "non-motorized/pedestrian/walk":
@@ -61,7 +61,7 @@ public class Activity: NSManagedObject {
                 shortTransportation = "no transport"
             }
             
-            newActivity.co2 = Double(oneActivity.features[0].properties.co2)
+            newActivity.co2 = Double(oneActivity.co2)
             newActivity.activity = shortTransportation
             newActivity.date = today
             

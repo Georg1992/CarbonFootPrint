@@ -32,7 +32,7 @@ class MoprimViewController: UIViewController,  UITableViewDelegate,UITableViewDa
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        fetchResults()
+        fetchToResults()
         TMD.setAllowUploadOnCellularNetwork(true)
         TMD.setDelegate(self)
         NSLog(TMD.isOn() ? "TMD is ON" : "TMD is OFF")
@@ -78,6 +78,7 @@ class MoprimViewController: UIViewController,  UITableViewDelegate,UITableViewDa
     
     @IBAction func getData(_ sender: Any) {
         appDelegate.moprimApi.updateContextForCurrentDate()
+        fetchToResults()
         tableView.reloadData()
     }
     
@@ -185,22 +186,17 @@ class MoprimViewController: UIViewController,  UITableViewDelegate,UITableViewDa
         return cell
     }
     
-    func fetchResults(){
+    func fetchToResults(){
         let fetchRequest = NSFetchRequest<Activity>(entityName: "Activity")
-        //DELETE REQUEST FOR CLEANING THE CONTEXT
-        let fetchDeleteRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Activity")
-        //let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchDeleteRequest)
-
         let sort = NSSortDescriptor(key:"date", ascending: true)
         fetchRequest.sortDescriptors = [sort]
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController?.delegate = self
         do {
-            //try context.execute(deleteRequest)
-            tableView.reloadData()
+           
             try fetchedResultsController?.performFetch()
             tableView.reloadData()
-            print("CORE DATA FETCHED: \(fetchedResultsController?.fetchedObjects)")
+            print("CORE DATA FETCHED: \(String(describing: fetchedResultsController?.fetchedObjects))")
         } catch {
             print("fetchedResultsController not good")
         }
@@ -208,6 +204,7 @@ class MoprimViewController: UIViewController,  UITableViewDelegate,UITableViewDa
     
     @objc private func refreshTableData(_ sender: Any) {
         appDelegate.moprimApi.updateContextForCurrentDate()
+        fetchToResults()
         self.refreshControl.endRefreshing()
     }
     

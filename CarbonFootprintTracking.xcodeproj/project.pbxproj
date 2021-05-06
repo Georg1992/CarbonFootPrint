@@ -26,6 +26,7 @@
 		56709F94262F0B2600B08AB7 /* AWSMobileClientXCF.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 56709F92262F0B2500B08AB7 /* AWSMobileClientXCF.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		56709F96262F0B4100B08AB7 /* AWSS3.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56709F95262F0B4100B08AB7 /* AWSS3.xcframework */; };
 		56709F97262F0B4100B08AB7 /* AWSS3.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 56709F95262F0B4100B08AB7 /* AWSS3.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		56A11B9F26437063000DA650 /* MoprimStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A11B9E26437062000DA650 /* MoprimStruct.swift */; };
 		56C1BD252640D95D006CA59E /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C1BD242640D95D006CA59E /* DummyData.swift */; };
 		56C1BD2F2640D9BD006CA59E /* MoprimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C1BD2E2640D9BD006CA59E /* MoprimViewController.swift */; };
 		56C1BD342640D9E0006CA59E /* Activity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C1BD322640D9DF006CA59E /* Activity+CoreDataProperties.swift */; };
@@ -98,6 +99,7 @@
 		56709F8F262F0B1000B08AB7 /* AWSCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AWSCore.xcframework; path = "Frameworks/aws-ios-sdk-2.22.1/frameworks/AWSCore.xcframework"; sourceTree = "<group>"; };
 		56709F92262F0B2500B08AB7 /* AWSMobileClientXCF.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AWSMobileClientXCF.xcframework; path = "Frameworks/aws-ios-sdk-2.22.1/frameworks/AWSMobileClientXCF.xcframework"; sourceTree = "<group>"; };
 		56709F95262F0B4100B08AB7 /* AWSS3.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AWSS3.xcframework; path = "Frameworks/aws-ios-sdk-2.22.1/frameworks/AWSS3.xcframework"; sourceTree = "<group>"; };
+		56A11B9E26437062000DA650 /* MoprimStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoprimStruct.swift; sourceTree = "<group>"; };
 		56C1BD242640D95D006CA59E /* DummyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
 		56C1BD2E2640D9BD006CA59E /* MoprimViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoprimViewController.swift; sourceTree = "<group>"; };
 		56C1BD322640D9DF006CA59E /* Activity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Activity+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				6A998ED026272F7900B7376C /* Info.plist */,
 				6A998ECD26272F7900B7376C /* LaunchScreen.storyboard */,
 				56C1BD242640D95D006CA59E /* DummyData.swift */,
+				56A11B9E26437062000DA650 /* MoprimStruct.swift */,
 				6A998EC526272F7700B7376C /* Main.storyboard */,
 				6A24FD15262EB7F8006655CC /* MapViewController.swift */,
 				6A24FD10262EB7D1006655CC /* PieViewController.swift */,
@@ -514,6 +517,7 @@
 				56C1BD342640D9E0006CA59E /* Activity+CoreDataProperties.swift in Sources */,
 				56C1BD252640D95D006CA59E /* DummyData.swift in Sources */,
 				56C1BD2F2640D9BD006CA59E /* MoprimViewController.swift in Sources */,
+				56A11B9F26437063000DA650 /* MoprimStruct.swift in Sources */,
 				6A998EC226272F7700B7376C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
