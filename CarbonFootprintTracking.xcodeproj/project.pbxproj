@@ -513,11 +513,11 @@
 			files = (
 				6A5DF21E2643DCAD0047BA34 /* Activity+CoreDataProperties.swift in Sources */,
 				6A24FD16262EB7F8006655CC /* MapViewController.swift in Sources */,
-<<<<<<< HEAD
+
 				6AD6703B264150C1003ADA89 /* VehicleViewController.swift in Sources */,
-=======
+
 				6A5DF21D2643DCAD0047BA34 /* Activity+CoreDataClass.swift in Sources */,
->>>>>>> main
+
 				6A998ECA26272F7700B7376C /* CarbonFootprintTracking.xcdatamodeld in Sources */,
 				6A48044C2631595E00E47A28 /* StatisticsViewController.swift in Sources */,
 				6A998EC026272F7700B7376C /* AppDelegate.swift in Sources */,
