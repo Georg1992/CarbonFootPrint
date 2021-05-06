@@ -91,6 +91,7 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
         progressView.progress += 0.1
         progressView.setProgress(progressView.progress, animated: true)
         
+        //these change color of progress bar and percent
         if(progressView.progress >= 0.0) {
             textLabel.text = "used 0%"
             progressView.progressTintColor = UIColor.green
@@ -272,7 +273,7 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
             
             // checks if month is still same
             if oneActivity.date?.contains(monthToday) == true {
-                budgetValue = budgetValue + Double(oneActivity.co2)/100000000
+                budgetValue = budgetValue + Double(oneActivity.co2)/1000000
             }
         }
         
