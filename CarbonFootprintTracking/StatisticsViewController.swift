@@ -79,7 +79,6 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
         return chartView
     }()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

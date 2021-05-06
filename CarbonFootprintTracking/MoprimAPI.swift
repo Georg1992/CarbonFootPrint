@@ -54,18 +54,6 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate{
             }
         }
     
-<<<<<<< HEAD
-    func fetchData(){
-        
-        let isoDate = "2021-04-25T10:44:00+0000"
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        let date = dateFormatter.date(from:isoDate)!
-        
-        TMDCloudApi.fetchData(date, minutesOffset: 0).continueWith { (task) -> Any? in
-=======
     func updateContextForCurrentDate() {
         if (TMD.isInitialized() == false) {
             print("TMD NOT INITIALIZED")
@@ -123,7 +111,6 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate{
     func uploadData(controller: UIViewController) {
         NSLog("Uploading data")
         TMDCloudApi.uploadData().continueWith { (task) -> Any? in
->>>>>>> main
             DispatchQueue.main.async {
                 let alert : UIAlertController
                 if let error = task.error {
