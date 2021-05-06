@@ -10,30 +10,54 @@ import CoreData
 import MOPRIMTmdSdk
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
 
+class AppDelegate: UIResponder, UIApplicationDelegate, TMDDelegate, MoprimAPIDelegate{
+    
+    let didInitializeTMD = NSNotification.Name(rawValue: "TMD.didInitialize")
+    // Declare your API Key and Endpoint:
+    let myKey = "eu-central-1:cb996483-fd29-4a79-912e-9d9eff9af4f2"
+    let myEndpoint = "https://1t0mp83yg7.execute-api.eu-central-1.amazonaws.com/metro2021/v1"
+    let moprimApi = MoprimAPI()
 
+    
+    static var viewContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    func fetchMoprimData(data: [MoprimData]) {
+        DispatchQueue.main.async{
+            for oneActivity in data {
+                AppDelegate.viewContext.perform{
+                    Activity.createOneActivityObject(oneActivity)
+                    self.saveContext()
+                }
+            }
+        }
+    }
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        // Configure the app to trigger Background Fetch events as regularly as possible.
+        AppDelegate.viewContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
+        
+        moprimApi.delegate = self
+        moprimApi.updateContextForCurrentDate()
+        // Fetch data as soon as possible
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         
-        // Declare your API Key and Endpoint:
-        let myKey = "eu-central-1:cb996483-fd29-4a79-912e-9d9eff9af4f2"
-        let myEndpoint = "https://1t0mp83yg7.execute-api.eu-central-1.amazonaws.com/metro2021/v1"
-                
+        
         // Initialize the TMD:
-        TMD.initWithKey(myKey, withEndpoint: myEndpoint, withLaunchOptions: launchOptions).continueWith { (task) -> Any? in
-                if let error = task.error {
-                    NSLog("Error while initializing the TMD SDK: %@", error.localizedDescription)
-                }
-                else {
-                    // Get the app's installation id:
-                    NSLog("Successfully initialized the TMD with id \(String(describing: task.result))")
-                }
-                return task;
-        }
+        TMD.initWithKey(myKey, withEndpoint: myEndpoint, withLaunchOptions: launchOptions).continueWith (block: { (task) -> Any? in
+            
+            if let error = task.error {
+                NSLog("Error at TMD init:%@", error.localizedDescription)
+            } else if let result = task.result {
+                NSLog("Successfully initialized the TMD with id %@", result as! String)
+                NotificationCenter.default.post(name: self.didInitializeTMD, object: nil)
+            }
+            return task;
+        })
+        TMD.setDelegate(self)
+        TMD.start()
+        
         return true
     }
     
@@ -41,9 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Run our background operations
         TMD.backgroundFetch().continueWith (block: { (task) -> Void in
             let tmdFetchResult:UIBackgroundFetchResult = UIBackgroundFetchResult(rawValue: (task.result!.uintValue))!
+            
             // Call the completion handler with the UIBackgroundFetchResult returned by TMD.backgroundFetch(), or with your own background fetch result
-            
-            
             completionHandler(tmdFetchResult)
         })
     }
@@ -71,6 +94,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+    
+    
 
     // MARK: - Core Data stack
 
@@ -82,7 +107,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          error conditions that could cause the creation of the store to fail.
         */
         let container = NSPersistentContainer(name: "CarbonFootprintTracking")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: {
+            (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
