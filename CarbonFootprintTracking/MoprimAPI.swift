@@ -19,24 +19,11 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate{
         self.askMotionPermissions()
         TMD.setAllowUploadOnCellularNetwork(true)
         }
-    private var activities: [TMDActivity] = []
-    private let transportTypes = ["stationary",
-                              "non-motorized/pedestrian/walk",
-                              "non-motorized/pedestrian/run",
-                              "non-motorized/bicycle",
-                              "motorized/road/bus",
-                              "motorized/road/car",
-                              "motorized/rail/metro",
-                              "motorized/rail/tram",
-                              "motorized/rail/train",
-                              "motorized/water/ferry",
-                              "motorized/air/plane"]
+    var fetchedDayActivities: [TMDActivity] = []
     let dateFormater = DateFormatter()
     private let currentDate:Date = Date()
     private var timer: Timer = Timer()
 
-    
-    
     var delegate:MoprimAPIDelegate?
     let locationManager = CLLocationManager()
     let motionActivityManager = CMMotionActivityManager()
@@ -79,35 +66,39 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate{
                 cachedActivities = (arr as! [TMDActivity])
             }
             return cacheTask;
-            }.continueOnSuccessWith { (task) -> Any? in
-                TMDCloudApi.fetchData(self.currentDate, minutesOffset: 0.0).continueWith { (task) -> Any? in
-                    DispatchQueue.main.async{
-                        self.activities.removeAll()
-                        if let arr = task.result {
-                            for activity in (arr as! [TMDActivity]) {
-                                self.activities.append(activity)
-                            }
+        }.continueOnSuccessWith { (task) -> Any? in
+            TMDCloudApi.fetchData(self.currentDate, minutesOffset: 0.0).continueWith { (task) -> Any? in
+                if(cachedActivities.count != self.fetchedDayActivities.count){
+                DispatchQueue.main.async{
+                    self.fetchedDayActivities.removeAll()
+                    if let arr = task.result {
+                        for activity in (arr as! [TMDActivity]) {
+                            self.fetchedDayActivities.append(activity)
                         }
-                        else if task.error != nil {
-                            for activity in cachedActivities {
-                                self.activities.append(activity)
-                            }
-                        }
-                        
-                        NSLog("We got %d activities for date: \(self.dateFormater.string(from: self.currentDate))", self.activities.count )
-                        
-                        self.feedMoprimStruct()
-            
                     }
-                    return task;
+                    else if task.error != nil {
+                        for activity in cachedActivities {
+                            self.fetchedDayActivities.append(activity)
+                        }
+                    }
+                    
+                    NSLog("We got %d activities for date: \(self.dateFormater.string(from: self.currentDate))", self.fetchedDayActivities.count )
+                    
+                    self.feedMoprimStruct()
+                    
                 }
+                }else{
+                    print("No Activities To Fetch")
+                }
+                return task;
+            }
         }
         
     }
     
     func feedMoprimStruct(){
         var moprimData:[MoprimData] = []
-        for activity in self.activities{
+        for activity in self.fetchedDayActivities{
             let data = MoprimData(activity: activity.activity(), co2: activity.co2, date: self.dateFormater.string(from: self.currentDate), duration: activity.duration(), timestampStart: activity.timestampStart)
             moprimData.append(data)
             }
@@ -151,7 +142,7 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate{
             return
             }
         print("Location: \(String(describing: locationManager.location))")
-        TMDCloudApi.generateSyntheticData(withOriginLocation:CLLocation(latitude: 61.187784, longitude: 23.96044) , destination: destination, requestType: transport, hereApiKey: apiKey).continueWith { (task) -> Any? in
+        TMDCloudApi.generateSyntheticData(withOriginLocation:CLLocation(latitude: 60.184584, longitude: 24.92444) , destination: destination, requestType: transport, hereApiKey: apiKey).continueWith { (task) -> Any? in
             DispatchQueue.main.async {
                 let alert : UIAlertController
                 if let error = task.error {

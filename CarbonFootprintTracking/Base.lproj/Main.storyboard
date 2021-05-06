@@ -266,23 +266,13 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QMN-RG-6zP">
-                                <rect key="frame" x="39" y="705" width="70" height="46"/>
+                                <rect key="frame" x="39" y="705" width="70" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="WTu-1d-Azt"/>
                                 </constraints>
                                 <state key="normal" title="Go By Car"/>
                                 <connections>
                                     <action selector="goByCar:" destination="qaK-4V-BpV" eventType="touchUpInside" id="Ii3-o2-sVG"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p1F-yj-P22">
-                                <rect key="frame" x="39" y="761" width="57" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="37" id="m7I-Ng-pXq"/>
-                                </constraints>
-                                <state key="normal" title="Walk"/>
-                                <connections>
-                                    <action selector="walk:" destination="qaK-4V-BpV" eventType="touchUpInside" id="VR7-u7-5uE"/>
                                 </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L30-lC-c7L">
@@ -297,21 +287,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YYM-79-KLe">
+                                <rect key="frame" x="39" y="767" width="95" height="30"/>
+                                <state key="normal" title="Go By Bicycle"/>
+                                <connections>
+                                    <action selector="goByBicycle:" destination="qaK-4V-BpV" eventType="touchUpInside" id="ekF-Ui-jqU"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0aF-gj-Nbl">
-                                <rect key="frame" x="304" y="711" width="61" height="60"/>
+                                <rect key="frame" x="310" y="725" width="61" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="ecw-Jt-RrX"/>
                                 </constraints>
                                 <state key="normal" title="Get Data"/>
                                 <connections>
                                     <action selector="getData:" destination="qaK-4V-BpV" eventType="touchUpInside" id="lWr-cI-Vnc"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YYM-79-KLe">
-                                <rect key="frame" x="20" y="741" width="95" height="30"/>
-                                <state key="normal" title="Go By Bicycle"/>
-                                <connections>
-                                    <action selector="goByBicycle:" destination="qaK-4V-BpV" eventType="touchUpInside" id="ekF-Ui-jqU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -323,23 +313,18 @@
                             <constraint firstItem="sjs-xF-LfT" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8wl-H1-tvO" secondAttribute="trailing" symbolic="YES" id="6Me-P8-1aT"/>
                             <constraint firstItem="Q0e-ka-k2g" firstAttribute="top" secondItem="L30-lC-c7L" secondAttribute="bottom" constant="24" id="Dc8-vU-nK6"/>
                             <constraint firstItem="L30-lC-c7L" firstAttribute="leading" secondItem="QMN-RG-6zP" secondAttribute="leading" id="HfD-rt-7ns"/>
-                            <constraint firstItem="YYM-79-KLe" firstAttribute="top" secondItem="Q0e-ka-k2g" secondAttribute="bottom" constant="37" id="KfR-yH-rek"/>
-                            <constraint firstItem="sjs-xF-LfT" firstAttribute="bottom" secondItem="YYM-79-KLe" secondAttribute="bottom" constant="42" id="MsA-XN-IS3"/>
-                            <constraint firstItem="sjs-xF-LfT" firstAttribute="bottom" secondItem="p1F-yj-P22" secondAttribute="bottom" constant="15" id="Okm-hp-S3a"/>
-                            <constraint firstItem="sjs-xF-LfT" firstAttribute="trailing" secondItem="0aF-gj-Nbl" secondAttribute="trailing" constant="49" id="QIx-Yw-m2S"/>
+                            <constraint firstItem="YYM-79-KLe" firstAttribute="top" secondItem="Q0e-ka-k2g" secondAttribute="bottom" constant="63" id="KfR-yH-rek"/>
+                            <constraint firstItem="sjs-xF-LfT" firstAttribute="bottom" secondItem="YYM-79-KLe" secondAttribute="bottom" constant="16" id="MsA-XN-IS3"/>
+                            <constraint firstItem="sjs-xF-LfT" firstAttribute="trailing" secondItem="0aF-gj-Nbl" secondAttribute="trailing" constant="43" id="QIx-Yw-m2S"/>
                             <constraint firstItem="L30-lC-c7L" firstAttribute="centerY" secondItem="8wl-H1-tvO" secondAttribute="centerY" id="ZT7-9i-xTo"/>
                             <constraint firstAttribute="trailing" secondItem="Q0e-ka-k2g" secondAttribute="trailing" id="bfA-Wm-XS6"/>
-                            <constraint firstItem="p1F-yj-P22" firstAttribute="top" secondItem="QMN-RG-6zP" secondAttribute="bottom" constant="10" id="czf-sO-TKC"/>
                             <constraint firstItem="Q0e-ka-k2g" firstAttribute="leading" secondItem="d2L-zA-d9G" secondAttribute="leading" id="fjK-hJ-aKU"/>
-                            <constraint firstItem="YYM-79-KLe" firstAttribute="bottom" secondItem="0aF-gj-Nbl" secondAttribute="bottom" id="fmq-TP-ypi"/>
-                            <constraint firstItem="YYM-79-KLe" firstAttribute="centerX" secondItem="p1F-yj-P22" secondAttribute="centerX" id="jQW-2f-Ven"/>
-                            <constraint firstItem="0aF-gj-Nbl" firstAttribute="top" secondItem="Q0e-ka-k2g" secondAttribute="bottom" constant="7" id="kFo-Kf-D84"/>
+                            <constraint firstItem="YYM-79-KLe" firstAttribute="bottom" secondItem="0aF-gj-Nbl" secondAttribute="bottom" constant="12" id="fmq-TP-ypi"/>
+                            <constraint firstItem="0aF-gj-Nbl" firstAttribute="top" secondItem="Q0e-ka-k2g" secondAttribute="bottom" constant="21" id="kFo-Kf-D84"/>
                             <constraint firstItem="8wl-H1-tvO" firstAttribute="leading" secondItem="L30-lC-c7L" secondAttribute="trailing" constant="44" id="mHX-Cd-MEP"/>
                             <constraint firstItem="L30-lC-c7L" firstAttribute="leading" secondItem="sjs-xF-LfT" secondAttribute="leading" constant="39" id="no4-bB-Lwe"/>
                             <constraint firstItem="QMN-RG-6zP" firstAttribute="top" secondItem="Q0e-ka-k2g" secondAttribute="bottom" constant="1" id="qRS-Ya-leM"/>
-                            <constraint firstItem="QMN-RG-6zP" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="p1F-yj-P22" secondAttribute="trailing" id="sty-QM-QXt"/>
-                            <constraint firstItem="YYM-79-KLe" firstAttribute="leading" secondItem="d2L-zA-d9G" secondAttribute="leadingMargin" id="uxr-0a-lzK"/>
-                            <constraint firstItem="QMN-RG-6zP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="p1F-yj-P22" secondAttribute="leading" id="z6r-wa-QUQ"/>
+                            <constraint firstItem="YYM-79-KLe" firstAttribute="leading" secondItem="d2L-zA-d9G" secondAttribute="leadingMargin" constant="19" id="uxr-0a-lzK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Moprim" id="B7a-8x-9hK"/>
@@ -350,7 +335,6 @@
                         <outlet property="carButton" destination="QMN-RG-6zP" id="82M-VS-LM0"/>
                         <outlet property="getDataButton" destination="0aF-gj-Nbl" id="gK1-cK-JSc"/>
                         <outlet property="tableView" destination="Q0e-ka-k2g" id="6CJ-fU-iW9"/>
-                        <outlet property="walkButton" destination="p1F-yj-P22" id="xrV-b3-xvH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xtc-Ir-hT8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

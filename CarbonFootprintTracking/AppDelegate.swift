@@ -23,19 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TMDDelegate, MoprimAPIDel
     static var viewContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     func fetchMoprimData(data: [MoprimData]) {
-        
-        //AppDelegate.viewContext.reset()
         DispatchQueue.main.async{
-            for activity in data{
-                let coreDataActivity = Activity(context: AppDelegate.viewContext)
-                coreDataActivity.activity = activity.activity
-                coreDataActivity.co2 = activity.co2
-                coreDataActivity.date = activity.date
-                coreDataActivity.duration = activity.duration
+            for oneActivity in data {
+                AppDelegate.viewContext.perform{
+                    Activity.createOneActivityObject(oneActivity)
+                    self.saveContext()
                 }
             }
-            saveContext()
         }
+    }
     
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

@@ -15,7 +15,6 @@ class MoprimViewController: UIViewController,  UITableViewDelegate,UITableViewDa
     @IBOutlet weak var TMDlabel: UILabel!
     @IBOutlet weak var carButton: UIButton!
     @IBOutlet weak var bicycleButton: UIButton!
-    @IBOutlet weak var walkButton: UIButton!
     @IBOutlet weak var getDataButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
@@ -62,6 +61,7 @@ class MoprimViewController: UIViewController,  UITableViewDelegate,UITableViewDa
     @objc func didInitTMD(notification: Notification){
         NSLog("didInitTMD")
         appDelegate.moprimApi.updateContextForCurrentDate()
+        fetchToResults()
     }
     
     
@@ -72,18 +72,13 @@ class MoprimViewController: UIViewController,  UITableViewDelegate,UITableViewDa
     @IBAction func goByBicycle(_ sender: Any) {
         appDelegate.moprimApi.uploadSyntheticData(transport: TMDSyntheticRequestType.bicycle, destination: exampleLocation, controller: self)
     }
-    @IBAction func walk(_ sender: Any) {
-        appDelegate.moprimApi.uploadSyntheticData(transport: TMDSyntheticRequestType.bicycle, destination: exampleLocation, controller: self)
-    }
+   
     
     @IBAction func getData(_ sender: Any) {
         appDelegate.moprimApi.updateContextForCurrentDate()
         fetchToResults()
         tableView.reloadData()
     }
-    
-    
-    
     
     @IBAction func switchValueChanged(sender: UISwitch) {
         NSLog(sender.isOn ? "Switch On" : "Switch Off")
@@ -177,10 +172,10 @@ class MoprimViewController: UIViewController,  UITableViewDelegate,UITableViewDa
         let activity = self.fetchedResultsController?.object(at: indexPath)
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "HH:mm"
-        let ts = Double(activity?.timestampStart ?? 0) / 1000.0
-        let date = dateFormatterGet.string(from: Date(timeIntervalSince1970: TimeInterval(ts)))
+        dateFormatterGet.dateStyle = .short
+
         cell.textLabel?.text = String(format: "%@ (%@) - %@",
-                                      date,
+                                      String(activity?.date ?? "no date"),
                                       secondsToString(seconds: activity?.duration ?? 0),
                                       String(activity?.activity ?? "n.a.").uppercased())
         return cell

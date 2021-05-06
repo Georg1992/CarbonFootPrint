@@ -64,6 +64,7 @@ public class Activity: NSManagedObject {
             newActivity.co2 = Double(oneActivity.co2)
             newActivity.activity = shortTransportation
             newActivity.date = today
+            newActivity.duration = Double(oneActivity.duration)
             
             // these create dummy data for charts
             //newActivity.co2 = Double(Int.random(in: 1..<10000000))
