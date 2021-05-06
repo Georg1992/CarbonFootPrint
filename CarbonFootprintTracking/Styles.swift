@@ -2,11 +2,13 @@
 //  Styles.swift
 //  CarbonFootprintTracking
 //
-//  Created by iosdev on 6.5.2021.
+//  Created by Teemu Rekola on 6.5.2021.
 //
 
 import Foundation
 import UIKit
+
+// Style collection
 
 class roundButton: UIButton {
     override func didMoveToWindow() {
@@ -16,12 +18,12 @@ class roundButton: UIButton {
         self.setTitleColor(UIColor.white, for: .normal)
         
         /*
-        //shadow
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowRadius = 2
-        self.layer.shadowOpacity = 0.5
-        self.layer.shadowOffset = CGSize(width: 0, height: 0)
-        */
+         //shadow
+         self.layer.shadowColor = UIColor.black.cgColor
+         self.layer.shadowRadius = 2
+         self.layer.shadowOpacity = 0.5
+         self.layer.shadowOffset = CGSize(width: 0, height: 0)
+         */
     }
 }
 
@@ -40,7 +42,8 @@ class customProgressView: UIProgressView {
         self.clipsToBounds = true
         self.layer.sublayers![1].cornerRadius = 5
         self.subviews[1].clipsToBounds = true
-        self.transform = self.transform.scaledBy(x: 1, y: 8)    }
+        self.transform = self.transform.scaledBy(x: 1, y: 8)
+    }
 }
 // to change backroundcolor: in viewDidLoad()
 //  self.view.backgroundColor = UIColor.orange

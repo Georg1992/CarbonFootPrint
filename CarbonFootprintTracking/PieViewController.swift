@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Foundation
 
+// class that has piechart that show all carbon from today
 class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
     private var fetchedResultsController:NSFetchedResultsController<Activity>?
@@ -19,15 +20,16 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
     @IBOutlet weak var pieChartView: PieChartView!
     @IBOutlet weak var updateB: roundButton!
     
-    var activityInfo:Activity?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    // update button
+    @IBAction func updatePressed(_ sender: UIButton) {
         loadPie()
         loadBudget()
     }
     
-    @IBAction func updatePressed(_ sender: UIButton) {
+    var activityInfo:Activity?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         loadPie()
         loadBudget()
     }
