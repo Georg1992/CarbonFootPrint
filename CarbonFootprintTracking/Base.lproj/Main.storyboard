@@ -34,8 +34,8 @@
             <objects>
                 <navigationController id="IIe-7S-9PB" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Line" id="rIb-Mj-ew0"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="73v-yt-VCJ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="73v-yt-VCJ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -51,8 +51,8 @@
             <objects>
                 <navigationController id="0Kr-rC-iSS" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Map" id="Bn5-m0-jUE"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Dfh-4k-Kvv">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Dfh-4k-Kvv">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -68,8 +68,8 @@
             <objects>
                 <navigationController id="KJJ-Y8-qI7" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Pie" id="YF9-YE-4AY"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="YuX-pk-Wso">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YuX-pk-Wso">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -88,8 +88,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0BN-KX-evl">
-                                <rect key="frame" x="29" y="182" width="65" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0BN-KX-evl" customClass="roundButton" customModule="CarbonFootprintTracking" customModuleProvider="target">
+                                <rect key="frame" x="29" y="130" width="65" height="30"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="65" id="9d5-XN-GSE"/>
@@ -101,8 +101,8 @@
                                     <action selector="dayButtonPressed:" destination="YN5-Vb-jYI" eventType="touchUpInside" id="zgZ-Dx-00D"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zXt-gg-YIG">
-                                <rect key="frame" x="118" y="182" width="65" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zXt-gg-YIG" customClass="roundButton" customModule="CarbonFootprintTracking" customModuleProvider="target">
+                                <rect key="frame" x="118" y="130" width="65" height="30"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="65" id="9LX-rB-mPM"/>
@@ -115,17 +115,17 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Vehicle" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lwm-8o-Kmn">
-                                <rect key="frame" x="10" y="140" width="394" height="34"/>
+                                <rect key="frame" x="10" y="88" width="394" height="34"/>
                                 <color key="backgroundColor" red="0.89718830043385156" green="0.94731522392413803" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ci7-F7-oKI">
-                                <rect key="frame" x="0.0" y="241" width="414" height="414"/>
+                                <rect key="frame" x="0.0" y="189" width="414" height="518"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vec-My-qr0">
-                                <rect key="frame" x="202" y="182" width="65" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vec-My-qr0" customClass="roundButton" customModule="CarbonFootprintTracking" customModuleProvider="target">
+                                <rect key="frame" x="202" y="130" width="65" height="30"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="65" id="eHG-ag-5oU"/>
@@ -137,7 +137,7 @@
                                     <action selector="yearButtonPressed:" destination="YN5-Vb-jYI" eventType="touchUpInside" id="Fnc-1I-QTp"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7t5-0h-KxQ">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7t5-0h-KxQ" customClass="roundButtonBlue" customModule="CarbonFootprintTracking" customModuleProvider="target">
                                 <rect key="frame" x="290" y="182" width="65" height="30"/>
                                 <color key="backgroundColor" name="AccentColor"/>
                                 <state key="normal" title="UPDATE">
@@ -190,7 +190,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1YW-Pr-7r9">
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1YW-Pr-7r9" customClass="customTextField" customModule="CarbonFootprintTracking" customModuleProvider="target">
                                 <rect key="frame" x="20" y="193" width="252" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="252" id="0Hs-ts-vWS"/>
@@ -198,14 +198,14 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZTD-SW-Z0f">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZTD-SW-Z0f" customClass="roundButton" customModule="CarbonFootprintTracking" customModuleProvider="target">
                                 <rect key="frame" x="285" y="193" width="117" height="34"/>
                                 <state key="normal" title="Get Directions"/>
                                 <connections>
                                     <action selector="getDirectionTapped:" destination="bxz-bQ-UUM" eventType="touchUpInside" id="IEO-un-JGZ"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EhU-vm-Gaf">
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EhU-vm-Gaf" customClass="customTextField" customModule="CarbonFootprintTracking" customModuleProvider="target">
                                 <rect key="frame" x="20" y="151" width="252" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -216,7 +216,7 @@
                                     <constraint firstAttribute="height" constant="609" id="2gN-uP-bEm"/>
                                 </constraints>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QIg-II-oaB">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QIg-II-oaB" customClass="roundButton" customModule="CarbonFootprintTracking" customModuleProvider="target">
                                 <rect key="frame" x="285" y="151" width="117" height="34"/>
                                 <state key="normal" title="use your location"/>
                                 <connections>
@@ -308,7 +308,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carbon produce of each vehicle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLH-QE-aW8">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carbon produce of each vehicle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLH-QE-aW8" customClass="customLabel" customModule="CarbonFootprintTracking" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="74" width="414" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>

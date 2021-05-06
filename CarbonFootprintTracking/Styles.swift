@@ -17,13 +17,16 @@ class roundButton: UIButton {
         self.layer.cornerRadius = 7
         self.setTitleColor(UIColor.white, for: .normal)
         
-        /*
-         //shadow
-         self.layer.shadowColor = UIColor.black.cgColor
-         self.layer.shadowRadius = 2
-         self.layer.shadowOpacity = 0.5
-         self.layer.shadowOffset = CGSize(width: 0, height: 0)
-         */
+    }
+}
+
+class roundButtonBlue: UIButton {
+    override func didMoveToWindow() {
+        // button style
+        self.backgroundColor = UIColor.blue
+        self.layer.cornerRadius = 7
+        self.setTitleColor(UIColor.white, for: .normal)
+
     }
 }
 
@@ -34,20 +37,11 @@ class customLabel: UILabel {
     }
 }
 
-/*
-class customProgressView: UIProgressView {
+class customTextField: UITextField {
     override func didMoveToWindow() {
-        // Style
-        self.progressTintColor = UIColor.green
-        //progressView.backgroundColor = UIColor.systemBackground
-        self.layer.cornerRadius = 5
-        self.clipsToBounds = true
-        self.layer.sublayers![1].cornerRadius = 5
-        self.subviews[1].clipsToBounds = true
-        self.transform = self.transform.scaledBy(x: 1, y: 8)
+        self.textColor = UIColor.gray
+        self.layer.borderWidth = 1.0
+        self.layer.cornerRadius = 7
+        self.layer.borderColor = UIColor.orange.cgColor
     }
-}*/
- 
- 
-// to change backroundcolor: in viewDidLoad()
-//  self.view.backgroundColor = UIColor.orange
+}
