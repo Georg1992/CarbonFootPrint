@@ -45,6 +45,7 @@
 		6A998ECF26272F7900B7376C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A998ECD26272F7900B7376C /* LaunchScreen.storyboard */; };
 		6A998EDA26272F7900B7376C /* CarbonFootprintTrackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A998ED926272F7900B7376C /* CarbonFootprintTrackingTests.swift */; };
 		6A998EE526272F7900B7376C /* CarbonFootprintTrackingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A998EE426272F7900B7376C /* CarbonFootprintTrackingUITests.swift */; };
+		6ACE1262264409E200C59C66 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACE1261264409E200C59C66 /* Styles.swift */; };
 		6AD6703B264150C1003ADA89 /* VehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD6703A264150C1003ADA89 /* VehicleViewController.swift */; };
 		6AD670452642FAC0003ADA89 /* VehicleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD670442642FAC0003ADA89 /* VehicleTableViewCell.swift */; };
 		950F104DC3911F2DFA30C341 /* Pods_CarbonFootprintTracking_CarbonFootprintTrackingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9029295862FE40123C200B6B /* Pods_CarbonFootprintTracking_CarbonFootprintTrackingUITests.framework */; };
@@ -126,6 +127,7 @@
 		6A998EE026272F7900B7376C /* CarbonFootprintTrackingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarbonFootprintTrackingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A998EE426272F7900B7376C /* CarbonFootprintTrackingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonFootprintTrackingUITests.swift; sourceTree = "<group>"; };
 		6A998EE626272F7900B7376C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6ACE1261264409E200C59C66 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		6AD6703A264150C1003ADA89 /* VehicleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleViewController.swift; sourceTree = "<group>"; };
 		6AD670442642FAC0003ADA89 /* VehicleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleTableViewCell.swift; sourceTree = "<group>"; };
 		9029295862FE40123C200B6B /* Pods_CarbonFootprintTracking_CarbonFootprintTrackingUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarbonFootprintTracking_CarbonFootprintTrackingUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -236,6 +238,7 @@
 				6A5F658D26381DD000C77294 /* MoprimAPI.swift */,
 				6AD6703A264150C1003ADA89 /* VehicleViewController.swift */,
 				6AD670442642FAC0003ADA89 /* VehicleTableViewCell.swift */,
+				6ACE1261264409E200C59C66 /* Styles.swift */,
 			);
 			path = CarbonFootprintTracking;
 			sourceTree = "<group>";
@@ -513,11 +516,8 @@
 			files = (
 				6A5DF21E2643DCAD0047BA34 /* Activity+CoreDataProperties.swift in Sources */,
 				6A24FD16262EB7F8006655CC /* MapViewController.swift in Sources */,
-
 				6AD6703B264150C1003ADA89 /* VehicleViewController.swift in Sources */,
-
 				6A5DF21D2643DCAD0047BA34 /* Activity+CoreDataClass.swift in Sources */,
-
 				6A998ECA26272F7700B7376C /* CarbonFootprintTracking.xcdatamodeld in Sources */,
 				6A48044C2631595E00E47A28 /* StatisticsViewController.swift in Sources */,
 				6A998EC026272F7700B7376C /* AppDelegate.swift in Sources */,
@@ -526,6 +526,7 @@
 				6AD670452642FAC0003ADA89 /* VehicleTableViewCell.swift in Sources */,
 				6A48045B2631614200E47A28 /* VehicleStatistics.swift in Sources */,
 				6A5F658E26381DD000C77294 /* MoprimAPI.swift in Sources */,
+				6ACE1262264409E200C59C66 /* Styles.swift in Sources */,
 				56C1BD252640D95D006CA59E /* DummyData.swift in Sources */,
 				56C1BD2F2640D9BD006CA59E /* MoprimViewController.swift in Sources */,
 				56A11B9F26437063000DA650 /* MoprimStruct.swift in Sources */,

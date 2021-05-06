@@ -17,7 +17,7 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var pieChartView: PieChartView!
-    @IBOutlet weak var updateB: UIButton!
+    @IBOutlet weak var updateB: roundButton!
     
     var activityInfo:Activity?
     
@@ -295,6 +295,4 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
         // creates budget bar
         budgetBar(budgetValue)
     }
-    
 }
-
