@@ -17,9 +17,6 @@ public class Activity: NSManagedObject {
         let request:NSFetchRequest<Activity> = Activity.fetchRequest()
         request.predicate = NSPredicate(format: "co2 = %d", oneActivity.co2)
         
-        // for testing
-        //let array = ["car", "train", "plane", "walk", "bike", "bus", "metro", "run"]
-        
         // Creates Date
         let date = Date()
         // Creates Date Formatter
@@ -83,11 +80,6 @@ public class Activity: NSManagedObject {
                 newActivity.dateMonthYear = thisMonth
                 newActivity.dateYear = thisYear
                 newActivity.duration = Double(oneActivity.duration)
-                
-                // these create dummy data for charts
-                //newActivity.co2 = Double(Int.random(in: 1..<10000000))
-                //newActivity.activity = array.randomElement()!
-                //print("create object: \(newActivity)")
             }
         }
     }

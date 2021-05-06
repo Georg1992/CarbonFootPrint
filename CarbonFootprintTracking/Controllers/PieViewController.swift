@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Foundation
 
+// class that has piechart that show all carbon from today
 class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
     private var fetchedResultsController:NSFetchedResultsController<Activity>?
@@ -17,7 +18,13 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var pieChartView: PieChartView!
-    @IBOutlet weak var updateB: UIButton!
+    @IBOutlet weak var updateB: roundButton!
+    
+    // update button
+    @IBAction func updatePressed(_ sender: UIButton) {
+        loadPie()
+        //loadBudget()
+    }
     
     var activityInfo:Activity?
     
@@ -25,10 +32,6 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
         super.viewDidLoad()
         loadPie()
         loadBudget()
-    }
-    
-    @IBAction func updatePressed(_ sender: UIButton) {
-        loadPie()
     }
     
     func setChart(dataPoints: [String], values: [Double]) {
@@ -75,7 +78,7 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
     // creates budget bar
     func budgetBar(_ addedValues: Double) {
-        //full 1000kg in month
+        //full is 1000kg in month
         
         let StartValue: Double = 0
         let fullProgress = StartValue+addedValues
@@ -97,6 +100,7 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
         progressView.progress += 0.1
         progressView.setProgress(progressView.progress, animated: true)
         
+        //these change color of progress bar and percent
         if(progressView.progress >= 0.0) {
             textLabel.text = "used 0%"
             progressView.progressTintColor = UIColor.green
@@ -172,9 +176,7 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
         
         let context = AppDelegate.viewContext
         
-        //do {
         let activities =  try? context.fetch(request)
-        //print("pie coredata:  \(activities?.count ?? 0)")
         
         // checks if date is same as today. If it is, then value is added
         for oneActivity in activities ?? [] {
@@ -193,32 +195,23 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
             }
             if oneActivity.activity == "walk" && oneActivity.date == today {
                 walkCarbon = walkCarbon + Double(oneActivity.co2)
-                //print("walk carbon: \(walkCarbon)")
             }
             if oneActivity.activity == "bus" && oneActivity.date == today {
                 busCarbon = busCarbon + Double(oneActivity.co2)
-                //print("bus carbon: \(busCarbon)")
             }
             if oneActivity.activity == "metro" && oneActivity.date == today {
                 metroCarbon = metroCarbon + Double(oneActivity.co2)
-                //print("metro carbon: \(metroCarbon)")
             }
             if oneActivity.activity == "run" && oneActivity.date == today {
                 runCarbon = runCarbon + Double(oneActivity.co2)
-                //print("run carbon: \(runCarbon)")
             }
             if oneActivity.activity == "tram" && oneActivity.date == today {
                 tramCarbon = tramCarbon + Double(oneActivity.co2)
             }
             
-            print("pie coredata co2:  \(oneActivity.co2)")
-            print("pie coredata transport:  \(oneActivity.activity ?? "nothing")")
-            print("pie coredata date:  \(oneActivity.date ?? "no date")")
         }
-        //}
-        //catch let error as NSError {
-        //   print("no!: \(error.localizedDescription)")
-        //}
+        
+        // These add values to pie chart if there is something to add
         if carCarbon >= 1 {
             carbon.append(carCarbon)
             transport.append("car")
@@ -260,7 +253,6 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
         setChart(dataPoints: transport, values: carbon.map{ Double($0) })
     }
     
-    
     func loadBudget() {
         
         // Creates Date
@@ -270,7 +262,6 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
         // only month
         dateFormatter.dateFormat = "YY/MM"
         let monthToday = dateFormatter.string(from: date)
-        //print("month today: \(monthToday)")
         
         // value to budget bar
         var budgetValue: Double = 0
@@ -279,22 +270,18 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
         
         let context = AppDelegate.viewContext
         
-        //do {
         let activities =  try? context.fetch(request)
-        //print("pie coredata:  \(activities?.count ?? 0)")
         
-        // checks if date is same as today. If it is, then value is added
+        // checks if month is same as today. If it is, then value is added
         for oneActivity in activities ?? [] {
             
             // checks if month is still same
             if oneActivity.date?.contains(monthToday) == true {
-                budgetValue = budgetValue + Double(oneActivity.co2)/100000000
+                budgetValue = budgetValue + Double(oneActivity.co2)/1000000
             }
         }
         
         // creates budget bar
         budgetBar(budgetValue)
     }
-    
 }
-
