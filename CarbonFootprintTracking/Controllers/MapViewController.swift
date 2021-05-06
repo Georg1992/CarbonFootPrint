@@ -2,7 +2,7 @@
 //  MapViewController.swift
 //  CarbonFootprintTracking
 //
-//  Created by iosdev on 20.4.2021.
+//  Created by Patrik on 20.4.2021.
 //
 
 import UIKit
@@ -23,6 +23,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // declearing floatingPanel
         let panel = FloatingPanelController()
         panel.delegate = self
         
@@ -46,6 +47,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         textFieldForAddress.placeholder = "Destination Location"
     }
     
+    // fetches user location via reverseGeocodeLocation
     @IBAction func useYourLocation(_ sender: UIButton) {
         
         guard let sourceCoordinate = locationManager.location?.coordinate else {
@@ -78,7 +80,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     @IBAction func getDirectionTapped(_ sender: UIButton) {
         getAddress()
     }
-    
+    // fetches locations for start point and end point
     func getAddress() {
         let geoCoder = CLGeocoder()
         
@@ -97,6 +99,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     print("no location found")
                     return
                 }
+                // calls mapthis function with start and destination coordinates as parameter
                 self.mapThis(destinationCord: destinationLocation.coordinate, startCord: startLocation.coordinate)
             }
         }
@@ -106,6 +109,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         print("locations \(locations)")
     }
     
+    // fetches route by using start and destination coordinates
     func mapThis(destinationCord : CLLocationCoordinate2D, startCord : CLLocationCoordinate2D) {
         
         // let sourceCoordinate = (locationManager.location?.coordinate)!
@@ -137,6 +141,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             self.map.addOverlay(route.polyline)
             self.map.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
             
+            // change distance variable in vehicleViewController which should trigger tableView.reloadData() (not working)
             let distance = (route.distance/1000)
             let vehicleViewController = VehicleViewController()
             vehicleViewController.distance = distance
@@ -146,6 +151,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
     }
     
+    //render line from route
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let render = MKPolylineRenderer(overlay: overlay as! MKPolyline)
         render.strokeColor = .blue

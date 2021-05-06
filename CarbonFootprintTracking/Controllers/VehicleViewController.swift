@@ -2,26 +2,18 @@
 //  VehicleViewController.swift
 //  CarbonFootprintTracking
 //
-//  Created by iosdev on 4.5.2021.
+//  Created by Patrik on 4.5.2021.
 //
 
 import UIKit
-
+//controller for tableview
 class VehicleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    
-    func getDistance(matka: Double) {
-        distance = matka
-        self.tableView.reloadData()
-        print("we got the distance \(matka)")
-    }
-    
-    
     
     
     @IBOutlet var label: UILabel!
     @IBOutlet var tableView: UITableView!
     
+    // array where is vehicle and it co2 as g/km
     var vehicles: KeyValuePairs = ["Walk": 19, "Car": 192, "Bicycle": 40, "Motorcycle": 103, "Train": 41]
     
     
@@ -38,7 +30,8 @@ class VehicleViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     
-    
+    // variable for distance, which will be changed in MapViewController
+    // when value change tableView.reloadData (not working)
     var distance: Double = 0.0 {
         didSet {
             print("arvo vaihtui")
@@ -55,8 +48,11 @@ class VehicleViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // cell is defined to be vehicleTableViewCell
         let cell = tableView.dequeueReusableCell(withIdentifier: VehicleTableViewCell.identifier, for: indexPath) as! VehicleTableViewCell
 
+        // Icon label takes vehicles.key, which is name for vehicle
+        // Carbon label takes variable matka, which is distance(km) * vehicles.value which is co2 g/km
         let matka = distance * Double(vehicles[indexPath.row].value)
             cell.iconLabel?.text = vehicles[indexPath.row].key
             cell.carbonLabel?.text = String(matka)

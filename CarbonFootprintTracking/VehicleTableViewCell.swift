@@ -2,11 +2,12 @@
 //  VehicleTableViewCell.swift
 //  CarbonFootprintTracking
 //
-//  Created by iosdev on 5.5.2021.
+//  Created by Patrik on 5.5.2021.
 //
 
 import UIKit
 
+// define design of each cell
 class VehicleTableViewCell: UITableViewCell {
     
     static let identifier = "VehicleTableViewCell"
