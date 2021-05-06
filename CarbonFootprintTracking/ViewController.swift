@@ -12,7 +12,7 @@ import CoreMotion
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MoprimAPIDelegate {
     
-    @IBOutlet weak var TEST: UILabel!
+    // @IBOutlet weak var TEST: UILabel!
     
     var moprimAPI = MoprimAPI()
     
@@ -21,10 +21,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MoprimAPIDele
         super.viewDidLoad()
         moprimAPI.fetchData()
         moprimAPI.delegate = self
+        print(moprimAPI)
     }
     
     func fetchMoprimData(data:NSArray) {
-        TEST.text = data.description
+        // TEST.text = data.description
+        print(data.description)
     }
 
 
