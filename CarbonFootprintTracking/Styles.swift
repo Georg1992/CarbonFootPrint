@@ -30,6 +30,7 @@ class roundButton: UIButton {
 class customLabel: UILabel {
     override func didMoveToWindow() {
         self.textColor = UIColor.gray
+        
     }
 }
 

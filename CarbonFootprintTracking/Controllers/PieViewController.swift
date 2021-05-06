@@ -203,11 +203,9 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
                 tramCarbon = tramCarbon + Double(oneActivity.co2)
             }
             
-            print("pie coredata co2:  \(oneActivity.co2)")
-            print("pie coredata transport:  \(oneActivity.activity ?? "nothing")")
-            print("pie coredata date:  \(oneActivity.date ?? "no date")")
         }
         
+        // These add values to pie chart if there is something to add
         if carCarbon >= 1 {
             carbon.append(carCarbon)
             transport.append("car")
@@ -268,7 +266,6 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
         let context = AppDelegate.viewContext
         
         let activities =  try? context.fetch(request)
-        //print("pie coredata:  \(activities?.count ?? 0)")
         
         // checks if date is same as today. If it is, then value is added
         for oneActivity in activities ?? [] {
