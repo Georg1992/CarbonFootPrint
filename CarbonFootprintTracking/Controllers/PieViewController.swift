@@ -23,7 +23,7 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
     // update button
     @IBAction func updatePressed(_ sender: UIButton) {
         loadPie()
-        loadBudget()
+        //loadBudget()
     }
     
     var activityInfo:Activity?
@@ -186,19 +186,15 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
             }
             if oneActivity.activity == "walk" && oneActivity.date == today {
                 walkCarbon = walkCarbon + Double(oneActivity.co2)
-                //print("walk carbon: \(walkCarbon)")
             }
             if oneActivity.activity == "bus" && oneActivity.date == today {
                 busCarbon = busCarbon + Double(oneActivity.co2)
-                //print("bus carbon: \(busCarbon)")
             }
             if oneActivity.activity == "metro" && oneActivity.date == today {
                 metroCarbon = metroCarbon + Double(oneActivity.co2)
-                //print("metro carbon: \(metroCarbon)")
             }
             if oneActivity.activity == "run" && oneActivity.date == today {
                 runCarbon = runCarbon + Double(oneActivity.co2)
-                //print("run carbon: \(runCarbon)")
             }
             if oneActivity.activity == "tram" && oneActivity.date == today {
                 tramCarbon = tramCarbon + Double(oneActivity.co2)
@@ -248,7 +244,6 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
         setChart(dataPoints: transport, values: carbon.map{ Double($0) })
     }
     
-    
     func loadBudget() {
         
         // Creates Date
@@ -268,7 +263,7 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
         
         let activities =  try? context.fetch(request)
         
-        // checks if date is same as today. If it is, then value is added
+        // checks if month is same as today. If it is, then value is added
         for oneActivity in activities ?? [] {
             
             // checks if month is still same
