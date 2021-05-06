@@ -23,20 +23,25 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
     
     @IBOutlet weak var yearButtonOutlet: UIButton!
     
+    @IBOutlet weak var updateButtonOutlet: UIButton!
+    
     @IBOutlet weak var containerChart: UIView!
     
    @IBOutlet weak var vehicleTextField: UITextField!
     
-    var myNonMotorized = Vehicle("nonmotorized")
+    var myAll = Vehicle("all")
     var myCar = Vehicle("car")
     var myBus = Vehicle("bus")
     var myTram = Vehicle("tram")
     var myTrain = Vehicle("train")
     var myMetro = Vehicle("metro")
     var myPlane = Vehicle("plane")
+    var myRun = Vehicle("run")
+    var myWalk = Vehicle("walk")
+    var myBicycle = Vehicle("bicycle")
     
     var selectedVehicle: String?
-    var vehicleTypes = ["all", "nonmotorized", "car", "bus", "tram", "train", "metro", "plane"]
+    var vehicleTypes = ["all", "car", "bus", "tram", "train", "metro", "plane", "run", "walk", "bicycle"]
     var currentVehicle: Vehicle?
     
     var tripTimeStamp: String?
@@ -87,6 +92,41 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
 //        let newDummy = DummyData()
 //        newDummy.fetchDummyData()
         
+        loadLineChartData()
+        print("myAll dayArray: \(myAll.dayArray)")
+        
+        //setting current vehicle as train by default
+        currentVehicle = myTrain
+        
+        print("today: \(today ?? "none"), todayNoHour: \(todayNoHour ?? "none")")
+        
+        //setting data for the current vehicle
+        
+        print("first dayArray: \(currentVehicle?.vehicleType ?? "none")")
+        print("first myTrain dayArray: \(myTrain.dayArray)")
+        
+        print("gatherHourData: \(gatherHourData())")
+        print("gatherDayData: \(gatherDayData())")
+        print("gatherMonthData: \(gatherMonthData())")
+        
+        //setting up pickerView to select vehicle
+        self.createAndSetupPickerView()
+        self.dismissAndClosePickerView()
+        
+        //making lineChartView a subView of containerChart for easy constraints
+        containerChart.addSubview(lineChartView)
+        
+        //setting width and height of lineChartView according to the width of the superview
+        lineChartView.width(to: containerChart)
+        lineChartView.heightToWidth(of: containerChart)
+        lineChartView.topToSuperview()
+        
+        //sets lineChartView data to day when view is loaded
+        setData(timePeriod: getDayValues(), labelCount: 12, forced: false)
+    }
+    
+    func loadLineChartData() {
+        
         // Creates Date
         let date = Date()
         // Creates Date Formatter
@@ -111,57 +151,50 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
         thisMonth = dateFormatterMonth.string(from: date)
         thisYear = dateFormatterYear.string(from: date)
         
-        var carCarbon: Double = 0
-        var trainCarbon: Double = 0
-        var bicycleCarbon: Double = 0
-        var planeCarbon: Double = 0
-        var walkCarbon: Double = 0
-        var busCarbon: Double = 0
-        var metroCarbon: Double = 0
-        var runCarbon: Double = 0
-        var tramCarbon: Double = 0
-        
-        let request:NSFetchRequest<Activity> = Activity.fetchRequest()
-        
         let context = AppDelegate.viewContext
-        
-        //do {
+        let request: NSFetchRequest<Activity> = Activity.fetchRequest()
         let activities =  try? context.fetch(request)
         //print("pie coredata:  \(activities?.count ?? 0)")
         
         // checks if date is same as today. If it is, then value is added
         for oneActivity in activities ?? [] {
+            print("made it to activities: \(oneActivity.activity ?? "none")")
             
-            if oneActivity.activity == "car" && oneActivity.date == today {
-                carCarbon = carCarbon + Double(oneActivity.co2)
+            if oneActivity.activity == "car" {
+                print("made it to car")
+                setTripData(oneActivity.dateWithHour ?? "0", oneActivity.date ?? "0", oneActivity.dateMonthYear ?? "0", oneActivity.dateYear ?? "0", oneActivity.co2, oneActivity.activity ?? "none")
             }
-            if oneActivity.activity == "train" && oneActivity.date == today {
-                trainCarbon = trainCarbon + Double(oneActivity.co2)
+            if oneActivity.activity == "train" {
+                print("made it to train")
+                setTripData(oneActivity.dateWithHour ?? "0", oneActivity.date ?? "0", oneActivity.dateMonthYear ?? "0", oneActivity.dateYear ?? "0", oneActivity.co2, oneActivity.activity ?? "none")
             }
-            if oneActivity.activity == "bicycle" && oneActivity.date == today {
-                bicycleCarbon = bicycleCarbon + Double(oneActivity.co2)
+            if oneActivity.activity == "bicycle" {
+                print("made it to bicycle")
+                setTripData(oneActivity.dateWithHour ?? "0", oneActivity.date ?? "0", oneActivity.dateMonthYear ?? "0", oneActivity.dateYear ?? "0", oneActivity.co2, "bicycle")
             }
-            if oneActivity.activity == "plane" && oneActivity.date == today {
-                planeCarbon = planeCarbon + Double(oneActivity.co2)
+            if oneActivity.activity == "plane" {
+                print("made it to plane")
+                setTripData(oneActivity.dateWithHour ?? "0", oneActivity.date ?? "0", oneActivity.dateMonthYear ?? "0", oneActivity.dateYear ?? "0", oneActivity.co2, oneActivity.activity ?? "none")
             }
-            if oneActivity.activity == "walk" && oneActivity.date == today {
-                walkCarbon = walkCarbon + Double(oneActivity.co2)
-                //print("walk carbon: \(walkCarbon)")
+            if oneActivity.activity == "walk" {
+                print("made it to walk")
+                setTripData(oneActivity.dateWithHour ?? "0", oneActivity.date ?? "0", oneActivity.dateMonthYear ?? "0", oneActivity.dateYear ?? "0", oneActivity.co2, "walk")
             }
-            if oneActivity.activity == "bus" && oneActivity.date == today {
-                busCarbon = busCarbon + Double(oneActivity.co2)
-                //print("bus carbon: \(busCarbon)")
+            if oneActivity.activity == "bus" {
+                print("made it to bus")
+                setTripData(oneActivity.dateWithHour ?? "0", oneActivity.date ?? "0", oneActivity.dateMonthYear ?? "0", oneActivity.dateYear ?? "0", oneActivity.co2, oneActivity.activity ?? "none")
             }
-            if oneActivity.activity == "metro" && oneActivity.date == today {
-                metroCarbon = metroCarbon + Double(oneActivity.co2)
-                //print("metro carbon: \(metroCarbon)")
+            if oneActivity.activity == "metro" {
+                print("made it to metro")
+                setTripData(oneActivity.dateWithHour ?? "0", oneActivity.date ?? "0", oneActivity.dateMonthYear ?? "0", oneActivity.dateYear ?? "0", oneActivity.co2, oneActivity.activity ?? "none")
             }
-            if oneActivity.activity == "run" && oneActivity.date == today {
-                runCarbon = runCarbon + Double(oneActivity.co2)
-                //print("run carbon: \(runCarbon)")
+            if oneActivity.activity == "run" {
+                print("made it to run")
+                setTripData(oneActivity.dateWithHour ?? "0", oneActivity.date ?? "0", oneActivity.dateMonthYear ?? "0", oneActivity.dateYear ?? "0", oneActivity.co2, "run")
             }
-            if oneActivity.activity == "tram" && oneActivity.date == today {
-                tramCarbon = tramCarbon + Double(oneActivity.co2)
+            if oneActivity.activity == "tram" {
+                print("made it to tram")
+                setTripData(oneActivity.dateWithHour ?? "0", oneActivity.date ?? "0", oneActivity.dateMonthYear ?? "0", oneActivity.dateYear ?? "0", oneActivity.co2, oneActivity.activity ?? "none")
             }
             
             print("oneActivity everything: \(oneActivity)")
@@ -169,58 +202,6 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
             print("Statistics coredata transport:  \(oneActivity.activity ?? "nothing")")
             print("Statistics coredata date:  \(oneActivity.date ?? "no date")")
         }
-        
-        
-        //setting current vehicle as train by default
-        currentVehicle = myTrain
-        
-        print("today: \(today), todayNoHour: \(todayNoHour)")
-        
-        //setting data for the current vehicle
-        setTripData("20/11/18/03", "20/11/18", "20/11", "20", 50, currentVehicle?.vehicleType ?? "none")
-        print("tripData 1: \(tripTimeStamp), \(tripTimeStampNoHour), \(tripTimeStampThisMonth), \(tripTimeStampThisYear), \(tripCarbonFootprint), \(tripVehicleType)")
-        currentVehicle?.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "all"))
-        //print(myCar.dayArray)
-        
-        setTripData("21/05/03/07", "21/05/03", "21/05", "21", 25, currentVehicle?.vehicleType ?? "none")
-        print("tripData 2: \(tripTimeStamp), \(tripTimeStampNoHour), \(tripTimeStampThisMonth), \(tripTimeStampThisYear), \(tripCarbonFootprint), \(tripVehicleType)")
-        currentVehicle?.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "all"))
-        //print(myCar.dayArray)
-        
-        setTripData("21/05/04/02", "21/05/04", "21/05", "21", 37, currentVehicle?.vehicleType ?? "none")
-        print("tripData 3: \(tripTimeStamp), \(tripTimeStampNoHour), \(tripTimeStampThisMonth), \(tripTimeStampThisYear), \(tripCarbonFootprint), \(tripVehicleType ?? "all")")
-        currentVehicle?.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "all"))
-        //print(myCar.dayArray)
-        
-        setTripData("21/05/05/01", "21/05/05", "21/05", "21", 180, currentVehicle?.vehicleType ?? "none")
-        print("tripData 4: \(tripTimeStamp), \(tripTimeStampNoHour), \(tripTimeStampThisMonth), \(tripTimeStampThisYear), \(tripCarbonFootprint), \(tripVehicleType)")
-        currentVehicle?.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "all"))
-        //print(myCar.dayArray)
-        
-        setTripData("21/05/05/05", "21/05/05", "21/05", "21", 15, currentVehicle?.vehicleType ?? "none")
-        print("tripData 5: \(tripTimeStamp), \(tripTimeStampNoHour), \(tripTimeStampThisMonth), \(tripTimeStampThisYear), \(tripCarbonFootprint), \(tripVehicleType)")
-        currentVehicle?.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "all"))
-        print("first dayArray: \(currentVehicle?.vehicleType ?? "none")")
-        print("first myTrain dayArray: \(myTrain.dayArray)")
-        
-        print("gatherHourData: \(gatherHourData())")
-        print("gatherDayData: \(gatherDayData())")
-        print("gatherMonthData: \(gatherMonthData())")
-        
-        //setting up pickerView to select vehicle
-        self.createAndSetupPickerView()
-        self.dismissAndClosePickerView()
-        
-        //making lineChartView a subView of containerChart for easy constraints
-        containerChart.addSubview(lineChartView)
-        
-        //setting width and height of lineChartView according to the width of the superview
-        lineChartView.width(to: containerChart)
-        lineChartView.heightToWidth(of: containerChart)
-        lineChartView.topToSuperview()
-        
-        //sets lineChartView data to day when view is loaded
-        setData(timePeriod: getDayValues(), labelCount: 12, forced: false)
     }
     
     //sets the trip data set
@@ -243,21 +224,33 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
         
         //because currentVehicle does not save data to the actual vehicle of which type it is, the data must be set here to be saved
         switch vT {
-        case "nonmotorized":
-            myNonMotorized.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "all"))
         case "car":
-            myCar.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "all"))
+            myCar.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "none"))
+            myAll.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "none"))
         case "bus":
-            myBus.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "all"))
+            myBus.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "none"))
+            myAll.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "none"))
         case "tram":
-            myTram.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "all"))
+            myTram.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "none"))
+            myAll.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "none"))
         case "train":
-            print("setTripData Train called")
-            myTrain.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "all"))
+            myTrain.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "none"))
+            myAll.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "none"))
         case "metro":
-            myMetro.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "all"))
+            myMetro.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "none"))
+            myAll.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "none"))
         case "plane":
-            myPlane.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "all"))
+            myPlane.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "none"))
+            myAll.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "none"))
+        case "run":
+            myRun.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "none"))
+            myAll.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "none"))
+        case "walk":
+            myWalk.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "none"))
+            myAll.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "none"))
+        case "bicycle":
+            myBicycle.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "none"))
+            myAll.pushDataDay(setDataSet(tripTimeStamp ?? "0", tripTimeStampNoHour ?? "0", tripTimeStampThisMonth ?? "0", tripTimeStampThisYear ?? "0", tripCarbonFootprint ?? 0.0, tripVehicleType ?? "none"))
         default:
             print("no types switch case")
         }
@@ -280,7 +273,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
     
     //gets data for every day of a month
     func gatherDayData() -> (Double, [DataSetStatistics]){
-        var dayCarbonFootprint = 0.0
+        let dayCarbonFootprint = 0.0
         var noDayArray = [DataSetStatistics]()
         for element in currentVehicle!.dayArray {
             if(element.timeStampThisMonth == thisMonth) {
@@ -403,25 +396,25 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
                 print("got to switch: \(n)")
                 switch n {
                 case 0:
-                    carbon0 = element.carbonFootprint ?? 0.0
+                    carbon0 += element.carbonFootprint ?? 0.0
                 case 1:
-                    carbon1 = element.carbonFootprint ?? 0.0
+                    carbon1 += element.carbonFootprint ?? 0.0
                 case 2:
-                    carbon2 = element.carbonFootprint ?? 0.0
+                    carbon2 += element.carbonFootprint ?? 0.0
                 case 3:
-                    carbon3 = element.carbonFootprint ?? 0.0
+                    carbon3 += element.carbonFootprint ?? 0.0
                 case 4:
-                    carbon4 = element.carbonFootprint ?? 0.0
+                    carbon4 += element.carbonFootprint ?? 0.0
                 case 5:
-                    carbon5 = element.carbonFootprint ?? 0.0
+                    carbon5 += element.carbonFootprint ?? 0.0
                 case 6:
-                    carbon6 = element.carbonFootprint ?? 0.0
+                    carbon6 += element.carbonFootprint ?? 0.0
                 case 7:
-                    carbon7 = element.carbonFootprint ?? 0.0
+                    carbon7 += element.carbonFootprint ?? 0.0
                 case 8:
-                    carbon8 = element.carbonFootprint ?? 0.0
+                    carbon8 += element.carbonFootprint ?? 0.0
                 case 9:
-                    carbon9 = element.carbonFootprint ?? 0.0
+                    carbon9 += element.carbonFootprint ?? 0.0
                 default:
                     print("going through hours went wrong in for-statement 0...9")
                 }
@@ -432,33 +425,33 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
                 if(element.timeStamp == ((element.timeStampNoHour ?? "0") + "/0" + String(n))) {
                     switch n {
                     case 10:
-                        carbon10 = element.carbonFootprint ?? 0.0
+                        carbon10 += element.carbonFootprint ?? 0.0
                     case 11:
-                        carbon11 = element.carbonFootprint ?? 0.0
+                        carbon11 += element.carbonFootprint ?? 0.0
                     case 12:
-                        carbon12 = element.carbonFootprint ?? 0.0
+                        carbon12 += element.carbonFootprint ?? 0.0
                     case 13:
-                        carbon13 = element.carbonFootprint ?? 0.0
+                        carbon13 += element.carbonFootprint ?? 0.0
                     case 14:
-                        carbon14 = element.carbonFootprint ?? 0.0
+                        carbon14 += element.carbonFootprint ?? 0.0
                     case 15:
-                        carbon15 = element.carbonFootprint ?? 0.0
+                        carbon15 += element.carbonFootprint ?? 0.0
                     case 16:
-                        carbon16 = element.carbonFootprint ?? 0.0
+                        carbon16 += element.carbonFootprint ?? 0.0
                     case 17:
-                        carbon17 = element.carbonFootprint ?? 0.0
+                        carbon17 += element.carbonFootprint ?? 0.0
                     case 18:
-                        carbon18 = element.carbonFootprint ?? 0.0
+                        carbon18 += element.carbonFootprint ?? 0.0
                     case 19:
-                        carbon19 = element.carbonFootprint ?? 0.0
+                        carbon19 += element.carbonFootprint ?? 0.0
                     case 20:
-                        carbon20 = element.carbonFootprint ?? 0.0
+                        carbon20 += element.carbonFootprint ?? 0.0
                     case 21:
-                        carbon21 = element.carbonFootprint ?? 0.0
+                        carbon21 += element.carbonFootprint ?? 0.0
                     case 22:
-                        carbon22 = element.carbonFootprint ?? 0.0
+                        carbon22 += element.carbonFootprint ?? 0.0
                     case 23:
-                        carbon23 = element.carbonFootprint ?? 0.0
+                        carbon23 += element.carbonFootprint ?? 0.0
                     default:
                         print("going through hours went wrong in for-statement 10...23")
                     }
@@ -752,6 +745,11 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
         print("yearButtonPressed")
         setData(timePeriod: getYearValues(), labelCount: 12, forced: true)
     }
+    
+    @IBAction func updateButtonPressed(_ sender: UIButton) {
+        print("updateButtonPressed")
+        loadLineChartData()
+    }
     /*
     // MARK: - Navigation
 
@@ -784,16 +782,17 @@ extension StatisticsViewController: UIPickerViewDelegate, UIPickerViewDataSource
         self.vehicleTextField.text = self.selectedVehicle
         
         //sets the current vehicle used
-        if(self.selectedVehicle?.lowercased() == "nonmotorized") {self.currentVehicle = myNonMotorized}
+        if(self.selectedVehicle?.lowercased() == "all") {self.currentVehicle = myAll}
         if(self.selectedVehicle?.lowercased() == "car") {self.currentVehicle = myCar}
         if(self.selectedVehicle?.lowercased() == "bus") {self.currentVehicle = myBus}
         if(self.selectedVehicle?.lowercased() == "tram") {self.currentVehicle = myTram}
-        if(self.selectedVehicle?.lowercased() == "train") {self.currentVehicle = myTrain
-            print("myTrain stats: \(myTrain.dayArray)")
-            print("currentVehicle: \(self.currentVehicle ?? myTrain) stats: \(currentVehicle?.dayArray)")
-        }
+        if(self.selectedVehicle?.lowercased() == "train") {self.currentVehicle = myTrain}
         if(self.selectedVehicle?.lowercased() == "metro") {self.currentVehicle = myMetro}
         if(self.selectedVehicle?.lowercased() == "plane") {self.currentVehicle = myPlane}
+        if(self.selectedVehicle?.lowercased() == "run") {self.currentVehicle = myRun}
+        if(self.selectedVehicle?.lowercased() == "walk") {self.currentVehicle = myWalk}
+        if(self.selectedVehicle?.lowercased() == "bicycle") {self.currentVehicle = myBicycle}
+        
         print("my current vehicle: \(self.currentVehicle?.vehicleType ?? "all")")
         print("currentVehicle: \(self.currentVehicle?.vehicleType ?? "all") first hour: ")
         //let isIndexValid = currentVehicle?.dayArray.indices.contains(0)

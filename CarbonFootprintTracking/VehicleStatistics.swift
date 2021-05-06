@@ -23,22 +23,19 @@ struct Vehicle {
     }
     
     mutating func pushDataDay(_ data: DataSetStatistics) {
-        dayArray.append(data)
-        //weekArray.append(data)
-        //monthArray.append(data)
-        //yearArray.append(data)
+        var duplicates = 0
+        for element in dayArray {
+            if (element.carbonFootprint == data.carbonFootprint && element.timeStamp == data.timeStamp && element.vehicleType == data.vehicleType) {
+                duplicates += 1
+            }
+        }
+        if(duplicates == 0) {
+            dayArray.append(data)
+        }
     }
     
-    mutating func pushDataWeek(_ data: DataSetStatistics) {
-        
-    }
-    
-    mutating func pushDataMonth(_ data: DataSetStatistics) {
-        
-    }
-    
-    mutating func pushDataYear(_ data: DataSetStatistics) {
-        
+    mutating func emptyData() {
+        dayArray.removeAll()
     }
     
     

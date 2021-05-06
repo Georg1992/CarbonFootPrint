@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -89,28 +90,33 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0BN-KX-evl">
                                 <rect key="frame" x="29" y="182" width="65" height="30"/>
-                                <color key="backgroundColor" systemColor="systemFillColor"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="65" id="9d5-XN-GSE"/>
                                 </constraints>
-                                <state key="normal" title="DAY"/>
+                                <state key="normal" title="DAY">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="dayButtonPressed:" destination="YN5-Vb-jYI" eventType="touchUpInside" id="zgZ-Dx-00D"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zXt-gg-YIG">
                                 <rect key="frame" x="118" y="182" width="65" height="30"/>
-                                <color key="backgroundColor" systemColor="systemFillColor"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="65" id="9LX-rB-mPM"/>
                                 </constraints>
-                                <state key="normal" title="MONTH"/>
+                                <state key="normal" title="MONTH">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="monthButtonPressed:" destination="YN5-Vb-jYI" eventType="touchUpInside" id="Hv0-nW-54q"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Vehicle" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lwm-8o-Kmn">
                                 <rect key="frame" x="10" y="140" width="394" height="34"/>
+                                <color key="backgroundColor" red="0.89718830043385156" green="0.94731522392413803" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -118,12 +124,27 @@
                                 <rect key="frame" x="0.0" y="241" width="414" height="414"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vec-My-qr0">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vec-My-qr0">
                                 <rect key="frame" x="202" y="182" width="65" height="30"/>
-                                <color key="backgroundColor" systemColor="systemFillColor"/>
-                                <state key="normal" title="YEAR"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="65" id="eHG-ag-5oU"/>
+                                </constraints>
+                                <state key="normal" title="YEAR">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="yearButtonPressed:" destination="YN5-Vb-jYI" eventType="touchUpInside" id="Fnc-1I-QTp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7t5-0h-KxQ">
+                                <rect key="frame" x="290" y="182" width="65" height="30"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <state key="normal" title="UPDATE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="updateButtonPressed:" destination="YN5-Vb-jYI" eventType="touchUpInside" id="4QK-a2-WFR"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -134,11 +155,13 @@
                             <constraint firstItem="Ci7-F7-oKI" firstAttribute="top" secondItem="0BN-KX-evl" secondAttribute="bottom" constant="29" id="8bh-wQ-Ccg"/>
                             <constraint firstItem="0BN-KX-evl" firstAttribute="leading" secondItem="S8j-3k-qZs" secondAttribute="leading" constant="29" id="9IN-DF-LEq"/>
                             <constraint firstItem="Lwm-8o-Kmn" firstAttribute="centerX" secondItem="f6v-tp-fhI" secondAttribute="centerX" id="9Ud-hQ-jWX"/>
+                            <constraint firstItem="7t5-0h-KxQ" firstAttribute="leading" secondItem="vec-My-qr0" secondAttribute="trailing" constant="23" id="B37-iA-PIp"/>
                             <constraint firstItem="zXt-gg-YIG" firstAttribute="baseline" secondItem="0BN-KX-evl" secondAttribute="baseline" id="EL0-EB-L5y"/>
                             <constraint firstItem="Ci7-F7-oKI" firstAttribute="centerX" secondItem="Lwm-8o-Kmn" secondAttribute="centerX" id="Y2s-uO-prz"/>
                             <constraint firstItem="Ci7-F7-oKI" firstAttribute="leading" secondItem="f6v-tp-fhI" secondAttribute="leading" id="dJm-bV-Dz2"/>
                             <constraint firstItem="0BN-KX-evl" firstAttribute="top" secondItem="Lwm-8o-Kmn" secondAttribute="bottom" constant="8" symbolic="YES" id="gJZ-Ja-TUX"/>
                             <constraint firstItem="zXt-gg-YIG" firstAttribute="leading" secondItem="0BN-KX-evl" secondAttribute="trailing" constant="24" id="lVc-xt-jNX"/>
+                            <constraint firstItem="vec-My-qr0" firstAttribute="baseline" secondItem="7t5-0h-KxQ" secondAttribute="baseline" id="nQL-Ga-kVj"/>
                             <constraint firstItem="zXt-gg-YIG" firstAttribute="baseline" secondItem="vec-My-qr0" secondAttribute="baseline" id="pYc-EO-EPA"/>
                             <constraint firstItem="Ci7-F7-oKI" firstAttribute="centerY" secondItem="f6v-tp-fhI" secondAttribute="centerY" id="qNJ-5k-vPL"/>
                             <constraint firstItem="Lwm-8o-Kmn" firstAttribute="top" secondItem="S8j-3k-qZs" secondAttribute="top" id="r1A-jC-bV7"/>
@@ -150,6 +173,7 @@
                         <outlet property="containerChart" destination="Ci7-F7-oKI" id="P5Y-3e-kcG"/>
                         <outlet property="dayButtonOutlet" destination="0BN-KX-evl" id="Wl1-h3-SBi"/>
                         <outlet property="monthButtonOutlet" destination="zXt-gg-YIG" id="YE3-Ed-BZE"/>
+                        <outlet property="updateButtonOutlet" destination="7t5-0h-KxQ" id="Mkv-Pz-jh2"/>
                         <outlet property="vehicleTextField" destination="Lwm-8o-Kmn" id="qqc-Gy-4kD"/>
                         <outlet property="yearButtonOutlet" destination="vec-My-qr0" id="hxq-Vg-LaB"/>
                     </connections>
@@ -499,11 +523,14 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemFillColor">
-            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
