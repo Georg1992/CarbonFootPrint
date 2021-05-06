@@ -12,18 +12,15 @@ struct Vehicle {
     
     private(set) var dayArray = [DataSetStatistics]()
     
-    private(set) var weekArray = [DataSetStatistics]()
-    
-    private(set) var monthArray = [DataSetStatistics]()
-    
-    private(set) var yearArray = [DataSetStatistics]()
-    
     init (_ vehicleType: String) {
         self.vehicleType = vehicleType
     }
     
+    //pushes data to dayArray (dayArray is used to hold all data for lineChartView)
     mutating func pushDataDay(_ data: DataSetStatistics) {
         var duplicates = 0
+        
+        //dayArray.contains method was not working properly so checking for duplicates is handled here
         for element in dayArray {
             if (element.carbonFootprint == data.carbonFootprint && element.timeStamp == data.timeStamp && element.vehicleType == data.vehicleType) {
                 duplicates += 1
@@ -34,9 +31,8 @@ struct Vehicle {
         }
     }
     
+    //currently unused
     mutating func emptyData() {
         dayArray.removeAll()
     }
-    
-    
 }

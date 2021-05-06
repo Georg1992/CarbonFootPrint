@@ -7,6 +7,7 @@
 
 import Foundation
 
+//This struct is used as a way to conveniently "package" all needed information for lineChartView inside StatisticsViewController
 struct DataSetStatistics {
     private(set) var timeStamp: String?
     private(set) var timeStampNoHour: String?

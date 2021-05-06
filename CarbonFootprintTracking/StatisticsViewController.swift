@@ -6,16 +6,14 @@
 //
 
 import UIKit
-import DropDown //pod item
-import Charts //pod item
+import DropDown //pod item, currently unused as pickerView was a better option. I did not want to delete it in case of bad merging conflicts
+import Charts //pod item, used to create a LineChartView as well as PieChartView
 import TinyConstraints //pod item
-import CoreData
+import CoreData //used to store data on device
 
 class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedResultsControllerDelegate {
     
     private var fetchedResultsController:NSFetchedResultsController<Activity>?
-    
-    var activityInfo:Activity?
     
     @IBOutlet weak var dayButtonOutlet: UIButton!
     
@@ -29,6 +27,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
     
    @IBOutlet weak var vehicleTextField: UITextField!
     
+    //All moprim recognized vehicle types have been hardcoded here
     var myAll = Vehicle("all")
     var myCar = Vehicle("car")
     var myBus = Vehicle("bus")
@@ -40,10 +39,16 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
     var myWalk = Vehicle("walk")
     var myBicycle = Vehicle("bicycle")
     
+    //used to store the vehicle type of the current selected vehicle
     var selectedVehicle: String?
+    
+    //this array is used as the dataset for selecting vehicle types in pickerView
     var vehicleTypes = ["all", "car", "bus", "tram", "train", "metro", "plane", "run", "walk", "bicycle"]
+    
+    //used to store the vehicle of the current vehicle
     var currentVehicle: Vehicle?
     
+    //same data as in DataSetStatistics, but is needed in other functions when setting data for the current vehicle
     var tripTimeStamp: String?
     var tripTimeStampNoHour: String?
     var tripTimeStampThisMonth: String?
@@ -51,6 +56,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
     var tripCarbonFootprint: Double?
     var tripVehicleType: String?
     
+    //variables for current time stamps
     var today: String?
     var todayNoHour: String?
     var thisMonth: String?
@@ -88,23 +94,13 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        // dummy data
-//        let newDummy = DummyData()
-//        newDummy.fetchDummyData()
-        
+        //loads line chart data when view is loaded
         loadLineChartData()
-        print("myAll dayArray: \(myAll.dayArray)")
         
         //setting current vehicle as train by default
         currentVehicle = myTrain
         
-        print("today: \(today ?? "none"), todayNoHour: \(todayNoHour ?? "none")")
-        
-        //setting data for the current vehicle
-        
-        print("first dayArray: \(currentVehicle?.vehicleType ?? "none")")
-        print("first myTrain dayArray: \(myTrain.dayArray)")
-        
+        //helps with troubleshooting errors
         print("gatherHourData: \(gatherHourData())")
         print("gatherDayData: \(gatherDayData())")
         print("gatherMonthData: \(gatherMonthData())")
@@ -125,9 +121,10 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
         setData(timePeriod: getDayValues(), labelCount: 12, forced: false)
     }
     
+    //loads data for line chart
     func loadLineChartData() {
         
-        // Creates Date
+        // Creates Date. Since the line chart shows data based on year/month/day having the date for when data was gathered is essential
         let date = Date()
         // Creates Date Formatter
         let dateFormatter = DateFormatter()
@@ -146,6 +143,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
         // Set Date Format for this year
         dateFormatterYear.dateFormat = "YY"
         
+        //having multiples of the same date but without hour/day/month helps with categorizing data to day/month/year views in the line chart
         today = dateFormatter.string(from: date)
         todayNoHour = dateFormatterNoHour.string(from: date)
         thisMonth = dateFormatterMonth.string(from: date)
@@ -154,7 +152,6 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
         let context = AppDelegate.viewContext
         let request: NSFetchRequest<Activity> = Activity.fetchRequest()
         let activities =  try? context.fetch(request)
-        //print("pie coredata:  \(activities?.count ?? 0)")
         
         // checks if date is same as today. If it is, then value is added
         for oneActivity in activities ?? [] {
@@ -197,6 +194,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
                 setTripData(oneActivity.dateWithHour ?? "0", oneActivity.date ?? "0", oneActivity.dateMonthYear ?? "0", oneActivity.dateYear ?? "0", oneActivity.co2, oneActivity.activity ?? "none")
             }
             
+            //helps with troubleshooting errors
             print("oneActivity everything: \(oneActivity)")
             print("Statistics coredata co2:  \(oneActivity.co2)")
             print("Statistics coredata transport:  \(oneActivity.activity ?? "nothing")")
@@ -218,9 +216,6 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
         tripTimeStampThisYear = tSTY
         tripCarbonFootprint = cFP
         tripVehicleType = vT
-        
-        
-        print("setTripData vt: \(vT) and other vt: \(tripVehicleType ?? "none") typeof vT : \(type(of: vT))")
         
         //because currentVehicle does not save data to the actual vehicle of which type it is, the data must be set here to be saved
         switch vT {
@@ -309,7 +304,6 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
     
     //Closes and dismisses pickerView
     func dismissAndClosePickerView(){
-        
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         let button = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.dismissAction))
@@ -344,6 +338,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
         set1.highlightColor = .black
         set1.highlightLineWidth = 1.5
         
+        //data for LineChartData
         let data = LineChartData(dataSet: set1)
         
         //prevents the chart from displaying the data in numbers on top of the peak of a line
@@ -389,9 +384,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
         
         //this statement figures out what values to give to the variables above. It is done by going through all elements in allFromHour.1 (which is a list of all items inside dayArray) and comparing dates
         for element in allFromHour.1 {
-            print("gatherDayValues timestamp: \(element.timeStamp ?? "0")")
             for n in 0...9 {
-                print("blergh: \(element.timeStampNoHour ?? "0") + /0\(String(n))")
             if(element.timeStamp == ((element.timeStampNoHour ?? "0") + "/0" + String(n))) {
                 print("got to switch: \(n)")
                 switch n {
@@ -421,7 +414,6 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
             }
             }
             for n in 10...23 {
-                print("blergh2: \(element.timeStampNoHour ?? "0") + /\(String(n))")
                 if(element.timeStamp == ((element.timeStampNoHour ?? "0") + "/0" + String(n))) {
                     switch n {
                     case 10:
@@ -523,12 +515,9 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
         var carbon29 = 0.0
         var carbon30 = 0.0
         
-        
         //this statement figures out what values to give to the variables above. It is done by going through all elements in allFromDay.1 (which is a list of all items inside dayArray) and comparing dates
         for element in allFromDay.1 {
-            print("gatherMonthValues timestamp: \(element.timeStamp ?? "0")")
             for n in 0...9 {
-                print("blerghMonth: \(element.timeStampThisMonth ?? "0") + /0\(String(n))")
             if(element.timeStampNoHour == ((element.timeStampThisMonth ?? "0") + "/0" + String(n))) {
                 print("got to switch: \(n)")
                 switch n {
@@ -558,7 +547,6 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
             }
             }
             for n in 10...30 {
-                print("blerghMonth2: \(element.timeStampThisMonth ?? "0") + /\(String(n))")
                 if(element.timeStampNoHour == ((element.timeStampThisMonth ?? "0") + "/0" + String(n))) {
                     switch n {
                     case 10:
@@ -664,9 +652,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
         
         //this statement figures out what values to give to the variables above. It is done by going through all elements in allFromMonth.1 (which is a list of all items inside dayArray) and comparing dates
         for element in allFromMonth.1 {
-            print("gatherYearValues timestamp: \(element.timeStamp ?? "0")")
             for n in 0...9 {
-                print("blerghYear: \(element.timeStampThisYear ?? "0") + /0\(String(n))")
             if(element.timeStampThisMonth == ((element.timeStampThisYear ?? "0") + "/0" + String(n))) {
                 print("got to switch: \(n)")
                 switch n {
@@ -696,7 +682,6 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
             }
             }
             for n in 10...11 {
-                print("blerghYear2: \(element.timeStampThisMonth ?? "0") + /\(String(n))")
                 if(element.timeStampThisMonth == ((element.timeStampThisYear ?? "0") + "/0" + String(n))) {
                     switch n {
                     case 10:
@@ -732,8 +717,6 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
         setData(timePeriod: getDayValues(), labelCount: 12, forced: false)
     }
     
-    //sets data for week when week button is pressed
-    
     //sets data for month when month button is pressed
     @IBAction func monthButtonPressed(_ sender: UIButton) {
         print("monthButtonPressed")
@@ -746,6 +729,7 @@ class StatisticsViewController: UIViewController, ChartViewDelegate, NSFetchedRe
         setData(timePeriod: getYearValues(), labelCount: 12, forced: true)
     }
     
+    //When user presses "UPDATE" data for the line chart is reloaded
     @IBAction func updateButtonPressed(_ sender: UIButton) {
         print("updateButtonPressed")
         loadLineChartData()
@@ -793,10 +777,9 @@ extension StatisticsViewController: UIPickerViewDelegate, UIPickerViewDataSource
         if(self.selectedVehicle?.lowercased() == "walk") {self.currentVehicle = myWalk}
         if(self.selectedVehicle?.lowercased() == "bicycle") {self.currentVehicle = myBicycle}
         
+        //is used to see if pickerView is working correctly
         print("my current vehicle: \(self.currentVehicle?.vehicleType ?? "all")")
         print("currentVehicle: \(self.currentVehicle?.vehicleType ?? "all") first hour: ")
-        //let isIndexValid = currentVehicle?.dayArray.indices.contains(0)
-        
     }
 }
 
