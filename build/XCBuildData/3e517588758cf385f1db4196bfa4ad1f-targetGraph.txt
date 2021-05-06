@@ -1,0 +1,11 @@
+Target dependency graph (5 targets)
+Charts in Pods
+TinyConstraints in Pods
+Pods-CarbonFootprintTracking in Pods, depends on:
+Charts in Pods (explicit)
+TinyConstraints in Pods (explicit)
+Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests in Pods, depends on:
+Charts in Pods (explicit)
+TinyConstraints in Pods (explicit)
+Pods-CarbonFootprintTrackingTests in Pods, depends on:
+Pods-CarbonFootprintTracking in Pods (explicit)
