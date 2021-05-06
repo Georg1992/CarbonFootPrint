@@ -40,6 +40,8 @@
 		6A998ECF26272F7900B7376C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A998ECD26272F7900B7376C /* LaunchScreen.storyboard */; };
 		6A998EDA26272F7900B7376C /* CarbonFootprintTrackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A998ED926272F7900B7376C /* CarbonFootprintTrackingTests.swift */; };
 		6A998EE526272F7900B7376C /* CarbonFootprintTrackingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A998EE426272F7900B7376C /* CarbonFootprintTrackingUITests.swift */; };
+		6AD6703B264150C1003ADA89 /* VehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD6703A264150C1003ADA89 /* VehicleViewController.swift */; };
+		6AD670452642FAC0003ADA89 /* VehicleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD670442642FAC0003ADA89 /* VehicleTableViewCell.swift */; };
 		950F104DC3911F2DFA30C341 /* Pods_CarbonFootprintTracking_CarbonFootprintTrackingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9029295862FE40123C200B6B /* Pods_CarbonFootprintTracking_CarbonFootprintTrackingUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +116,8 @@
 		6A998EE026272F7900B7376C /* CarbonFootprintTrackingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarbonFootprintTrackingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A998EE426272F7900B7376C /* CarbonFootprintTrackingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonFootprintTrackingUITests.swift; sourceTree = "<group>"; };
 		6A998EE626272F7900B7376C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6AD6703A264150C1003ADA89 /* VehicleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleViewController.swift; sourceTree = "<group>"; };
+		6AD670442642FAC0003ADA89 /* VehicleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleTableViewCell.swift; sourceTree = "<group>"; };
 		9029295862FE40123C200B6B /* Pods_CarbonFootprintTracking_CarbonFootprintTrackingUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarbonFootprintTracking_CarbonFootprintTrackingUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B32902ACDCF550E1C21A64C7 /* Pods_CarbonFootprintTrackingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarbonFootprintTrackingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D05C4DE7A81EBAA1B56D20A6 /* Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests.release.xcconfig"; path = "Target Support Files/Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests/Pods-CarbonFootprintTracking-CarbonFootprintTrackingUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -205,7 +209,6 @@
 				6A998EBF26272F7700B7376C /* AppDelegate.swift */,
 				6A998ECB26272F7900B7376C /* Assets.xcassets */,
 				6A998EC826272F7700B7376C /* CarbonFootprintTracking.xcdatamodeld */,
-				6A4804562631612800E47A28 /* DataSetStatistics.swift */,
 				6A998ED026272F7900B7376C /* Info.plist */,
 				6A998ECD26272F7900B7376C /* LaunchScreen.storyboard */,
 				6A998EC526272F7700B7376C /* Main.storyboard */,
@@ -216,6 +219,8 @@
 				6A48045A2631614200E47A28 /* VehicleStatistics.swift */,
 				6A7C3B0F26316C6E008BE399 /* DataSetStatistics.swift */,
 				6A5F658D26381DD000C77294 /* MoprimAPI.swift */,
+				6AD6703A264150C1003ADA89 /* VehicleViewController.swift */,
+				6AD670442642FAC0003ADA89 /* VehicleTableViewCell.swift */,
 			);
 			path = CarbonFootprintTracking;
 			sourceTree = "<group>";
@@ -492,11 +497,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A24FD16262EB7F8006655CC /* MapViewController.swift in Sources */,
+				6AD6703B264150C1003ADA89 /* VehicleViewController.swift in Sources */,
 				6A998ECA26272F7700B7376C /* CarbonFootprintTracking.xcdatamodeld in Sources */,
 				6A48044C2631595E00E47A28 /* StatisticsViewController.swift in Sources */,
 				6A998EC026272F7700B7376C /* AppDelegate.swift in Sources */,
 				6A7C3B1026316C6E008BE399 /* DataSetStatistics.swift in Sources */,
 				6A24FD11262EB7D1006655CC /* PieViewController.swift in Sources */,
+				6AD670452642FAC0003ADA89 /* VehicleTableViewCell.swift in Sources */,
 				6A48045B2631614200E47A28 /* VehicleStatistics.swift in Sources */,
 				6A5F658E26381DD000C77294 /* MoprimAPI.swift in Sources */,
 				6A998EC226272F7700B7376C /* SceneDelegate.swift in Sources */,
