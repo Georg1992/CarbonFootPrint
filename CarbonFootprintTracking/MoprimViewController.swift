@@ -22,7 +22,8 @@ class MoprimViewController: UIViewController,  UITableViewDelegate,UITableViewDa
 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let context = AppDelegate.viewContext
-    private var exampleLocation: CLLocation = CLLocation(latitude: 60.187784, longitude: 24.96044)
+    private var exampleLocation: CLLocation = CLLocation(coordinate: CLLocationCoordinate2D(latitude: 60.187784, longitude: 24.96044), altitude: 51, horizontalAccuracy: 1, verticalAccuracy: 1, course: 30, speed: 60, timestamp: Date())
+    private var exampleLocation2: CLLocation = CLLocation(coordinate: CLLocationCoordinate2D(latitude: 60.682714, longitude: 24.41034), altitude: 51, horizontalAccuracy: 1, verticalAccuracy: 1, course: 30, speed: 25, timestamp: Date())
     private let refreshControl = UIRefreshControl()
     private var timer: Timer = Timer()
     private var currentDate: Date = Date()
@@ -70,7 +71,7 @@ class MoprimViewController: UIViewController,  UITableViewDelegate,UITableViewDa
         appDelegate.moprimApi.uploadSyntheticData(transport: TMDSyntheticRequestType.car, destination: exampleLocation, controller: self)
     }
     @IBAction func goByBicycle(_ sender: Any) {
-        appDelegate.moprimApi.uploadSyntheticData(transport: TMDSyntheticRequestType.bicycle, destination: exampleLocation, controller: self)
+        appDelegate.moprimApi.uploadSyntheticData(transport: TMDSyntheticRequestType.bicycle, destination: exampleLocation2, controller: self)
     }
    
     
@@ -168,7 +169,6 @@ class MoprimViewController: UIViewController,  UITableViewDelegate,UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ModalityCell", for: indexPath)
-        print("fetching for table")
         let activity = self.fetchedResultsController?.object(at: indexPath)
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "HH:mm"
@@ -191,7 +191,6 @@ class MoprimViewController: UIViewController,  UITableViewDelegate,UITableViewDa
            
             try fetchedResultsController?.performFetch()
             tableView.reloadData()
-            print("CORE DATA FETCHED: \(String(describing: fetchedResultsController?.fetchedObjects))")
         } catch {
             print("fetchedResultsController not good")
         }
