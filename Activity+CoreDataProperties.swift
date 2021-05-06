@@ -19,6 +19,8 @@ extension Activity {
     @NSManaged public var activity: String?
     @NSManaged public var co2: Double
     @NSManaged public var date: String?
+    @NSManaged public var timestampStart: Int64
+    @NSManaged public var duration:Double
 
 }
 

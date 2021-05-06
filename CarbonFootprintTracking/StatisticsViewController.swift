@@ -79,8 +79,8 @@ class StatisticsViewController: UIViewController, ChartViewDelegate {
         // Do any additional setup after loading the view.
         
         // dummy data
-        let newDummy = DummyData()
-        newDummy.fetchDummyData()
+//        let newDummy = DummyData()
+//        newDummy.fetchDummyData()
         
         // Creates Date
         let date = Date()
@@ -735,3 +735,4 @@ extension StatisticsViewController: UIPickerViewDelegate, UIPickerViewDataSource
         
     }
 }
+

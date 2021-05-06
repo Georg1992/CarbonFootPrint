@@ -10,8 +10,9 @@ import CoreData
 import UIKit
 
 // for chart testing.
-class DummyData {
+class DummyData{
     
+
     func fetchDummyData() {
         
         guard let url = URL(string: "https://users.metropolia.fi/~teemutr/test.json") else { fatalError("failed to create URL") }
@@ -47,18 +48,19 @@ class DummyData {
                 
                 let context = AppDelegate.viewContext
                 
-                for oneActivity in activityInfo ?? [] {
-                    context.perform {
-                        Activity.createOneActivityObject(oneActivity)
-                        try? context.save()
-                        //print("dummydata saved to coredata: \(oneActivity)")
-                    }
-                }
+//                for oneActivity in activityInfo ?? [] {
+//                    context.perform {
+//                        Activity.createOneActivityObject(oneActivity)
+//                        try? context.save()
+//                        //print("dummydata saved to coredata: \(oneActivity)")
+//                    }
+//                }
             } catch {
                 print(error.localizedDescription)
             }
         }
         task.resume()
     }
+
 }
 
