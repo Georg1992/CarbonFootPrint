@@ -34,6 +34,7 @@ class customLabel: UILabel {
     }
 }
 
+/*
 class customProgressView: UIProgressView {
     override func didMoveToWindow() {
         // Style
@@ -45,6 +46,8 @@ class customProgressView: UIProgressView {
         self.subviews[1].clipsToBounds = true
         self.transform = self.transform.scaledBy(x: 1, y: 8)
     }
-}
+}*/
+ 
+ 
 // to change backroundcolor: in viewDidLoad()
 //  self.view.backgroundColor = UIColor.orange

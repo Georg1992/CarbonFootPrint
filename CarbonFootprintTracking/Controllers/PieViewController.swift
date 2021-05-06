@@ -16,7 +16,7 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
     private var fetchedResultsController:NSFetchedResultsController<Activity>?
     
     @IBOutlet weak var textLabel: UILabel!
-    @IBOutlet weak var progressView: customProgressView!
+    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var pieChartView: PieChartView!
     @IBOutlet weak var updateB: roundButton!
     
@@ -84,6 +84,15 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
         let fullProgress = StartValue+addedValues
         // Start value
         progressView.progress = Float(fullProgress)
+        
+        // Style
+        progressView.progressTintColor = UIColor.green
+        //progressView.backgroundColor = UIColor.systemBackground
+        progressView.layer.cornerRadius = 5
+        progressView.clipsToBounds = true
+        progressView.layer.sublayers![1].cornerRadius = 5
+        progressView.subviews[1].clipsToBounds = true
+        progressView.transform = progressView.transform.scaledBy(x: 1, y: 8)
         updateProgressView()
     }
     
