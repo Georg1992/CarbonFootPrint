@@ -75,7 +75,7 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
     // creates budget bar
     func budgetBar(_ addedValues: Double) {
-        //full 1000kg in month
+        //full is 1000kg in month
         
         let StartValue: Double = 0
         let fullProgress = StartValue+addedValues
@@ -172,9 +172,7 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
         
         let context = AppDelegate.viewContext
         
-        //do {
         let activities =  try? context.fetch(request)
-        //print("pie coredata:  \(activities?.count ?? 0)")
         
         // checks if date is same as today. If it is, then value is added
         for oneActivity in activities ?? [] {
@@ -215,10 +213,7 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
             print("pie coredata transport:  \(oneActivity.activity ?? "nothing")")
             print("pie coredata date:  \(oneActivity.date ?? "no date")")
         }
-        //}
-        //catch let error as NSError {
-        //   print("no!: \(error.localizedDescription)")
-        //}
+        
         if carCarbon >= 1 {
             carbon.append(carCarbon)
             transport.append("car")
@@ -270,7 +265,6 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
         // only month
         dateFormatter.dateFormat = "YY/MM"
         let monthToday = dateFormatter.string(from: date)
-        //print("month today: \(monthToday)")
         
         // value to budget bar
         var budgetValue: Double = 0
@@ -279,7 +273,6 @@ class PieViewController: UIViewController, NSFetchedResultsControllerDelegate {
         
         let context = AppDelegate.viewContext
         
-        //do {
         let activities =  try? context.fetch(request)
         //print("pie coredata:  \(activities?.count ?? 0)")
         
