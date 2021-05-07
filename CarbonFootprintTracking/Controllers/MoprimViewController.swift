@@ -22,8 +22,15 @@ class MoprimViewController: UIViewController,  UITableViewDelegate,UITableViewDa
 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let context = AppDelegate.viewContext
-    private var exampleLocation: CLLocation = CLLocation(coordinate: CLLocationCoordinate2D(latitude: 60.187784, longitude: 24.96044), altitude: 51, horizontalAccuracy: 1, verticalAccuracy: 1, course: 30, speed: 60, timestamp: Date())
-    private var exampleLocation2: CLLocation = CLLocation(coordinate: CLLocationCoordinate2D(latitude: 60.682714, longitude: 24.41034), altitude: 51, horizontalAccuracy: 1, verticalAccuracy: 1, course: 30, speed: 25, timestamp: Date())
+    
+    let exampleLocation: CLLocation = CLLocation(coordinate: CLLocationCoordinate2D(latitude: 60.187750, longitude: 24.93041), altitude: 51, horizontalAccuracy: 1, verticalAccuracy: 1, course: 50, speed: 120, timestamp: Date())
+    let exampleLocation2: CLLocation = CLLocation(coordinate: CLLocationCoordinate2D(latitude: 60.160781, longitude: 24.98040), altitude: 51, horizontalAccuracy: 5, verticalAccuracy: 1, course: 45, speed: 20, timestamp: Date())
+    
+    let exampleLocation3: CLLocation = CLLocation(coordinate: CLLocationCoordinate2D(latitude: 58.179714, longitude: 25.96044), altitude: 51, horizontalAccuracy: 5, verticalAccuracy: 2, course: 30, speed: 15, timestamp: Date())
+    
+    let origin: CLLocation = CLLocation(coordinate: CLLocationCoordinate2D(latitude: 60.179714, longitude: 24.96044), altitude: 51, horizontalAccuracy: 5, verticalAccuracy: 2, course: 30, speed: 0, timestamp: Date())
+    
+    
     private let refreshControl = UIRefreshControl()
     private var timer: Timer = Timer()
     private var currentDate: Date = Date()
@@ -68,18 +75,20 @@ class MoprimViewController: UIViewController,  UITableViewDelegate,UITableViewDa
     
     
     @IBAction func goByCar(_ sender: Any) {
-        appDelegate.moprimApi.uploadSyntheticData(transport: TMDSyntheticRequestType.car, destination: exampleLocation, controller: self)
+        appDelegate.moprimApi.uploadSyntheticData(transport: TMDSyntheticRequestType.car, origin: origin, destination: exampleLocation, controller: self)
     }
     @IBAction func goByBicycle(_ sender: Any) {
-        appDelegate.moprimApi.uploadSyntheticData(transport: TMDSyntheticRequestType.bicycle, destination: exampleLocation2, controller: self)
+        appDelegate.moprimApi.uploadSyntheticData(transport: TMDSyntheticRequestType.bicycle, origin: exampleLocation, destination: exampleLocation2, controller: self)
     }
    
     
     @IBAction func getData(_ sender: Any) {
-        appDelegate.moprimApi.updateContextForCurrentDate()
-        fetchToResults()
-        tableView.reloadData()
-    }
+        self.refreshControl.beginRefreshing()
+            appDelegate.moprimApi.updateContextForCurrentDate()
+            fetchToResults()
+        self.refreshControl.endRefreshing()
+            
+        }
     
     @IBAction func switchValueChanged(sender: UISwitch) {
         NSLog(sender.isOn ? "Switch On" : "Switch Off")
@@ -182,18 +191,22 @@ class MoprimViewController: UIViewController,  UITableViewDelegate,UITableViewDa
     }
     
     func fetchToResults(){
+        
         let fetchRequest = NSFetchRequest<Activity>(entityName: "Activity")
         let sort = NSSortDescriptor(key:"date", ascending: true)
         fetchRequest.sortDescriptors = [sort]
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-        fetchedResultsController?.delegate = self
-        do {
-           
-            try fetchedResultsController?.performFetch()
-            tableView.reloadData()
-        } catch {
-            print("fetchedResultsController not good")
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.context, sectionNameKeyPath: nil, cacheName: nil)
+        self.fetchedResultsController?.delegate = self
+        DispatchQueue.main.async {
+            do {
+                
+                try self.fetchedResultsController?.performFetch()
+                self.tableView.reloadData()
+            } catch {
+                print("fetchedResultsController not good")
+            }
         }
+        
     }
     
     @objc private func refreshTableData(_ sender: Any) {

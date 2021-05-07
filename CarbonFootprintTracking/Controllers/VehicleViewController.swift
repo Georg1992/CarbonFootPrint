@@ -25,7 +25,7 @@ class VehicleViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
-        print("this is tableview \(self.tableView)")
+        print("this is tableview \(String(describing: self.tableView))")
     }
     
     
@@ -36,7 +36,7 @@ class VehicleViewController: UIViewController, UITableViewDelegate, UITableViewD
         didSet {
             print("arvo vaihtui")
             DispatchQueue.main.async {
-                print("this is tableview \(self.tableView)")
+                print("this is tableview \(String(describing: self.tableView))")
                 self.tableView?.reloadData()
                 print("this is distance \(self.distance)")
             }

@@ -129,7 +129,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         let directions = MKDirections(request: destinationRequest)
         directions.calculate { [self] (response, error) in
             guard let response = response else {
-                if let error = error {
+                if error != nil {
                     print("Something is wrong")
                 }
                 return

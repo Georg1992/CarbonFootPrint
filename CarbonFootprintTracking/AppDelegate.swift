@@ -23,23 +23,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TMDDelegate, MoprimAPIDel
     static var viewContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     func fetchMoprimData(data: [MoprimData]) {
-        DispatchQueue.main.async{
             for oneActivity in data {
                 AppDelegate.viewContext.perform{
                     Activity.createOneActivityObject(oneActivity)
                     self.saveContext()
                 }
             }
-        }
     }
     
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        AppDelegate.viewContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
+        //AppDelegate.viewContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
         
-        moprimApi.delegate = self
-        moprimApi.updateContextForCurrentDate()
         // Fetch data as soon as possible
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         
@@ -57,6 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TMDDelegate, MoprimAPIDel
         })
         TMD.setDelegate(self)
         TMD.start()
+        moprimApi.delegate = self
+            
         
         return true
     }

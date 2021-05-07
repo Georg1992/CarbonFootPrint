@@ -43,8 +43,7 @@ public class Activity: NSManagedObject {
         let context = AppDelegate.viewContext
         
         if let matchingActivity = try? context.fetch(request) {
-            
-            if (matchingActivity.count == 0) {
+            //if (matchingActivity.count == 0) {
                 let newActivity = Activity(context: context)
                 
                 let shortTransportation: String?
@@ -74,13 +73,12 @@ public class Activity: NSManagedObject {
                 
                 newActivity.co2 = Double(oneActivity.co2)
                 newActivity.activity = shortTransportation
-                print("newActivity.date original: \(newActivity.date ?? "no date")")
                 newActivity.date = today
                 newActivity.dateWithHour = todayWithHour
                 newActivity.dateMonthYear = thisMonth
                 newActivity.dateYear = thisYear
                 newActivity.duration = Double(oneActivity.duration)
-            }
+            //}
         }
     }
 }

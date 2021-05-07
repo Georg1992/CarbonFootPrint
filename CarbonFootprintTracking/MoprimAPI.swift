@@ -31,6 +31,8 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate{
     //Used for synthetic activities
     let apiKey = "V8G_ZWvdUkAcrIeo8sJGwnSX3p9A5EY9R4pKJF3KfeA"
     
+    
+    
     func askMotionPermissions() {
         if CMMotionActivityManager.isActivityAvailable() {
             self.motionActivityManager.startActivityUpdates(to: OperationQueue.main) { (motion) in
@@ -65,86 +67,56 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate{
             if let arr = cacheTask.result {
                 cachedActivities = (arr as! [TMDActivity])
             }
+            
+            
             return cacheTask;
         }.continueOnSuccessWith { (task) -> Any? in
             TMDCloudApi.fetchData(self.currentDate, minutesOffset: 0.0).continueWith { (task) -> Any? in
                 if(cachedActivities.count != self.fetchedDayActivities.count){
-                DispatchQueue.main.async{
-                    self.fetchedDayActivities.removeAll()
-                    if let arr = task.result {
-                        for activity in (arr as! [TMDActivity]) {
-                            self.fetchedDayActivities.append(activity)
+                    DispatchQueue.main.async{
+                        self.fetchedDayActivities.removeAll()
+                        if let arr = task.result {
+                            
+                            for activity in (arr as! [TMDActivity]) {
+                                self.fetchedDayActivities.append(activity)
+                            }
+                            
                         }
-                    }
-                    else if task.error != nil {
-                        for activity in cachedActivities {
-                            self.fetchedDayActivities.append(activity)
+                        else if task.error != nil {
+                            
+                            for activity in cachedActivities {
+                                self.fetchedDayActivities.append(activity)
+                            }
                         }
+                        
+                        NSLog("We got %d activities for date: \(self.dateFormater.string(from: self.currentDate))", self.fetchedDayActivities.count )
+                        
+                        self.feedMoprimStruct()
                     }
-                    
-                    NSLog("We got %d activities for date: \(self.dateFormater.string(from: self.currentDate))", self.fetchedDayActivities.count )
-                    
-                    self.feedMoprimStruct()
-                    
-                }
                 }else{
-                    print("No Activities To Fetch")
+                    print("No new Activities")
+                    
+                    
+                    
                 }
                 return task;
             }
         }
-        
     }
     
     func feedMoprimStruct(){
-        print("feeding moprim struct")
+        print("Sending Data To Context")
         var moprimData:[MoprimData] = []
         for activity in self.fetchedDayActivities{
             let data = MoprimData(activity: activity.activity(), co2: activity.co2, date: self.dateFormater.string(from: self.currentDate), duration: activity.duration(), timestampStart: activity.timestampStart)
             moprimData.append(data)
-            print("MoprimData array: \(moprimData)")
             }
        self.delegate?.fetchMoprimData(data: moprimData)
     }
     
-    
-    func uploadData(controller: UIViewController) {
+    func uploadSyntheticData(transport: TMDSyntheticRequestType,origin: CLLocation, destination: CLLocation, controller: UIViewController) {
         NSLog("Uploading data")
-        TMDCloudApi.uploadData().continueWith { (task) -> Any? in
-            DispatchQueue.main.async {
-                let alert : UIAlertController
-                if let error = task.error {
-                    NSLog("Error while uploading: %@", error.localizedDescription)
-                    alert = UIAlertController.init(title: "Upload Error", message: error.localizedDescription, preferredStyle: .alert)
-                }
-                else if let metadata = task.result {
-                    if (metadata.nbLocations + metadata.nbTmdSequences == 0) {
-                        NSLog("Nothing to upload")
-                        alert = UIAlertController.init(title: "Nothing to upload", message: nil, preferredStyle: .alert)
-                    }
-                    else {
-                        alert = UIAlertController.init(title: "Upload success", message: nil, preferredStyle: .alert)
-                        NSLog("Successfully uploading: %@", metadata.description())
-                    }
-                }
-                else {
-                    alert = UIAlertController.init(title: "Upload Error", message: "No metadata was returned", preferredStyle: .alert)
-                }
-                alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: nil))
-                controller.present(alert, animated: true, completion: nil)
-            }
-            return nil;
-        }
-    }
-    
-    func uploadSyntheticData(transport: TMDSyntheticRequestType, destination: CLLocation, controller: UIViewController) {
-        NSLog("Uploading data")
-        guard let currentLoaction = locationManager.location else{
-            print("Cant find location")
-            return
-            }
-        print("Location: \(String(describing: locationManager.location))")
-        TMDCloudApi.generateSyntheticData(withOriginLocation:CLLocation(latitude: 60.184584, longitude: 24.92444) , destination: destination, requestType: transport, hereApiKey: apiKey).continueWith { (task) -> Any? in
+        TMDCloudApi.generateSyntheticData(withOriginLocation:origin , destination: destination, requestType: transport, hereApiKey: apiKey).continueWith { (task) -> Any? in
             DispatchQueue.main.async {
                 let alert : UIAlertController
                 if let error = task.error {
@@ -169,7 +141,7 @@ class MoprimAPI : NSObject, CLLocationManagerDelegate{
     
     
 }
-//TODO: MAKE A STRUCT FOR CORE DATA
+
 struct MoprimData {
     var activity:String
     var co2:Double

@@ -28,7 +28,7 @@ class DummyData{
             }
             
             for result in [data] {
-                print("data print test: \(result)")
+                print("data print test: \(String(describing: result))")
             }
             
             guard let data = data else {
@@ -46,7 +46,7 @@ class DummyData{
                     print("dummydata test: \(result ?? [])")
                 }
                 
-                let context = AppDelegate.viewContext
+               // let context = AppDelegate.viewContext
                 
 //                for oneActivity in activityInfo ?? [] {
 //                    context.perform {
