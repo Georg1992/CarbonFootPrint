@@ -24,11 +24,11 @@ class MoprimViewController: UIViewController,  UITableViewDelegate,UITableViewDa
     let context = AppDelegate.viewContext
     
     let exampleLocation: CLLocation = CLLocation(coordinate: CLLocationCoordinate2D(latitude: 60.187750, longitude: 24.93041), altitude: 51, horizontalAccuracy: 1, verticalAccuracy: 1, course: 50, speed: 120, timestamp: Date())
-    let exampleLocation2: CLLocation = CLLocation(coordinate: CLLocationCoordinate2D(latitude: 60.160781, longitude: 24.98040), altitude: 51, horizontalAccuracy: 5, verticalAccuracy: 1, course: 45, speed: 20, timestamp: Date())
+    let exampleLocation2: CLLocation = CLLocation(coordinate: CLLocationCoordinate2D(latitude: 60.160781, longitude: 24.98040), altitude: 51, horizontalAccuracy: 5, verticalAccuracy: 1, course: 45, speed: 50, timestamp: Date())
     
     let exampleLocation3: CLLocation = CLLocation(coordinate: CLLocationCoordinate2D(latitude: 58.179714, longitude: 25.96044), altitude: 51, horizontalAccuracy: 5, verticalAccuracy: 2, course: 30, speed: 15, timestamp: Date())
     
-    let origin: CLLocation = CLLocation(coordinate: CLLocationCoordinate2D(latitude: 60.179714, longitude: 24.96044), altitude: 51, horizontalAccuracy: 5, verticalAccuracy: 2, course: 30, speed: 0, timestamp: Date())
+    let origin: CLLocation = CLLocation(coordinate: CLLocationCoordinate2D(latitude: 60.179714, longitude: 24.96044), altitude: 51, horizontalAccuracy: 5, verticalAccuracy: 2, course: 30, speed: 30, timestamp: Date())
     
     
     private let refreshControl = UIRefreshControl()
@@ -78,7 +78,7 @@ class MoprimViewController: UIViewController,  UITableViewDelegate,UITableViewDa
         appDelegate.moprimApi.uploadSyntheticData(transport: TMDSyntheticRequestType.car, origin: origin, destination: exampleLocation, controller: self)
     }
     @IBAction func goByBicycle(_ sender: Any) {
-        appDelegate.moprimApi.uploadSyntheticData(transport: TMDSyntheticRequestType.bicycle, origin: exampleLocation, destination: exampleLocation2, controller: self)
+        appDelegate.moprimApi.uploadSyntheticData(transport: TMDSyntheticRequestType.bicycle, origin: origin, destination: exampleLocation2, controller: self)
     }
    
     
